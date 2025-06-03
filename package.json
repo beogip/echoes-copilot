@@ -1,0 +1,31 @@
+{
+  "name": "echos-copilot-template",
+  "version": "1.0.0",
+  "description": "Template for integrating Echo Protocol with GitHub Copilot",
+  "main": "build/build.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "build": "node build/build.js",
+    "build:copilot": "node build/build.js --copilot",
+    "build:instructions": "node build/build.js --individual",
+    "build:watch": "nodemon build/build.js",
+    "dev": "npm run build && npm run build:watch",
+    "test": "node build/test.js"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0"
+  },
+  "keywords": [
+    "echo-protocol",
+    "github-copilot",
+    "ai-assistant",
+    "structured-reasoning"
+  ],
+  "author": "",
+  "license": "MIT"
+}
