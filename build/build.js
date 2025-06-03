@@ -13,7 +13,7 @@ const CONFIG = {
   sourceDir: path.join(__dirname, '..', 'instructions-source'),
   outputFile: path.join(__dirname, '..', '.github', 'copilot-instructions.md'),
   instructionsDir: path.join(__dirname, '..', '.github', 'instructions'),
-  echoProtocolDir: path.join(__dirname, '..', '..', 'echo-protocol', 'echos'),
+  echoProtocolDir: path.join(__dirname, '..', 'echos-sources'),
   
   // Echo configurations
   echos: [

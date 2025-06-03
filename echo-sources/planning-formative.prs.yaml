@@ -1,0 +1,99 @@
+- echo: Planning Echo – Formative Mode
+  id: planning-formative
+  mode: Formative
+
+  purpose: >-
+    Guide step-by-step planning of a learning, development, or implementation process, ensuring clarity, adaptability, and structured feedback. Supports roadmap creation for individuals, teams, or systems.
+
+  trigger: >-
+    Triggered when the user wants to learn something, organize a complex task, improve a situation, or build an action plan.
+
+  config:
+    retry_on_fail: true
+    max_retries_per_step: 3
+
+  steps:
+    - name: Clarification of the final objective
+      goal: Clearly define what is to be achieved.
+      validation:
+        - Is there a specific outcome or deliverable?
+        - Is it expressed in measurable and concrete terms?
+      expected_output: A sentence or paragraph defining the final goal.
+
+    - name: Active collection of contextual information
+      goal: Ensure all relevant information is available before planning.
+      validation:
+        - Were all key questions asked?
+        - Was relevant information documented?
+        - Was flow halted if information was missing?
+      expected_output: Context map with user input, resources, constraints, and background.
+
+    - name: Diagnosis of the starting point
+      goal: Evaluate the current position in relation to the goal.
+      validation:
+        - Was the current state described in detail?
+        - Were gaps toward the goal identified?
+      expected_output: Diagnostic summary with strengths and gaps.
+
+    - name: Definition of the learner or main actor role
+      goal: Adapt the plan to the person, team, or AI that will execute it.
+      validation:
+        - Was the executor described?
+        - Were level, availability, style, and limitations considered?
+      expected_output: Summary profile of the executor.
+
+    - name: Detection of possible obstacles
+      goal: Anticipate what might block progress and how to address it.
+      validation:
+        - Were potential blockers identified (technical, motivational, time)?
+        - Were preventive or mitigating strategies proposed?
+      expected_output: Obstacle list with contingency plan.
+
+    - name: Definition of the final deliverable
+      goal: Establish the product, skill, or knowledge to be acquired.
+      validation:
+        - Is it aligned with the initial objective?
+        - Is it demonstrable, evaluable, or shareable?
+      expected_output: Clear description of the final output.
+
+    - name: Division into execution modules
+      goal: Split the path into concrete, sequential actions grounded in prior analysis.
+      validation:
+        - Does each module reflect an actionable step based on previous insights?
+        - Does it have a clear operational purpose?
+        - Is it justified and logically connected to the overall plan?
+      expected_output: >-
+        Structured table with:
+        - name
+        - purpose
+        - context_description
+        - deliverables
+        - dependencies
+
+    - name: Progress visualization + dynamic adaptation
+      goal: Define how progress will be measured and how the plan will be adjusted.
+      validation:
+        - Are there defined signals or metrics for progress?
+        - Is a dynamic adjustment mechanism included?
+      expected_output: >-
+        Tracking system with:
+        - module indicators
+        - review frequency
+        - tracking format (dashboard, checklist, log)
+        - adjustment criteria
+
+  output_format: >-
+    Structured roadmap in YAML or Markdown format including:
+    - Table of modules (name, purpose, context_description, deliverables, dependencies)
+    - Critical checkpoints
+    - Tracking and adaptation system
+
+  notes: |-
+    This optimized version improves traceability for AI-driven flows through contextual module descriptions and a structured format.
+    Useful for distributed, asynchronous, or progressive executions.
+    Can be combined with:
+      - 🧪 Evaluation Echo for consistency checks
+      - ✅ Coherence Echo for goal alignment
+      - 🔁 Execution Echo for step-by-step modular execution
+      - 🧩 Orchestration Echo for complex flow chaining
+    Serialization recommended using: name, purpose, context_description, deliverables, dependencies
