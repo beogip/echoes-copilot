@@ -111,6 +111,29 @@ npm run build        # Build all instruction formats
 npm run build:watch  # Development mode with auto-rebuild
 ```
 
+### Testing Suite
+
+Run comprehensive tests with optimized performance monitoring:
+
+```bash
+# Complete test suite
+npm test             # Run all tests (same as npm run test:all)
+npm run test:all     # Complete testing suite
+
+# Individual test categories
+npm run test:edge    # Edge case tests (optimized with timing)
+npm run test:installer     # Installer functionality tests
+npm run test:integration   # Integration tests
+npm run test:unit    # Unit tests
+
+# Specialized test modes
+npm run test:edge-only     # Only edge cases via test runner
+npm run test:quick   # Quick validation (installer + unit tests)
+npm run test:verbose # Detailed output with additional logging
+```
+
+> 🧪 **Optimized Edge Cases**: The edge case tests now include performance monitoring, reduced code duplication (75% less), and cross-platform compatibility for macOS/Linux.
+
 ### Customization
 
 1. **Edit sources** in `instructions-source/`

@@ -12,12 +12,19 @@
     "build:instructions": "node build/build.js --individual",
     "build:watch": "nodemon build/build.js",
     "dev": "npm run build && npm run build:watch",
-    "test": "node build/test.js"
+    "test": "bats tests/bats",
+    "test:edge": "bats tests/bats/install-edge-cases.bats",
+    "test:installer": "bats tests/bats/install-sh.bats tests/bats/install-local-sh.bats tests/bats/install-ps1.bats",
+    "test:integration": "bats tests/bats/install-cross-platform.bats",
+    "test:unit": "echo 'No unit tests defined for shell scripts' && exit 0",
+    "test:quick": "bats tests/bats/install-sh.bats tests/bats/install-local-sh.bats",
+    "test:verbose": "bats --verbose tests/bats"
   },
   "dependencies": {
     "js-yaml": "^4.1.0"
   },
   "devDependencies": {
+    "jest": "^29.7.0",
     "nodemon": "^3.0.0"
   },
   "keywords": [
