@@ -254,32 +254,17 @@ function buildIndividualInstructions() {
   
   CONFIG.echos.forEach(echoConfig => {
     console.log(`📄 Processing ${echoConfig.name}...`);
-    
     let echoData = null;
-    
-    // Try to load from echo-protocol repository first
-    const echoDir = path.join(CONFIG.echoProtocolDir, echoConfig.name);
+    // Only load .prs.yaml files from echos-source
+    const echoDir = path.join(__dirname, '..', 'echos-source', echoConfig.name);
     const protocolPath = path.join(echoDir, echoConfig.file);
-    
-    if (fs.existsSync(protocolPath)) {
+    if (protocolPath.endsWith('.prs.yaml') && fs.existsSync(protocolPath)) {
       echoData = loadYamlFile(protocolPath);
       if (echoData) {
-        console.log(`  ✅ Loaded from echo-protocol: ${echoConfig.file}`);
+        console.log(`  ✅ Loaded from echos-source: ${echoConfig.name}/${echoConfig.file}`);
       }
     }
-    
-    // Fallback to local files if protocol file doesn't exist or failed to load
-    if (!echoData) {
-      const localPath = path.join(__dirname, '..', 'echo-sources', echoConfig.file);
-      if (fs.existsSync(localPath)) {
-        echoData = loadYamlFile(localPath);
-        if (echoData) {
-          console.log(`  ✅ Loaded from local: ${echoConfig.name}.prs.yaml`);
-        }
-      }
-    }
-    
-    // Create fallback if still no data
+    // Fallback if not found
     if (!echoData) {
       console.error(`  ❌ Echo file not found for ${echoConfig.name}`);
       echoData = {
@@ -307,9 +292,7 @@ function buildIndividualInstructions() {
           }
         ]
       };
-      console.log(`  🔄 Using fallback definition for ${echoConfig.name}`);
     }
-    
     // Generate instruction file
     const instructionContent = convertEchoToInstructionsFormat(echoData, echoConfig);
     
@@ -384,16 +367,11 @@ The following echos are available through individual instruction files in \`.git
     
     // Load echo for basic info
     const echoProtocolPath = path.join(CONFIG.echoProtocolDir, echoConfig.name, echoConfig.file);
-    const prioritizationPath = path.join(CONFIG.echoProtocolDir, 'prioritation', echoConfig.file);
     
     let echoData = null;
-    
     if (fs.existsSync(echoProtocolPath)) {
       echoData = loadYamlFile(echoProtocolPath);
       console.log(`  ✅ Loaded from echo-protocol: ${echoConfig.file}`);
-    } else if (echoConfig.name === 'prioritization' && fs.existsSync(prioritizationPath)) {
-      echoData = loadYamlFile(prioritizationPath);
-      console.log(`  ✅ Loaded from echo-protocol/prioritation: ${echoConfig.file}`);
     }
     
     if (echoData) {
