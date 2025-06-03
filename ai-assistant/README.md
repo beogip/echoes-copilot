@@ -8,12 +8,12 @@ This project uses the `ai-assistant/` folder to maintain context and institution
 
 ```
 ai-assistant/
-├── context/                 # Background information and methodologies
+├── context/                 # Background information and methodologies (TODO)
 │   ├── development-context.md      # Software development best practices
 │   └── echo-protocol-context.md    # Echo Protocol philosophy and structure
 ├── planning/                # Implementation plans and roadmaps
 │   └── echo-copilot-implementation-plan.md  # Current project plan (PRS-generated)
-└── echos/                  # Development-specific echo templates
+└── echos/                  # Development-specific echo templates (TODO)
     └── README.md           # Documentation of custom echo adaptations
 ```
 
@@ -23,7 +23,7 @@ ai-assistant/
 
 When working on this project:
 
-1. **Reference existing context** - Check `context/` files for background information
+1. **Reference existing context** - (pending) `context/` files will store background information
 2. **Update plans** - Modify files in `planning/` as the project evolves
 3. **Store analysis** - Save diagnostic results, evaluations, and other echo outputs
 4. **Maintain continuity** - Use stored context to maintain consistency across sessions

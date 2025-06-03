@@ -196,12 +196,12 @@ progress_metrics:
 
 ## **Status Tracking**
 
-- [ ] **M1: Fix Build System**
-- [ ] **M2: Create Ready-to-Use**
-- [ ] **M3: Advanced Installer**
-- [ ] **M4: Testing & Validation**
-- [ ] **M5: Documentation**
-- [ ] **M6: Distribution**
+- [ ] **M1: Fix Build System** – build directory and scripts missing
+- [ ] **M2: Create Ready-to-Use** – initial instructions file present
+- [ ] **M3: Advanced Installer** – installer scripts not implemented
+- [ ] **M4: Testing & Validation** – test suite exists but depends on installers
+- [ ] **M5: Documentation** – README and installation guide drafted
+- [ ] **M6: Distribution** – not started
 
 ---
 
