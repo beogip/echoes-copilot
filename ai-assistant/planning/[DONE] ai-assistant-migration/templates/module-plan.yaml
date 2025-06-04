@@ -1,0 +1,19 @@
+# module-plan.yaml (plantilla)
+module:
+  id: Mx
+  name: "Nombre del módulo"
+  current_status: "pending|in progress|completed"
+  next_step: "Descripción del próximo paso relevante"
+  completed_deliverables:
+    - "Ejemplo de entregable completado"
+  submodules:
+    - id: Mx.1
+      name: "Nombre del submódulo"
+      status: "pending|in progress|completed"
+    # Agregar más submódulos según sea necesario
+  history:
+    - date: "YYYY-MM-DD"
+      type: "created|started|completed"
+      summary: "Descripción breve del evento"
+  context_summary: |
+    Breve resumen del propósito, alcance y contexto del módulo.

@@ -1,0 +1,25 @@
+# submodule.yaml
+submodule:
+  id: M5.4
+  name: "Style Guide & Standards"
+  status: "pending"
+  context_summary: |
+    Crear y documentar estándares de estilo, terminología y estructura para mantener
+    coherencia futura en toda la documentación del Echo Protocol.
+
+    Establecer guidelines para contribuciones futuras y procesos de review.
+  deliverables:
+    - "Style guide documentado con estándares de escritura"
+    - "Glosario de terminología oficial del Echo Protocol"
+    - "Templates y estructuras estándar para diferentes tipos de documentos"
+    - "Guidelines para divulgación progresiva de información"
+    - "Estándares para referencias cruzadas y linking interno"
+    - "Proceso de review y validación de contenido documentado"
+  next_step: "Crear style guide basado en correcciones implementadas en M5.3"
+  history:
+    - date: "2025-06-02"
+      type: "created"
+      summary: "Submódulo creado para establecimiento de estándares documentales"
+    - date: "2025-06-04"
+      type: "migrated"
+      summary: "Información migrada al formato YAML modular durante MIG1.3"

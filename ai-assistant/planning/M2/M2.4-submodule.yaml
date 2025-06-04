@@ -1,0 +1,26 @@
+# M2.4-submodule.yaml
+submodule:
+  id: M2.4
+  name: "Size Verification"
+  parent_module: M2
+  status: "pending"
+  context_summary: |
+    Confirmar cumplimiento de restricción de tamaño de archivo (límite estricto <100KB).
+
+    Verificaciones automatizadas:
+    - wc -c .github/copilot-instructions.md
+    - Target: <100,000 bytes
+    - Planes de contingencia si excede límite
+
+    Planes de contingencia:
+    - Crear versiones "lite" y "full" si el tamaño es problema
+    - Implementar enfoque de mejora progresiva
+    - Preparar fallback a formato más simple si es necesario
+  deliverables:
+    - "Reporte de análisis de tamaño"
+    - "Verificación automatizada de cumplimiento"
+    - "Plan de contingencia activado si es necesario"
+  dependencies:
+    - "M2.3 (Quality Polish)"
+  next_step: "Crear script automatizado de verificación de tamaño"
+  estimated_effort: "2 horas"

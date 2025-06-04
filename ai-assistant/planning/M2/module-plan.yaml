@@ -1,0 +1,40 @@
+# module-plan.yaml
+module:
+  id: M2
+  name: "Create Ready-to-Use"
+  current_status: "pending"
+  next_step: "Esperar finalización de M1 para iniciar optimización de contenido"
+  completed_deliverables: []
+  submodules:
+    - id: M2.1
+      name: "Content Optimization"
+      status: "pending"
+    - id: M2.2
+      name: "Format Validation"
+      status: "pending"
+    - id: M2.3
+      name: "Quality Polish"
+      status: "pending"
+    - id: M2.4
+      name: "Size Verification"
+      status: "pending"
+  history:
+    - date: "2025-06-02"
+      type: "created"
+      summary: "Plan de módulo M2 generado con análisis ECHO planning. Definición de objetivo: crear copilot-instructions.md autocontenido <100KB."
+    - date: "2025-06-04"
+      type: "migrated"
+      summary: "Información migrada de M2-ready-to-use-planning.md al formato YAML modular."
+  context_summary: |
+    Crear un archivo único y autocontenido .github/copilot-instructions.md que cualquier desarrollador pueda copiar a su proyecto y usar inmediatamente Echo Protocol con GitHub Copilot. 
+
+    Objetivos críticos:
+    - Tamaño < 100KB (limitaciones de Copilot)
+    - Contiene los 6 echos de desarrollo (definiciones funcionales)
+    - Sintaxis Markdown válida para parsing de Copilot
+    - Incluye ejemplos de uso y mejores prácticas
+    - Sin dependencias externas
+
+    Estado: Pendiente de finalización de M1 (build system).
+
+    Obstáculos identificados: restricciones de tamaño, compatibilidad de formato, calidad del contenido autogenerado.

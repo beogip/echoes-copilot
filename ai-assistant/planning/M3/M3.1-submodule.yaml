@@ -1,0 +1,30 @@
+# M3.1-submodule.yaml
+submodule:
+  id: M3.1
+  name: "Cross-Platform Analysis & Strategy"
+  parent_module: M3
+  status: "completed"
+  context_summary: |
+    Evaluación de opciones para instaladores multiplataforma con análisis sistemático.
+
+    Criterios evaluados:
+    1. Compatibilidad multiplataforma (macOS, Linux, Windows)
+    2. Robustez (edge cases y manejo de errores)
+    3. Experiencia de usuario (simple, claro, buen feedback)
+    4. Seguridad (backup de archivos existentes, rollback)
+    5. Mantenibilidad (código limpio, documentado, testeable)
+
+    Opciones analizadas:
+    A. Shell Script Focused: Familiar para desarrolladores, limitado en Windows
+    B. Multi-Script Approach: Experiencia nativa, múltiples codebases
+    C. Node.js Universal: Cross-platform real, requiere dependencia Node.js
+
+    Decisión: Enfoque híbrido (opción B + C) para máxima cobertura y experiencia óptima.
+  deliverables:
+    - "Matriz de evaluación de opciones"
+    - "Criterios de calidad definidos"
+    - "Estrategia híbrida seleccionada"
+    - "Análisis de escenarios de usuario"
+  dependencies: []
+  next_step: "Completado - proceder con implementación de shell script"
+  estimated_effort: "8 horas"

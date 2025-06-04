@@ -1,0 +1,66 @@
+# modules-index.yaml - Índice principal de módulos del proyecto Echo Protocol Integration
+modules:
+  - id: M1
+    name: "Fix Build System"
+    status: "in progress"
+    priority: "critical"
+    path: "M1/module-plan.yaml"
+    description: "Arreglar sistema de build con errores de parsing YAML, crítico para M2-M6"
+    dependencies: []
+
+  - id: M2
+    name: "Create Ready-to-Use"
+    status: "pending"
+    priority: "critical"
+    path: "M2/module-plan.yaml"
+    description: "Crear archivo autocontenido copilot-instructions.md <100KB con 6 echos"
+    dependencies: ["M1"]
+
+  - id: M3
+    name: "Advanced Installer Scripts"
+    status: "completed"
+    priority: "high"
+    path: "M3/module-plan.yaml"
+    description: "Scripts de instalación multiplataforma con backup y rollback"
+    dependencies: []
+
+  - id: M4
+    name: "Testing & Validation"
+    status: "pending"
+    priority: "critical"
+    path: "M4/module-plan.yaml"
+    description: "Validación comprehensiva de calidad y funcionalidad de Echo Protocol"
+    dependencies: ["M2"]
+
+  - id: M5
+    name: "Documentation Coherence"
+    status: "pending"
+    priority: "high"
+    path: "M5/module-plan.yaml"
+    description: "Asegurar coherencia en toda la documentación del ecosistema"
+    dependencies: ["M3", "M4"]
+
+  - id: M6
+    name: "Distribution Strategy"
+    status: "pending"
+    priority: "medium"
+    path: "M6/module-plan.yaml"
+    description: "Implementar estrategia GitHub-Only Distribution con expansión gradual"
+    dependencies: ["M1", "M2", "M3", "M4", "M5"]
+
+  - id: MIG1
+    name: "AI-Assistant Migration"
+    status: "completed"
+    priority: "high"
+    path: "[DONE] ai-assistant-migration/MIG1/module-plan.yaml"
+    description: "Migración del proyecto ai-assistant al sistema de tracking modular YAML"
+    dependencies: []
+
+meta:
+  total_modules: 7
+  completed_modules: 2
+  in_progress_modules: 1
+  pending_modules: 4
+  last_updated: "2025-06-04"
+  project_phase: "development"
+  next_critical_path: ["M1 → M2 → M4"]

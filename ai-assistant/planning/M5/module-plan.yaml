@@ -1,0 +1,51 @@
+# module-plan.yaml
+module:
+  id: M5
+  name: "Documentation Coherence"
+  current_status: "pending"
+  next_step: "Esperar finalización de M3 y M4 para iniciar análisis de coherencia documental"
+  completed_deliverables: []
+  submodules:
+    - id: M5.1
+      name: "Documentation Ecosystem Assessment"
+      status: "pending"
+    - id: M5.2
+      name: "User Journey Gap Analysis"
+      status: "pending"
+    - id: M5.3
+      name: "Content Coherence Corrections"
+      status: "pending"
+    - id: M5.4
+      name: "Style Guide & Standards"
+      status: "pending"
+    - id: M5.5
+      name: "Validation & Maintenance Protocol"
+      status: "pending"
+  history:
+    - date: "2025-06-02"
+      type: "created"
+      summary: "Plan de módulo M5 generado con análisis ECHO coherence. Objetivo: asegurar coherencia en documentación completa."
+    - date: "2025-06-04"
+      type: "migrated"
+      summary: "Información migrada de M5-documentation-coherence.md al formato YAML modular."
+    - date: "2025-06-04"
+      type: "submodules_created"
+      summary: "Creados 5 submódulos individuales M5.1-M5.5 enfocados en coherencia documental completa."
+  context_summary: |
+    Asegurar que todos los componentes de documentación trabajen juntos para crear una experiencia de usuario coherente y completa.
+
+    Objetivos de alineación:
+    ✅ Coherencia de Journey del Usuario: De descubrimiento → setup → uso → maestría
+    ✅ Coherencia Técnica: Las instrucciones coinciden con el comportamiento real del sistema
+    ✅ Coherencia de Contenido: Terminología, estilo y profundidad consistentes
+    ✅ Coherencia de Plataforma: Funciona en diferentes niveles de habilidad y casos de uso
+
+    Análisis de gaps por fase del usuario:
+    - Discovery Phase: ✅ Fuerte (descripción clara, propuesta de valor convincente)
+    - Setup Phase: ⚠️ Moderado (instrucciones básicas existen, falta guía quick start)
+    - Usage Phase: ⚠️ Moderado (patrones de trigger documentados, faltan guías específicas por lenguaje)
+    - Mastery Phase: ❌ Débil (customización, troubleshooting avanzado, best practices faltan)
+
+    Estado: Pendiente de M3 (installers) y M4 (testing).
+
+    Principios de coherencia futura: responsabilidad única, divulgación progresiva, referencias cruzadas claras, validación de contenido.

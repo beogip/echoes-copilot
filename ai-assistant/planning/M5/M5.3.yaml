@@ -1,0 +1,26 @@
+# submodule.yaml
+submodule:
+  id: M5.3
+  name: "Content Coherence Corrections"
+  status: "pending"
+  context_summary: |
+    Implementar las correcciones identificadas en M5.1 y M5.2 para lograr coherencia
+    técnica, de contenido y terminológica en toda la documentación.
+
+    Corregir inconsistencias, eliminar redundancias, y asegurar que las instrucciones
+    coincidan con el comportamiento real del sistema.
+  deliverables:
+    - "Correcciones de inconsistencias terminológicas implementadas"
+    - "Eliminación de redundancias y overlaps documentados"
+    - "Alineación técnica: instrucciones vs comportamiento real validada"
+    - "Quick start guides creadas para Setup Phase"
+    - "Guías específicas por lenguaje para Usage Phase implementadas"
+    - "Troubleshooting y best practices para Mastery Phase creadas"
+  next_step: "Implementar correcciones priorizadas post-análisis M5.2"
+  history:
+    - date: "2025-06-02"
+      type: "created"
+      summary: "Submódulo creado para implementación de correcciones de coherencia"
+    - date: "2025-06-04"
+      type: "migrated"
+      summary: "Información migrada al formato YAML modular durante MIG1.3"

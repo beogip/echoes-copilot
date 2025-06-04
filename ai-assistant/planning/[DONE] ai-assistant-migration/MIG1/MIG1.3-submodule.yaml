@@ -1,0 +1,14 @@
+# MIG1.3 Migración de información a YAML modular
+submodule:
+  id: MIG1.3
+  name: "Migración de información a YAML modular"
+  status: "pending"
+  deliverables:
+    - module-plan.yaml y submodule.yaml para cada módulo migrado
+    - Migración fiel de entregables, historia y contexto
+  history:
+    - date: "2025-06-04"
+      type: "created"
+      summary: "Submódulo MIG1.3 creado para ejecutar la migración de los módulos de planning/ al sistema YAML."
+  context_summary: |
+    Este submódulo se encargará de migrar la información de cada módulo de planning/ (excepto ai-assistant-migration) al nuevo sistema de tracking modular YAML, asegurando trazabilidad y fidelidad de la información.

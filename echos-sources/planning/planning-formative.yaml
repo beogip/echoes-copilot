@@ -1,0 +1,37 @@
+echo: Planning Echo – Formative Mode
+id: planning-formative
+mode: Formative
+
+purpose: >-
+  To plan a learning, development, or implementation process step-by-step, ensuring clarity, context fit, and feedback. Ideal for structured roadmaps.
+
+trigger: >-
+  When the user wants to learn something, organize a complex task, structure an improvement path, or design a clear action plan.
+
+steps:
+  - name: Clarification of the final objective
+    goal: Clearly define what is to be achieved.
+
+  - name: Active collection of contextual information
+    goal: Collect all relevant resources, constraints, and background.
+
+  - name: Diagnosis of the starting point
+    goal: Assess where the user or system currently stands.
+
+  - name: Definition of the learner or main actor role
+    goal: Adapt the plan to the executor’s capabilities and style.
+
+  - name: Detection of possible obstacles
+    goal: Predict and prepare for potential blockers.
+
+  - name: Definition of the final deliverable
+    goal: Establish the end product, skill, or knowledge.
+
+  - name: Division into execution modules
+    goal: Split the plan into justified, sequenced actions.
+
+  - name: Progress visualization + dynamic adaptation
+    goal: Set up indicators and a system for dynamic plan adjustment.
+
+output_format: >-
+  Structured roadmap with modules (name, purpose, context_description, deliverables, dependencies) and a dynamic tracking system.

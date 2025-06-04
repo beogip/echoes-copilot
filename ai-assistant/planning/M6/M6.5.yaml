@@ -1,0 +1,26 @@
+# submodule.yaml
+submodule:
+  id: M6.5
+  name: "Analytics & Feedback System"
+  status: "pending"
+  context_summary: |
+    Implementar sistemas de analytics y feedback collection para medir adopción,
+    uso, y satisfacción con Echo Protocol Integration.
+
+    Establecer métricas de éxito y loops de feedback para mejora continua
+    del producto y estrategia de distribución.
+  deliverables:
+    - "GitHub Analytics dashboard configurado (stars, forks, downloads)"
+    - "User feedback collection system implementado"
+    - "Usage metrics tracking (donde sea posible sin privacy issues)"
+    - "Satisfaction surveys y user studies setup"
+    - "Analytics reporting automation y dashboards"
+    - "Feedback loop proceso para continuous improvement establecido"
+  next_step: "Implementar analytics post-launch de community setup M6.4"
+  history:
+    - date: "2025-06-02"
+      type: "created"
+      summary: "Submódulo creado para analytics y feedback collection"
+    - date: "2025-06-04"
+      type: "migrated"
+      summary: "Información migrada al formato YAML modular durante MIG1.3"

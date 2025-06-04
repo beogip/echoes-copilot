@@ -1,0 +1,36 @@
+# M3.4-submodule.yaml
+submodule:
+  id: M3.4
+  name: "Node.js Universal Script"
+  parent_module: M3
+  status: "completed"
+  context_summary: |
+    Implementación de install.js como solución universal cross-platform usando Node.js.
+
+    Características implementadas:
+    - True cross-platform compatibility (Windows/macOS/Linux)
+    - Native HTTPS downloading sin dependencias externas
+    - Advanced command-line argument parsing
+    - Diseño modular con funciones exportadas
+    - Comprehensive error handling y logging
+    - Misma funcionalidad core que shell/PowerShell scripts
+    - API programática para uso en otros scripts
+
+    Ventajas específicas de Node.js:
+    - Manejo nativo de JSON/HTTP
+    - Rich ecosystem para testing
+    - Consistent behavior across platforms
+    - Programmatic usage capability
+    - Advanced error handling con stack traces
+
+    Compatibilidad validada con Node.js 14+, 16+, 18+.
+    Puede ejecutarse con npx sin instalación local.
+  deliverables:
+    - "install.js funcional"
+    - "API programática exportada"
+    - "Cross-platform consistency"
+    - "Rich error handling"
+  dependencies:
+    - "M3.3 (PowerShell Script Implementation)"
+  next_step: "Completado - proceder con testing integral"
+  estimated_effort: "8 horas"

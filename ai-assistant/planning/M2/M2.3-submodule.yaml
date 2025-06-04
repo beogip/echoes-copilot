@@ -1,0 +1,23 @@
+# M2.3-submodule.yaml
+submodule:
+  id: M2.3
+  name: "Quality Polish"
+  parent_module: M2
+  status: "pending"
+  context_summary: |
+    Lograr calidad de documentación profesional para entregable visible al usuario.
+
+    Checklist de revisión manual:
+    - Introducción clara que explique el valor
+    - Formato y estilo consistente
+    - Ejemplos prácticos que demuestren beneficio
+    - Flujo lógico y organización
+    - Divulgación progresiva, secciones claras
+  deliverables:
+    - "Archivo final pulido"
+    - "Checklist de revisión de calidad"
+    - "Ejemplos de uso convincentes"
+  dependencies:
+    - "M2.2 (Format Validation)"
+  next_step: "Implementar proceso de revisión manual estructurada"
+  estimated_effort: "8 horas"

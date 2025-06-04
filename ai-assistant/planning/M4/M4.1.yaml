@@ -1,0 +1,23 @@
+# submodule.yaml
+submodule:
+  id: M4.1
+  name: "Test Environment Setup"
+  status: "pending"
+  context_summary: |
+    Establecer infraestructura y herramientas necesarias para testing comprehensivo del Echo Protocol.
+
+    Incluye configuración de entornos de prueba, herramientas de medición, y sistemas de logging
+    para capturar métricas de rendimiento y calidad durante las validaciones.
+  deliverables:
+    - "Entorno de testing configurado con herramientas de medición"
+    - "Scripts de setup automático para diferentes entornos (VSCode, diferentes versiones)"
+    - "Sistema de logging y métricas implementado"
+    - "Casos de test base definidos y estructurados"
+  next_step: "Esperar finalización de M2 para iniciar configuración del entorno base"
+  history:
+    - date: "2025-06-02"
+      type: "created"
+      summary: "Submódulo creado como parte del plan M4 de testing y validación"
+    - date: "2025-06-04"
+      type: "migrated"
+      summary: "Información migrada al formato YAML modular durante MIG1.3"

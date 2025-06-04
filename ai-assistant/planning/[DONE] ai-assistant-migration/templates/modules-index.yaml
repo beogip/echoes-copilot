@@ -1,0 +1,12 @@
+# modules-index.yaml (plantilla)
+# Índice de módulos para el sistema de tracking modular YAML
+modules:
+  - id: Mx
+    name: "Nombre del módulo"
+    status: "pending|in progress|completed"
+    planning_ref:
+      path: "./Mx/module-plan.yaml"
+    completed_deliverables:
+      - "Ejemplo de entregable completado"
+    next_step: "Descripción del próximo paso relevante"
+# Agregar más módulos según sea necesario

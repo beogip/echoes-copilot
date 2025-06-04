@@ -1,0 +1,18 @@
+# M1.4-submodule.yaml
+submodule:
+  id: M1.4
+  name: "Validación de outputs"
+  status: "pending"
+  context_summary: |
+    Añadir chequeos post-build para asegurar que los archivos generados (especialmente copilot-instructions.md) contengan todos los echos esperados y tengan formato válido.
+  deliverables:
+    - "Sistema de validación post-build de archivos generados"
+    - "Verificación de completitud de echos en copilot-instructions.md"
+    - "Validación de formato y estructura de outputs"
+    - "Reporting de discrepancias entre expected/actual outputs"
+  next_step: "Esperar finalización de M1.3 para implementar validaciones post-build"
+  dependencies: ["M1.3"]
+  history:
+    - date: "2025-06-04"
+      type: "created"
+      summary: "Submódulo M1.4 creado para asegurar calidad y completitud de los archivos generados por el build system."

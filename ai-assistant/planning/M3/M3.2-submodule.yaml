@@ -1,0 +1,34 @@
+# M3.2-submodule.yaml
+submodule:
+  id: M3.2
+  name: "Shell Script Implementation"
+  parent_module: M3
+  status: "completed"
+  context_summary: |
+    Implementación de install.sh para sistemas Unix/macOS/Linux con funcionalidad completa.
+
+    Características implementadas:
+    - Strict error handling (set -euo pipefail)
+    - Parsing avanzado de argumentos (--mode, --force, --verbose, --rollback)
+    - Backup automático con timestamps
+    - Funcionalidad de rollback
+    - Descarga de red con fallback curl/wget
+    - Detección de plataforma (macOS vs Linux)
+    - Validación de instalación
+    - Output profesional con colores
+    - Sistema de ayuda comprehensivo
+
+    Modos soportados:
+    - instructions: Archivos .instructions.md individuales
+    - comprehensive: Archivo copilot-instructions.md único
+
+    Testing completado en zsh y bash.
+  deliverables:
+    - "install.sh funcional"
+    - "Sistema de backup y rollback"
+    - "Manejo de errores robusto"
+    - "Interface de usuario profesional"
+  dependencies:
+    - "M3.1 (Cross-Platform Analysis)"
+  next_step: "Completado - proceder con PowerShell script"
+  estimated_effort: "12 horas"

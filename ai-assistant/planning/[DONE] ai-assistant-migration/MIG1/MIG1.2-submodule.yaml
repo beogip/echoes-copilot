@@ -1,0 +1,17 @@
+# MIG1.2 Diseño y creación de modules-index.yaml y plantillas
+submodule:
+  id: MIG1.2
+  name: "Diseño y creación de modules-index.yaml y plantillas"
+  status: "in progress"
+  deliverables:
+    - Estructura base de modules-index.yaml
+    - Plantilla de module-plan.yaml para módulos migrados
+  history:
+    - date: "2025-06-04"
+      type: "created"
+      summary: "Submódulo MIG1.2 creado para diseñar la estructura YAML base del sistema de tracking."
+    - date: "2025-06-04"
+      type: "started"
+      summary: "Inicio del diseño y prototipado de plantillas YAML base para la migración."
+  context_summary: |
+    Este submódulo se encarga de definir y crear la estructura base de modules-index.yaml y la plantilla de module-plan.yaml, que serán utilizadas para migrar los módulos existentes en planning/ al nuevo sistema de tracking modular YAML.

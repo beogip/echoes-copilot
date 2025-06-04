@@ -1,0 +1,24 @@
+# submodule.yaml
+submodule:
+  id: M5.1
+  name: "Documentation Ecosystem Assessment"
+  status: "pending"
+  context_summary: |
+    Evaluar el estado actual completo del ecosystem de documentación del Echo Protocol.
+
+    Mapear todos los documentos existentes, identificar overlaps, gaps, y inconsistencias
+    entre diferentes tipos de documentación: README, instrucciones, ejemplos, guías.
+  deliverables:
+    - "Inventario completo de documentación existente"
+    - "Mapa de relaciones y dependencias entre documentos"
+    - "Análisis de overlaps y redundancias"
+    - "Identificación de gaps críticos en la documentación"
+    - "Assessment de consistencia terminológica"
+  next_step: "Esperar finalización de M3 y M4 para iniciar auditoría documental completa"
+  history:
+    - date: "2025-06-02"
+      type: "created"
+      summary: "Submódulo creado para assessment inicial del ecosystem documental"
+    - date: "2025-06-04"
+      type: "migrated"
+      summary: "Información migrada al formato YAML modular durante MIG1.3"

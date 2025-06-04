@@ -1,0 +1,24 @@
+# submodule.yaml
+submodule:
+  id: M4.2
+  name: "Basic Echo Functionality Testing"
+  status: "pending"
+  context_summary: |
+    Validar el funcionamiento básico de cada Echo individual (diagnostic, planning, evaluation, 
+    optimization, coherence, prioritization).
+
+    Verificar reconocimiento de triggers, adherencia a estructura de pasos, y calidad básica
+    de las respuestas generadas por cada tipo de Echo.
+  deliverables:
+    - "Test suite para reconocimiento de triggers (>90% tasa objetivo)"
+    - "Validación de estructura de respuesta por cada Echo tipo"
+    - "Casos de test funcionales para los 6 Echos principales"
+    - "Reporte de compliance con formato esperado (>80% objetivo)"
+  next_step: "Crear test cases específicos una vez que M4.1 esté configurado"
+  history:
+    - date: "2025-06-02"
+      type: "created"
+      summary: "Submódulo creado enfocado en testing funcional básico de Echos"
+    - date: "2025-06-04"
+      type: "migrated"
+      summary: "Información migrada al formato YAML modular durante MIG1.3"

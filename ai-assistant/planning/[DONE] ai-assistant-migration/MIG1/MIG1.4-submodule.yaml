@@ -1,0 +1,15 @@
+# MIG1.4-submodule.yaml
+submodule:
+  id: MIG1.4
+  name: "Creación y llenado de project-status.yaml"
+  status: "pending"
+  context_summary: |
+    Este submódulo se encarga de crear y poblar el archivo global de estado del proyecto (project-status.yaml), asegurando que refleje el avance y estado de todos los módulos migrados al sistema de tracking modular YAML.
+  deliverables:
+    - "Archivo project-status.yaml creado y alineado con la estructura modular"
+    - "Estado y progreso de todos los módulos correctamente reflejados"
+  next_step: "Crear y poblar el archivo project-status.yaml tras la migración de los primeros módulos"
+  history:
+    - date: "2025-06-04"
+      type: "created"
+      summary: "Submódulo MIG1.4 creado para la gestión del estado global del proyecto."
