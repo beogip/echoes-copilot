@@ -470,7 +470,7 @@ function buildInstructions() {
           echoIndex += `\n### ${echoConfig.emoji} **${echoConfig.name}** - ${category}\n`;
           echoIndex += `- **Trigger**: \`// ECHO: ${echoConfig.trigger}\`\n`;
           echoIndex += `- **Purpose**: ${purpose}\n`;
-          echoIndex += `- **File**: \`${echoConfig.file}\`\n`;
+          echoIndex += `- **File**: \`.github/instructions/${echoConfig.name}.md\`\n`;
         } else {
           logger.warn(`Skipping echo index entry for ${echoConfig.name} (no data)`);
           buildMetrics.warnings.push(`Index skip: ${echoConfig.name}`);
