@@ -1,18 +1,18 @@
 # M1.3-submodule.yaml
 submodule:
   id: M1.3
-  name: "Tests de build"
+  name: "Build tests"
   status: "pending"
   context_summary: |
-    Crear tests automatizados para validar el comportamiento del build system ante edge cases, archivos malformados y diferentes configuraciones, asegurando estabilidad del sistema.
+    Create automated tests to validate build system behavior against edge cases, malformed files, and different configurations, ensuring system stability.
   deliverables:
-    - "Suite de tests para validación de archivos YAML"
-    - "Tests de edge cases (archivos malformados, claves duplicadas)"
-    - "Tests de integración del proceso completo de build"
-    - "Cobertura de tests documentada y validada"
-  next_step: "Esperar finalización de M1.2 para crear tests basados en build.js mejorado"
+    - "Test suite for YAML file validation"
+    - "Edge case tests (malformed files, duplicate keys)"
+    - "Integration tests for complete build process"
+    - "Documented and validated test coverage"
+  next_step: "Wait for M1.2 completion to create tests based on improved build.js"
   dependencies: ["M1.2"]
   history:
     - date: "2025-06-04"
       type: "created"
-      summary: "Submódulo M1.3 creado para asegurar calidad y estabilidad del build system mediante testing automatizado."
+      summary: "Submodule M1.3 created to ensure build system quality and stability through automated testing."

@@ -4,23 +4,23 @@ submodule:
   name: "Validation & Maintenance Protocol"
   status: "pending"
   context_summary: |
-    Establecer procesos y herramientas para validar y mantener la coherencia
-    documental a largo plazo.
+    Establish processes and tools to validate and maintain documentation
+    coherence in the long term.
 
-    Crear sistemas automatizados y manuales para detectar inconsistencias,
-    actualizar contenido, y asegurar que la documentación evolucione coherentemente.
+    Create automated and manual systems to detect inconsistencies,
+    update content, and ensure documentation evolves coherently.
   deliverables:
-    - "Protocolo de validación de coherencia implementado"
-    - "Checklist de review para nuevas contribuciones documentales"
-    - "Sistema de detección automática de inconsistencias (scripts/tools)"
-    - "Proceso de actualización sincronizada de documentación"
-    - "Métricas de calidad documental y tracking system"
-    - "Plan de mantenimiento y review periódico establecido"
-  next_step: "Diseñar protocolos basados en style guide y estándares de M5.4"
+    - "Coherence validation protocol implemented"
+    - "Review checklist for new documentation contributions"
+    - "Automated inconsistency detection system (scripts/tools)"
+    - "Synchronized documentation update process"
+    - "Documentation quality metrics and tracking system"
+    - "Periodic maintenance and review plan established"
+  next_step: "Design protocols based on style guide and standards from M5.4"
   history:
     - date: "2025-06-02"
       type: "created"
-      summary: "Submódulo creado para establecimiento de protocolos de mantenimiento"
+      summary: "Submodule created for establishment of maintenance protocols"
     - date: "2025-06-04"
       type: "migrated"
-      summary: "Información migrada al formato YAML modular durante MIG1.3"
+      summary: "Information migrated to modular YAML format during MIG1.3"

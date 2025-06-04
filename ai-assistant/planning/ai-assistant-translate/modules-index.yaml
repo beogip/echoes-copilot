@@ -1,0 +1,19 @@
+modules:
+  - id: T0.1
+    name: "Translate M1 documentation"
+    status: "pending"
+  - id: T0.2
+    name: "Translate M2 documentation"
+    status: "pending"
+  - id: T0.3
+    name: "Translate M3 documentation"
+    status: "pending"
+  - id: T0.4
+    name: "Translate M4 documentation"
+    status: "pending"
+  - id: T0.5
+    name: "Translate M5 documentation"
+    status: "pending"
+  - id: T0.6
+    name: "Translate M6 documentation"
+    status: "pending"

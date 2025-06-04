@@ -5,22 +5,22 @@ submodule:
   parent_module: M2
   status: "pending"
   context_summary: |
-    Confirmar cumplimiento de restricción de tamaño de archivo (límite estricto <100KB).
+    Confirm compliance with file size restriction (strict limit <100KB).
 
-    Verificaciones automatizadas:
+    Automated verifications:
     - wc -c .github/copilot-instructions.md
     - Target: <100,000 bytes
-    - Planes de contingencia si excede límite
+    - Contingency plans if limit exceeded
 
-    Planes de contingencia:
-    - Crear versiones "lite" y "full" si el tamaño es problema
-    - Implementar enfoque de mejora progresiva
-    - Preparar fallback a formato más simple si es necesario
+    Contingency plans:
+    - Create "lite" and "full" versions if size is an issue
+    - Implement progressive enhancement approach
+    - Prepare fallback to simpler format if necessary
   deliverables:
-    - "Reporte de análisis de tamaño"
-    - "Verificación automatizada de cumplimiento"
-    - "Plan de contingencia activado si es necesario"
+    - "Size analysis report"
+    - "Automated compliance verification"
+    - "Contingency plan activated if necessary"
   dependencies:
     - "M2.3 (Quality Polish)"
-  next_step: "Crear script automatizado de verificación de tamaño"
+  next_step: "Create automated size verification script"
   estimated_effort: "2 horas"

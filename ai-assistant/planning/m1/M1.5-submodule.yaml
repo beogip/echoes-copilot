@@ -1,18 +1,18 @@
 # M1.5-submodule.yaml
 submodule:
   id: M1.5
-  name: "Documentación del proceso"
+  name: "Process documentation"
   status: "pending"
   context_summary: |
-    Documentar el flujo completo de build, validación y troubleshooting para facilitar mantenimiento futuro y resolución de problemas en el sistema de build.
+    Document the complete build flow, validation, and troubleshooting to facilitate future maintenance and problem resolution in the build system.
   deliverables:
-    - "Documentación completa del flujo de build"
-    - "Guía de troubleshooting para errores comunes"
-    - "Documentación de validaciones y tests implementados"
-    - "Manual de mantenimiento del build system"
-  next_step: "Esperar finalización de M1.4 para documentar proceso completo validado"
+    - "Complete build flow documentation"
+    - "Troubleshooting guide for common errors"
+    - "Documentation of implemented validations and tests"
+    - "Build system maintenance manual"
+  next_step: "Wait for M1.4 completion to document complete validated process"
   dependencies: ["M1.4"]
   history:
     - date: "2025-06-04"
       type: "created"
-      summary: "Submódulo M1.5 creado para documentar y facilitar el mantenimiento futuro del build system corregido."
+      summary: "Submodule M1.5 created to document and facilitate future maintenance of the corrected build system."

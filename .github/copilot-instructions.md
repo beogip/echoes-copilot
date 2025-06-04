@@ -181,6 +181,7 @@ Always consider:
 5. **Validate Assumptions**: Question requirements and constraints
 6. **Document Decisions**: Explain why you chose a particular approach
 7. **Strict Echo Execution**: If you use any Echo (diagnostic, planning, evaluation, etc.), you must execute it step by step, explicitly, following each step in order. Do not skip or summarize steps.
+8. **Follow Module Structure**: Always stop for approval from the user after you finish a SubModule or Module
 
 ## Example Usage Patterns
 

@@ -4,23 +4,23 @@ submodule:
   name: "Community Building Setup"
   status: "pending"
   context_summary: |
-    Establecer infraestructura y procesos para building de comunidad alrededor
-    del Echo Protocol Integration.
+    Establish infrastructure and processes for community building around
+    the Echo Protocol Integration.
 
-    Crear canales de comunicación, procesos de contribución, y sistemas de
-    engagement para desarrolladores y usuarios.
+    Create communication channels, contribution processes, and engagement
+    systems for developers and users.
   deliverables:
-    - "GitHub Discussions configurado para community engagement"
-    - "Contributing guidelines y code of conduct establecidos"
-    - "Issue templates y PR templates implementados"
-    - "Documentation para contributors y maintainers creada"
-    - "System de labels y project management setup"
-    - "Community welcome automation (bots/workflows) configurado"
-  next_step: "Setup de comunidad post-implementación de M6.3"
+    - "GitHub Discussions configured for community engagement"
+    - "Contributing guidelines and code of conduct established"
+    - "Issue templates and PR templates implemented"
+    - "Documentation for contributors and maintainers created"
+    - "Label system and project management setup"
+    - "Community welcome automation (bots/workflows) configured"
+  next_step: "Community setup post-implementation of M6.3"
   history:
     - date: "2025-06-02"
       type: "created"
-      summary: "Submódulo creado para establecimiento de community building"
+      summary: "Submodule created for community building establishment"
     - date: "2025-06-04"
       type: "migrated"
-      summary: "Información migrada al formato YAML modular durante MIG1.3"
+      summary: "Information migrated to modular YAML format during MIG1.3"
