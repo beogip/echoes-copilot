@@ -21,16 +21,18 @@ const winston = require('winston');
 const logger = winston.createLogger({
   level: process.env.LOG_LEVEL || 'info',
   format: winston.format.combine(
-    winston.format.timestamp({ format: 'HH:mm:ss' }),
-    winston.format.errors({ stack: true })
+    winston.format.timestamp(),
+    winston.format.errors({ stack: true }),
+    winston.format.colorize(),
+    winston.format.printf(({ timestamp, level, message, stack }) => {
+      return `${timestamp} [${level}]: ${message}${stack ? '\n' + stack : ''}`;
+    })
   ),
   transports: [
     new winston.transports.Console({
       format: winston.format.combine(
         winston.format.colorize(),
-        winston.format.printf(({ timestamp, level, message, stack }) => {
-          return `${timestamp} [${level}]: ${message}${stack ? '\n' + stack : ''}`;
-        })
+        winston.format.simple()
       )
     }),
     new winston.transports.File({
@@ -63,37 +65,37 @@ const CONFIG = {
   echos: [
     {
       name: 'diagnostic',
-      file: 'diagnostic/diagnostic-technical.prs.yaml',
+      file: 'diagnostic-technical.prs.yaml',
       emoji: '🛠️',
       trigger: 'diagnostic'
     },
     {
       name: 'planning',
-      file: 'planning/planning-formative.prs.yaml', 
+      file: 'planning-formative.prs.yaml', 
       emoji: '🧭',
       trigger: 'planning'
     },
     {
       name: 'evaluation',
-      file: 'evaluation/evaluation-structured.prs.yaml',
+      file: 'evaluation-structured.prs.yaml',
       emoji: '🧪', 
       trigger: 'evaluation'
     },
     {
       name: 'optimization',
-      file: 'optimization/optimization-technical.prs.yaml',
+      file: 'optimization-technical.prs.yaml',
       emoji: '⚙️',
       trigger: 'optimization'
     },
     {
       name: 'coherence',
-      file: 'coherence/coherence-self-correction.prs.yaml',
+      file: 'coherence-self-correction.prs.yaml',
       emoji: '✅',
       trigger: 'coherence'
     },
     {
       name: 'prioritization',
-      file: 'prioritization/prioritization-decisional.prs.yaml',
+      file: 'prioritization-decisional.prs.yaml',
       emoji: '🔢',
       trigger: 'prioritization'
     }

@@ -22,7 +22,8 @@
     "validate:prs": "node scripts/validate-prs-yaml.js"
   },
   "dependencies": {
-    "js-yaml": "^4.1.0"
+    "js-yaml": "^4.1.0",
+    "winston": "^3.17.0"
   },
   "devDependencies": {
     "jest": "^29.7.0",
