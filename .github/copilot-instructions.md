@@ -35,37 +35,40 @@ When you see a comment starting with `ECHO:`, execute the corresponding reasonin
 
 <!-- Echos will be inserted here by build script -->
 
+## Available Echos for Development
+
+<!-- Echos will be inserted here by build script -->
+
 
 ### 🛠️ **diagnostic** - Technical Debugging
 - **Trigger**: `// ECHO: diagnostic`
 - **Purpose**: Detect the origin of an error or malfunction to correct or prevent it
-- **File**: `diagnostic-Diagnostic.instructions.md`
+- **File**: `diagnostic/diagnostic-technical.prs.yaml`
 
 ### 🧭 **planning** - Project Planning
 - **Trigger**: `// ECHO: planning`
 - **Purpose**: Guide step-by-step planning of a learning, development, or implementation pro...
-- **File**: `planning-Formative.instructions.md`
+- **File**: `planning/planning-formative.prs.yaml`
 
 ### 🧪 **evaluation** - Code & Design Review
 - **Trigger**: `// ECHO: evaluation`
 - **Purpose**: To issue a structured judgment on an object (idea, result, process, code, or ...
-- **File**: `evaluation-Evaluative.instructions.md`
+- **File**: `evaluation/evaluation-structured.prs.yaml`
 
 ### ⚙️ **optimization** - Performance & Efficiency
 - **Trigger**: `// ECHO: optimization`
 - **Purpose**: Systematically optimize processes, structures, or flows to improve efficiency...
-- **File**: `optimization-Technical.instructions.md`
+- **File**: `optimization/optimization-technical.prs.yaml`
 
 ### ✅ **coherence** - Flow Correction
 - **Trigger**: `// ECHO: coherence`
 - **Purpose**: Detect if the purpose or direction of the flow has been lost, correct deviati...
-- **File**: `coherence-Self-correction.instructions.md`
+- **File**: `coherence/coherence-self-correction.prs.yaml`
 
 ### 🔢 **prioritization** - Decision Making
 - **Trigger**: `// ECHO: prioritization`
 - **Purpose**: Rank options or ideas based on relevant criteria to decide which one to pursu...
-- **File**: `prioritization-Decisional.instructions.md`
-
+- **File**: `prioritization/prioritization-decisional.prs.yaml`
 
 ## Advanced Echo Combinations
 
