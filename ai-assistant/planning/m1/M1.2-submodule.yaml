@@ -1,18 +1,18 @@
 # M1.2-submodule.yaml
 submodule:
   id: M1.2
-  name: "Robustecer build.js"
+  name: "Strengthen build.js"
   status: "pending"
   context_summary: |
-    Mejorar el manejo de errores, validación y reporting en build.js para detectar y reportar errores de parsing YAML de manera robusta, deteniendo la ejecución ante fallos críticos.
+    Improve error handling, validation, and reporting in build.js to detect and report YAML parsing errors robustly, stopping execution on critical failures.
   deliverables:
-    - "Implementación de validación robusta de archivos YAML"
-    - "Mejora del manejo de errores con parada de ejecución en fallos críticos"
-    - "Sistema de reporting detallado de errores y advertencias"
-    - "Logging estructurado del proceso de build"
-  next_step: "Esperar finalización de M1.1 para iniciar mejoras en build.js"
+    - "Implementation of robust YAML file validation"
+    - "Improved error handling with execution halt on critical failures"
+    - "Detailed error and warning reporting system"
+    - "Structured logging of the build process"
+  next_step: "Wait for M1.1 completion to start build.js improvements"
   dependencies: ["M1.1"]
   history:
     - date: "2025-06-04"
       type: "created"
-      summary: "Submódulo M1.2 creado para mejorar robustez del sistema de build tras corrección de archivos PRS."
+      summary: "Submodule M1.2 created to improve build system robustness after PRS file corrections."

@@ -3,53 +3,53 @@ module:
   id: M1
   name: "Fix Build System"
   current_status: "in progress"
-  next_step: "Continuar con M1.2: Robustecer build.js con mejor manejo de errores"
+  next_step: "Continue with M1.2: Strengthen build.js with better error handling"
   completed_deliverables:
     ["M1.1 - Automated YAML validation tooling and PRS file corrections"]
   submodules:
     - id: M1.1
-      name: "Corrección de YAMLs PRS"
+      name: "PRS YAML correction"
       status: "completed"
     - id: M1.2
-      name: "Robustecer build.js"
+      name: "Strengthen build.js"
       status: "pending"
     - id: M1.3
-      name: "Tests de build"
+      name: "Build tests"
       status: "pending"
     - id: M1.4
-      name: "Validación de outputs"
+      name: "Output validation"
       status: "pending"
     - id: M1.5
-      name: "Documentación del proceso"
+      name: "Process documentation"
       status: "pending"
   history:
     - date: "2025-06-04"
       type: "created"
-      summary: "Diagnóstico de build system realizado. Identificados errores de parsing YAML en arquivos PRS, falta validación robusta y tests automatizados."
+      summary: "Build system diagnosis performed. Identified YAML parsing errors in PRS files, lack of robust validation, and missing automated tests."
     - date: "2025-06-04"
       type: "migrated"
-      summary: "Información migrada de m1/ al formato YAML modular."
+      summary: "Information migrated from m1/ to modular YAML format."
     - date: "2025-06-04"
       type: "completed"
-      summary: "M1.1 completado: Corregido error de indentación YAML en execution-prompt.prs.yaml, creado validate-prs-yaml.js con validación automatizada, reorganizado estructura con scripts/ folder, todos los 17 archivos .prs.yaml validados exitosamente."
+      summary: "M1.1 completed: Fixed YAML indentation error in execution-prompt.prs.yaml, created validate-prs-yaml.js with automated validation, reorganized structure with scripts/ folder, all 17 .prs.yaml files successfully validated."
   context_summary: |
-    Módulo crítico para avance de M2-M6. Arreglar el sistema de build que presenta errores de parsing YAML.
+    Critical module for the progress of M2-M6. Fix the build system which presents YAML parsing errors.
 
-    Problemas identificados:
-    - Sistema de build (build/build.js) con errores de parsing YAML, especialmente archivos PRS
-    - Claves duplicadas y problemas de formato/indentación
-    - Build genera advertencias pero no detiene ejecución ante errores
-    - Salida incompleta (faltan echos en copilot-instructions.md)
-    - No existe validación robusta de archivos YAML ni reporting detallado
-    - No hay tests automatizados para validar comportamiento del build
+    Identified problems:
+    - Build system (build/build.js) with YAML parsing errors, especially PRS files
+    - Duplicate keys and formatting/indentation issues
+    - Build generates warnings but does not stop execution on errors
+    - Incomplete output (missing echos in copilot-instructions.md)
+    - No robust YAML file validation or detailed reporting
+    - No automated tests to validate build behavior
 
-    Plan modular definido:
-    M1.1: Limpiar y corregir archivos PRS con claves duplicadas/formato inválido
-    M1.2: Mejorar manejo de errores, validación y reporting en build.js
-    M1.3: Crear tests automatizados para validar build ante edge cases
-    M1.4: Añadir chequeos post-build para asegurar validez de archivos generados
-    M1.5: Documentar flujo de build, validación y troubleshooting
+    Defined modular plan:
+    M1.1: Clean and correct PRS files with duplicate keys or invalid format
+    M1.2: Improve error handling, validation, and reporting in build.js
+    M1.3: Create automated tests to validate build against edge cases
+    M1.4: Add post-build checks to ensure validity of generated files
+    M1.5: Document build flow, validation, and troubleshooting
 
-    Estado: En progreso - M1.1 iniciado.
+    Status: In progress - M1.1 started.
 
-    Dependencias críticas: M2-M6 dependen de la robustez y completitud del build system.
+    Critical dependencies: M2-M6 depend on the robustness and completeness of the build system.

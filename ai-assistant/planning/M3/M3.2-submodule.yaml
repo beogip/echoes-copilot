@@ -5,30 +5,30 @@ submodule:
   parent_module: M3
   status: "completed"
   context_summary: |
-    Implementación de install.sh para sistemas Unix/macOS/Linux con funcionalidad completa.
+    Implementation of install.sh for Unix/macOS/Linux systems with complete functionality.
 
-    Características implementadas:
+    Implemented features:
     - Strict error handling (set -euo pipefail)
-    - Parsing avanzado de argumentos (--mode, --force, --verbose, --rollback)
-    - Backup automático con timestamps
-    - Funcionalidad de rollback
-    - Descarga de red con fallback curl/wget
-    - Detección de plataforma (macOS vs Linux)
-    - Validación de instalación
-    - Output profesional con colores
-    - Sistema de ayuda comprehensivo
+    - Advanced argument parsing (--mode, --force, --verbose, --rollback)
+    - Automatic backup with timestamps
+    - Rollback functionality
+    - Network download with curl/wget fallback
+    - Platform detection (macOS vs Linux)
+    - Installation validation
+    - Professional colored output
+    - Comprehensive help system
 
-    Modos soportados:
-    - instructions: Archivos .instructions.md individuales
-    - comprehensive: Archivo copilot-instructions.md único
+    Supported modes:
+    - instructions: Individual .instructions.md files
+    - comprehensive: Single copilot-instructions.md file
 
-    Testing completado en zsh y bash.
+    Testing completed on zsh and bash.
   deliverables:
-    - "install.sh funcional"
-    - "Sistema de backup y rollback"
-    - "Manejo de errores robusto"
-    - "Interface de usuario profesional"
+    - "Functional install.sh"
+    - "Backup and rollback system"
+    - "Robust error handling"
+    - "Professional user interface"
   dependencies:
     - "M3.1 (Cross-Platform Analysis)"
-  next_step: "Completado - proceder con PowerShell script"
+  next_step: "Completed - proceed with PowerShell script"
   estimated_effort: "12 horas"

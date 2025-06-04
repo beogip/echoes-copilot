@@ -4,23 +4,23 @@ submodule:
   name: "Content Coherence Corrections"
   status: "pending"
   context_summary: |
-    Implementar las correcciones identificadas en M5.1 y M5.2 para lograr coherencia
-    técnica, de contenido y terminológica en toda la documentación.
+    Implement corrections identified in M5.1 and M5.2 to achieve technical,
+    content and terminological coherence throughout the documentation.
 
-    Corregir inconsistencias, eliminar redundancias, y asegurar que las instrucciones
-    coincidan con el comportamiento real del sistema.
+    Correct inconsistencies, eliminate redundancies, and ensure that instructions
+    match the real system behavior.
   deliverables:
-    - "Correcciones de inconsistencias terminológicas implementadas"
-    - "Eliminación de redundancias y overlaps documentados"
-    - "Alineación técnica: instrucciones vs comportamiento real validada"
-    - "Quick start guides creadas para Setup Phase"
-    - "Guías específicas por lenguaje para Usage Phase implementadas"
-    - "Troubleshooting y best practices para Mastery Phase creadas"
-  next_step: "Implementar correcciones priorizadas post-análisis M5.2"
+    - "Terminological inconsistency corrections implemented"
+    - "Elimination of documented redundancies and overlaps"
+    - "Technical alignment: instructions vs real behavior validated"
+    - "Quick start guides created for Setup Phase"
+    - "Language-specific guides for Usage Phase implemented"
+    - "Troubleshooting and best practices for Mastery Phase created"
+  next_step: "Implement prioritized corrections post-M5.2 analysis"
   history:
     - date: "2025-06-02"
       type: "created"
-      summary: "Submódulo creado para implementación de correcciones de coherencia"
+      summary: "Submodule created for implementation of coherence corrections"
     - date: "2025-06-04"
       type: "migrated"
-      summary: "Información migrada al formato YAML modular durante MIG1.3"
+      summary: "Information migrated to modular YAML format during MIG1.3"

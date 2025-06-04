@@ -5,31 +5,31 @@ submodule:
   parent_module: M3
   status: "completed"
   context_summary: |
-    Implementación de install.ps1 para Windows PowerShell con feature parity completa.
+    Implementation of install.ps1 for Windows PowerShell with complete feature parity.
 
-    Características implementadas:
-    - Manejo de execution policy de PowerShell
-    - Parsing avanzado de parámetros PowerShell nativo
-    - Misma funcionalidad de backup/rollback que shell script
-    - Manejo de rutas específico de Windows
-    - Rich error reporting con PowerShell
-    - Integración con Windows Terminal
-    - Validación de prerrequisitos PowerShell
-    - Output profesional con Write-Host coloreado
+    Implemented features:
+    - PowerShell execution policy handling
+    - Advanced native PowerShell parameter parsing
+    - Same backup/rollback functionality as shell script
+    - Windows-specific path handling
+    - Rich error reporting with PowerShell
+    - Windows Terminal integration
+    - PowerShell prerequisite validation
+    - Professional output with colored Write-Host
 
-    Características específicas de Windows:
-    - Detección de versión de PowerShell (5.1 vs 7.x)
-    - Manejo de políticas de ejecución
-    - Resolución de rutas Windows-style
-    - Integración con sistema de archivos NTFS
+    Windows-specific features:
+    - PowerShell version detection (5.1 vs 7.x)
+    - Execution policy handling
+    - Windows-style path resolution
+    - NTFS file system integration
 
-    Compatibilidad validada con PowerShell 5.1 y 7.x.
+    Compatibility validated with PowerShell 5.1 and 7.x.
   deliverables:
-    - "install.ps1 funcional"
-    - "Feature parity con shell script"
-    - "Manejo específico de Windows"
-    - "Validación de execution policy"
+    - "Functional install.ps1"
+    - "Feature parity with shell script"
+    - "Windows-specific handling"
+    - "Execution policy validation"
   dependencies:
     - "M3.2 (Shell Script Implementation)"
-  next_step: "Completado - proceder con Node.js script"
+  next_step: "Completed - proceed with Node.js script"
   estimated_effort: "10 horas"

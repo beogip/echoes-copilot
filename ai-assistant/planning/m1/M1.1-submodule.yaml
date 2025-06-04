@@ -1,18 +1,18 @@
 # M1.1-submodule.yaml
 submodule:
   id: M1.1
-  name: "Corrección de YAMLs PRS"
+  name: "PRS YAML correction"
   status: "in progress"
   context_summary: |
-    Limpiar y corregir archivos PRS con claves duplicadas y problemas de formato/indentación que causan errores de parsing YAML en el build system.
+    Clean and correct PRS files with duplicate keys and formatting/indentation issues that cause YAML parsing errors in the build system.
   deliverables:
-    - "Auditoría de archivos PRS con errores de parsing"
-    - "Corrección de claves duplicadas en archivos PRS"
-    - "Normalización de formato e indentación YAML"
-    - "Validación de sintaxis YAML post-corrección"
-  next_step: "Ejecutar auditoría de archivos PRS para identificar errores específicos de parsing"
+    - "Audit of PRS files with parsing errors"
+    - "Correction of duplicate keys in PRS files"
+    - "Normalization of YAML formatting and indentation"
+    - "Validation of YAML syntax after correction"
+  next_step: "Run audit of PRS files to identify specific parsing errors"
   dependencies: []
   history:
     - date: "2025-06-04"
       type: "created"
-      summary: "Submódulo M1.1 creado como primera fase crítica para resolver errores de parsing YAML en build system."
+      summary: "Submodule M1.1 created as the first critical phase to resolve YAML parsing errors in the build system."

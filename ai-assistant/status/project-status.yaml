@@ -59,13 +59,27 @@ project:
         path: "../planning/ai-assistant-migration/MIG1/module-plan.yaml"
       critical_path: false
 
+    - id: T0
+      status: "completed"
+      next_step: "Translation subproject completed - all M1-M6 documentation translated to English"
+      planning_ref:
+        path: "../planning/ai-assistant-translate/module-plan.yaml"
+      critical_path: false
+      completed_deliverables:
+        - "T0.1: M1 documentation translated to English"
+        - "T0.2: M2 documentation translated to English"
+        - "T0.3: M3 documentation translated to English"
+        - "T0.4: M4 documentation translated to English"
+        - "T0.5: M5 documentation translated to English"
+        - "T0.6: M6 documentation translated to English"
+
   meta:
     progress_summary:
-      completed_modules: 1
+      completed_modules: 2
       in_progress_modules: 2
       pending_modules: 4
-      total_modules: 7
-      completion_percentage: 14.3
+      total_modules: 8
+      completion_percentage: 25.0
 
     critical_path_status:
       current_bottleneck: "M1 (Fix Build System) - M1.1 completed, M1.2 next"
@@ -86,9 +100,10 @@ project:
     last_updated: "2025-06-04"
     next_review_date: "2025-06-11"
 
-  tracking_system:
+    tracking_system:
     type: "YAML Modular"
     version: "1.0"
-    migration_status: "MIG1 in progress"
-    modules_indexed: 7
-    submodules_tracked: 29
+    migration_status: "MIG1 completed"
+    translation_status: "T0 completed - All M1-M6 documentation successfully translated to English"
+    modules_indexed: 8
+    submodules_tracked: 35
