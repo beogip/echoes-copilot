@@ -1,0 +1,17 @@
+# project-status.yaml
+project:
+  name: "ai-assistant migration to modular tracking"
+  modules:
+    - id: MIG1
+      status: "in progress"
+      next_step: "Extraer y estructurar en YAML los submódulos y entregables de cada módulo detectado en planning/"
+      planning_ref:
+        path: "../planning/ai-assistant-migration/MIG1/module-plan.yaml"
+      completed_deliverables:
+        - MIG1.1 Auditoría y mapeo de información existente
+  meta:
+    progress_summary:
+      completed_modules: 0
+      in_progress_modules: 1
+      pending_modules: 0
+      completed_deliverables: 1

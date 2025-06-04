@@ -1,0 +1,11 @@
+# modules-index.yaml
+# Índice de módulos para la migración al sistema de tracking modular YAML
+modules:
+  - id: MIG1
+    name: "Adaptación de ai-assistant al sistema de tracking modular"
+    status: "in progress"
+    planning_ref:
+      path: "./MIG1/module-plan.yaml"
+    completed_deliverables:
+      - MIG1.1 Auditoría y mapeo de información existente
+    next_step: "Extraer y estructurar en YAML los submódulos y entregables de cada módulo detectado en planning/"

@@ -1,0 +1,14 @@
+# submodule.yaml (plantilla)
+submodule:
+  id: Mx.x
+  name: "Nombre del submódulo"
+  status: "pending|in progress|completed"
+  context_summary: |
+    Breve descripción del propósito y alcance del submódulo.
+  deliverables:
+    - "Ejemplo de entregable del submódulo"
+  next_step: "Descripción del próximo paso relevante"
+  history:
+    - date: "YYYY-MM-DD"
+      type: "created|started|completed"
+      summary: "Descripción breve del evento"
