@@ -1,0 +1,26 @@
+# submodule.yaml
+submodule:
+  id: M6.2
+  name: "Cross-Evaluation & Selection"
+  status: "pending"
+  context_summary: |
+    Finalizar proceso de selección de estrategia de distribución basado en scoring
+    y criterios establecidos en M6.1.
+
+    Validar decisión de GitHub-Only Distribution y documentar plan de contingencia
+    con Hybrid Distribution como backup.
+  deliverables:
+    - "Validación final de GitHub-Only Distribution como estrategia primaria"
+    - "Plan de contingencia documentado con Hybrid Distribution"
+    - "Análisis de riesgos y mitigaciones para estrategia seleccionada"
+    - "Timeline de implementación para distribución GitHub-Only"
+    - "Criterios de éxito y métricas de evaluación definidas"
+    - "Plan de escalación hacia Hybrid Distribution si es necesario"
+  next_step: "Ejecutar cross-evaluation una vez completado M6.1"
+  history:
+    - date: "2025-06-02"
+      type: "created"
+      summary: "Submódulo creado para finalización del proceso de selección"
+    - date: "2025-06-04"
+      type: "migrated"
+      summary: "Información migrada al formato YAML modular durante MIG1.3"

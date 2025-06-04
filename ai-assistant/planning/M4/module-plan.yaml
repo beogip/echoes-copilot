@@ -1,0 +1,53 @@
+# module-plan.yaml
+module:
+  id: M4
+  name: "Testing & Validation"
+  current_status: "pending"
+  next_step: "Esperar finalización de M2 para iniciar setup de infraestructura de testing"
+  completed_deliverables: []
+  submodules:
+    - id: M4.1
+      name: "Test Environment Setup"
+      status: "pending"
+    - id: M4.2
+      name: "Basic Echo Functionality Testing"
+      status: "pending"
+    - id: M4.3
+      name: "Response Quality Assessment"
+      status: "pending"
+    - id: M4.4
+      name: "Integration & Performance Testing"
+      status: "pending"
+    - id: M4.5
+      name: "User Studies & Validation"
+      status: "pending"
+  history:
+    - date: "2025-06-02"
+      type: "created"
+      summary: "Plan de módulo M4 generado con análisis ECHO evaluation. Objetivo: validar calidad y funcionalidad de echos."
+    - date: "2025-06-04"
+      type: "migrated"
+      summary: "Información migrada de M4-testing-validation.md al formato YAML modular."
+    - date: "2025-06-04"
+      type: "submodules_created"
+      summary: "Creados 5 submódulos individuales M4.1-M4.5 con especificaciones detalladas y deliverables."
+  context_summary: |
+    Validación comprehensiva de calidad y funcionalidad de Echo Protocol.
+
+    Criterios de calidad:
+    1. Corrección funcional: Los triggers de echo funcionan como esperado
+    2. Calidad de respuesta: Copilot genera respuestas estructuradas y útiles
+    3. Consistencia: Resultados reproducibles en diferentes contextos
+    4. Performance: Tiempo de respuesta y uso de recursos del sistema
+    5. Usabilidad: Experiencia del desarrollador y curva de aprendizaje
+
+    Estándares mínimos de calidad viable:
+    ✅ Reconocimiento de Echo: >90% tasa de reconocimiento de trigger
+    ✅ Cumplimiento de estructura: >80% respuestas siguen formato echo
+    ✅ Precisión técnica: >90% recomendaciones son correctas
+    ✅ Satisfacción del usuario: >75% desarrolladores lo encuentran útil
+    ✅ Performance: <3s tiempo promedio de respuesta
+
+    Estado: Pendiente de M2 (ready-to-use file).
+
+    Alcance del testing: reconocimiento de trigger, generación de respuesta, compatibilidad cross-language, integración, performance.

@@ -1,0 +1,26 @@
+# submodule.yaml
+submodule:
+  id: M4.5
+  name: "User Studies & Validation"
+  status: "pending"
+  context_summary: |
+    Conducir estudios de usuario para validar usabilidad, satisfacción, y adopción real
+    del Echo Protocol por parte de desarrolladores.
+
+    Medir curva de aprendizaje, utilidad percibida, impacto en productividad, y identificar
+    áreas de mejora desde la perspectiva del usuario final.
+  deliverables:
+    - "Protocolo de user study diseñado y validado"
+    - "Métricas de satisfacción del usuario (>75% objetivo)"
+    - "Análisis de curva de aprendizaje y adopción"
+    - "Feedback cualitativo estructurado y categorizado"
+    - "Reporte final de validación con recomendaciones"
+    - "Plan de mejoras basado en findings de usuarios"
+  next_step: "Diseñar protocolo de user study una vez completados M4.2-M4.4"
+  history:
+    - date: "2025-06-02"
+      type: "created"
+      summary: "Submódulo creado para validación con usuarios reales"
+    - date: "2025-06-04"
+      type: "migrated"
+      summary: "Información migrada al formato YAML modular durante MIG1.3"

@@ -1,0 +1,26 @@
+# submodule.yaml
+submodule:
+  id: M6.1
+  name: "Distribution Options Analysis"
+  status: "pending"
+  context_summary: |
+    Completar análisis comprehensivo de opciones de distribución con scoring detallado
+    y documentación de criterios de decisión.
+
+    Evaluar 4 estrategias principales: GitHub-Only, Multi-Platform, Managed Service, 
+    y Hybrid Distribution usando criterios ponderados.
+  deliverables:
+    - "Análisis detallado de GitHub-Only Distribution (7.7/10 score)"
+    - "Evaluación de Multi-Platform Distribution (7.4/10 score)"
+    - "Assessment de Managed Service Approach (6.0/10 score)"
+    - "Análisis de Hybrid Distribution (8.1/10 score) como backup plan"
+    - "Documentación de criterios de decisión con ponderaciones"
+    - "Matriz comparativa final con justificaciones"
+  next_step: "Esperar finalización de M1-M5 para consolidar análisis de distribución"
+  history:
+    - date: "2025-06-02"
+      type: "created"
+      summary: "Submódulo creado para análisis comprehensivo de opciones de distribución"
+    - date: "2025-06-04"
+      type: "migrated"
+      summary: "Información migrada al formato YAML modular durante MIG1.3"

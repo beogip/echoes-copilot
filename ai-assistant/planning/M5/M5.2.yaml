@@ -1,0 +1,25 @@
+# submodule.yaml
+submodule:
+  id: M5.2
+  name: "User Journey Gap Analysis"
+  status: "pending"
+  context_summary: |
+    Analizar en detalle los gaps identificados en cada fase del user journey:
+    Discovery → Setup → Usage → Mastery.
+
+    Priorizar las correcciones necesarias según impacto en experiencia del usuario
+    y facilidad de implementación.
+  deliverables:
+    - "Análisis detallado de Discovery Phase (actualmente fuerte)"
+    - "Gap analysis específico de Setup Phase (quick start guides faltantes)"
+    - "Assessment de Usage Phase (guías por lenguaje específico)"
+    - "Evaluación de Mastery Phase (troubleshooting y best practices)"
+    - "Matriz de priorización de correcciones por impacto/esfuerzo"
+  next_step: "Realizar análisis post-completado M5.1 ecosystem assessment"
+  history:
+    - date: "2025-06-02"
+      type: "created"
+      summary: "Submódulo creado para análisis específico de gaps en user journey"
+    - date: "2025-06-04"
+      type: "migrated"
+      summary: "Información migrada al formato YAML modular durante MIG1.3"

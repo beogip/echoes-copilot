@@ -1,0 +1,25 @@
+# submodule.yaml
+submodule:
+  id: M4.4
+  name: "Integration & Performance Testing"
+  status: "pending"
+  context_summary: |
+    Validar integración del Echo Protocol con diferentes entornos de desarrollo y medir
+    performance bajo condiciones reales de uso.
+
+    Incluye testing cross-language, compatibilidad con diferentes IDEs, tiempo de respuesta,
+    y comportamiento bajo carga de trabajo típica de desarrollo.
+  deliverables:
+    - "Test suite de compatibilidad cross-language (JS, Python, TS, etc.)"
+    - "Métricas de performance y tiempo de respuesta (<3s objetivo)"
+    - "Testing de integración con diferentes configuraciones VSCode"
+    - "Análisis de uso de recursos del sistema"
+    - "Benchmarks de performance bajo diferentes cargas de trabajo"
+  next_step: "Configurar entornos multi-language una vez completado M4.2"
+  history:
+    - date: "2025-06-02"
+      type: "created"
+      summary: "Submódulo creado para testing de integración y performance"
+    - date: "2025-06-04"
+      type: "migrated"
+      summary: "Información migrada al formato YAML modular durante MIG1.3"

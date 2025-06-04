@@ -1,0 +1,22 @@
+# M2.2-submodule.yaml
+submodule:
+  id: M2.2
+  name: "Format Validation"
+  parent_module: M2
+  status: "pending"
+  context_summary: |
+    Asegurar compatibilidad con GitHub Copilot mediante validación de formato.
+
+    Validaciones requeridas:
+    - Sintaxis Markdown válida
+    - Cumplimiento de formato de instrucciones Copilot
+    - Resolución de referencias cruzadas
+    - Verificación de sintaxis de código de ejemplo
+  deliverables:
+    - "Suite de pruebas de validación"
+    - "Script de verificación de formato Copilot"
+    - "Reporte de compatibilidad"
+  dependencies:
+    - "M2.1 (Content Optimization)"
+  next_step: "Crear tests automatizados de validación de formato"
+  estimated_effort: "6 horas"

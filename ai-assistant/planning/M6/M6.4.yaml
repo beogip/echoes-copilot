@@ -1,0 +1,26 @@
+# submodule.yaml
+submodule:
+  id: M6.4
+  name: "Community Building Setup"
+  status: "pending"
+  context_summary: |
+    Establecer infraestructura y procesos para building de comunidad alrededor
+    del Echo Protocol Integration.
+
+    Crear canales de comunicación, procesos de contribución, y sistemas de
+    engagement para desarrolladores y usuarios.
+  deliverables:
+    - "GitHub Discussions configurado para community engagement"
+    - "Contributing guidelines y code of conduct establecidos"
+    - "Issue templates y PR templates implementados"
+    - "Documentation para contributors y maintainers creada"
+    - "System de labels y project management setup"
+    - "Community welcome automation (bots/workflows) configurado"
+  next_step: "Setup de comunidad post-implementación de M6.3"
+  history:
+    - date: "2025-06-02"
+      type: "created"
+      summary: "Submódulo creado para establecimiento de community building"
+    - date: "2025-06-04"
+      type: "migrated"
+      summary: "Información migrada al formato YAML modular durante MIG1.3"

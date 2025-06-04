@@ -1,0 +1,26 @@
+# submodule.yaml
+submodule:
+  id: M6.3
+  name: "GitHub Release Automation"
+  status: "pending"
+  context_summary: |
+    Implementar sistema de automatización completo para releases en GitHub,
+    incluyendo versionado, packaging, y distribución automática.
+
+    Crear workflows de CI/CD para release management y deployment automático
+    del Echo Protocol Integration.
+  deliverables:
+    - "GitHub Actions workflow para automated releases implementado"
+    - "Sistema de versionado semántico configurado"
+    - "Scripts de packaging y bundling automatizados"
+    - "Release notes generation automática"
+    - "Testing de pre-release automation pipeline"
+    - "Documentation de release process para maintainers"
+  next_step: "Implementar workflows post-decisión en M6.2"
+  history:
+    - date: "2025-06-02"
+      type: "created"
+      summary: "Submódulo creado para automatización de releases GitHub"
+    - date: "2025-06-04"
+      type: "migrated"
+      summary: "Información migrada al formato YAML modular durante MIG1.3"

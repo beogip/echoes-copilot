@@ -1,0 +1,69 @@
+# module-plan.yaml
+module:
+  id: M3
+  name: "Advanced Installer Scripts"
+  current_status: "completed"
+  next_step: "Módulo completado. Listos para M4 (Testing & Documentation)"
+  completed_deliverables:
+    - M3.1 Evaluación de criterios y opciones de instalación
+    - M3.2 Implementación de shell script (install.sh)
+    - M3.3 Implementación de PowerShell script (install.ps1)
+    - M3.4 Implementación de Node.js script (install.js)
+    - M3.5 Testing y validación en múltiples plataformas
+  submodules:
+    - id: M3.1
+      name: "Cross-Platform Analysis & Strategy"
+      status: "completed"
+    - id: M3.2
+      name: "Shell Script Implementation"
+      status: "completed"
+    - id: M3.3
+      name: "PowerShell Script Implementation"
+      status: "completed"
+    - id: M3.4
+      name: "Node.js Universal Script"
+      status: "completed"
+    - id: M3.5
+      name: "Testing & Validation"
+      status: "completed"
+  history:
+    - date: "2025-06-02"
+      type: "created"
+      summary: "Plan de módulo M3 generado con análisis ECHO evaluation. Objetivo: crear instaladores multiplataforma robustos."
+    - date: "2025-06-02"
+      type: "completed"
+      summary: "Evaluación de opciones (M3.1) completada. Enfoque híbrido seleccionado: shell + PowerShell + Node.js."
+    - date: "2025-06-02"
+      type: "completed"
+      summary: "Implementación de scripts completada (M3.2-M3.4). Todos los instaladores con feature parity y safety features."
+    - date: "2025-06-02"
+      type: "completed"
+      summary: "Testing y validación completada (M3.5). Probado en macOS/Linux/Windows con edge cases validados."
+    - date: "2025-06-04"
+      type: "migrated"
+      summary: "Información migrada de M3-installer-evaluation.md al formato YAML modular."
+  context_summary: |
+    Crear scripts de instalación multiplataforma para Echo Protocol Integration con backup, rollback y experiencia de usuario profesional.
+
+    Enfoque implementado: Híbrido con tres scripts
+    1. install.sh: Unix/macOS/Linux (zsh/bash) - COMPLETADO ✅
+    2. install.ps1: Windows PowerShell nativo - COMPLETADO ✅  
+    3. install.js: Node.js universal cross-platform - COMPLETADO ✅
+
+    Características implementadas:
+    - Modos de instalación: 'instructions' (archivos individuales) y 'comprehensive' (archivo único)
+    - Safety features: backup automático con timestamp, rollback, validación
+    - UX profesional: banner, output con colores, sistema de ayuda, mensajes de error claros
+    - Robustez: verificación de conectividad, validación de prerrequisitos, manejo de errores
+    - Feature parity: funcionalidad idéntica en los tres instaladores
+
+    Métricas de éxito alcanzadas:
+    ✅ Cobertura multiplataforma: 100% (Unix/macOS/Linux/Windows/Node.js)
+    ✅ Tasa de éxito de instalación: >95% en testing manual
+    ✅ Safety features: backup, rollback, validación en todos los scripts
+    ✅ Tiempo promedio de instalación: <2 minutos
+    ✅ Documentación y troubleshooting: guías claras
+
+    Estado: COMPLETADO - Listo para M4 (Testing & Documentation).
+
+    Testing completado en: macOS (zsh/bash), Linux (Ubuntu/CentOS), Windows (PowerShell 5.1/7.x), Node.js (14+/16+/18+)
