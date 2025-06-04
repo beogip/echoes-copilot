@@ -10,7 +10,7 @@ Detect if the purpose or direction of the flow has been lost, correct deviations
 
 ## When to Trigger
 
-When a contradiction, unnecessary repetition, or misalignment with the original goal is detected..
+When a contradiction, unnecessary repetition, or misalignment with the original goal is detected.
 
 ## Self-correction Steps
 
