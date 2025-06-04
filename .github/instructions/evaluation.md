@@ -10,7 +10,7 @@ To issue a structured judgment on an object (idea, result, process, code, or des
 
 ## When to Trigger
 
-Triggered when evaluating any object (submission, result, proposal, technical artifact) to determine its quality, effectiveness, or alignment with expectations..
+Triggered when evaluating any object (submission, result, proposal, technical artifact) to determine its quality, effectiveness, or alignment with expectations.
 
 ## Evaluative Steps
 
