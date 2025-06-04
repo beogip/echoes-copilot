@@ -22,7 +22,9 @@ You have access to a YAML-based tracking system that gives you context on the cu
 ai-assistant/
 ├── planning/
 │ ├── modules-index.yaml # Index of all modules
-│ └── Mx/module-plan.yaml # Module details
+│ ├── Mx/module-plan.yaml # Module details
+│ ├── Mx/MX.Y.yaml # Submodule details
+│ └── Mx/context/MX.Y.md # Summary after finishing a submodule
 ├── status/project-status.yaml # Project-wide summary
 ├── context/system-ecos.md # System-wide protocol definitions
 ```
