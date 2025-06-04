@@ -2,15 +2,15 @@
   "name": "echos-copilot-template",
   "version": "1.0.0",
   "description": "Template for integrating Echo Protocol with GitHub Copilot",
-  "main": "build/build.js",
+  "main": "scripts/build.js",
   "directories": {
     "example": "examples"
   },
   "scripts": {
-    "build": "node build/build.js",
-    "build:copilot": "node build/build.js --copilot",
-    "build:instructions": "node build/build.js --individual",
-    "build:watch": "nodemon build/build.js",
+    "build": "node scripts/build.js",
+    "build:copilot": "node scripts/build.js --copilot",
+    "build:instructions": "node scripts/build.js --individual",
+    "build:watch": "nodemon scripts/build.js",
     "dev": "npm run build && npm run build:watch",
     "test": "bats tests/bats",
     "test:edge": "bats tests/bats/install-edge-cases.bats",
@@ -18,7 +18,8 @@
     "test:integration": "bats tests/bats/install-cross-platform.bats",
     "test:unit": "echo 'No unit tests defined for shell scripts' && exit 0",
     "test:quick": "bats tests/bats/install-sh.bats tests/bats/install-local-sh.bats",
-    "test:verbose": "bats --verbose tests/bats"
+    "test:verbose": "bats --verbose tests/bats",
+    "validate:prs": "node scripts/validate-prs-yaml.js"
   },
   "dependencies": {
     "js-yaml": "^4.1.0"

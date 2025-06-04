@@ -48,9 +48,10 @@ steps:
       - Were suggestions recorded if given?
     expected_output: User feedback (if any).
 
-output_format: Full execution record including:
-  - Original prompt
-  - Missing/problematic elements
-  - Optimized final prompt
-  - Execution result
-  - (Optional) User feedback
+output_format: |-
+  Full execution record including:
+    - Original prompt
+    - Missing/problematic elements
+    - Optimized final prompt
+    - Execution result
+    - (Optional) User feedback

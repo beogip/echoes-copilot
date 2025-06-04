@@ -3,12 +3,13 @@ module:
   id: M1
   name: "Fix Build System"
   current_status: "in progress"
-  next_step: "Continuar con M1.1: Corrección de YAMLs PRS para validar archivos fuente"
-  completed_deliverables: []
+  next_step: "Continuar con M1.2: Robustecer build.js con mejor manejo de errores"
+  completed_deliverables:
+    ["M1.1 - Automated YAML validation tooling and PRS file corrections"]
   submodules:
     - id: M1.1
       name: "Corrección de YAMLs PRS"
-      status: "in progress"
+      status: "completed"
     - id: M1.2
       name: "Robustecer build.js"
       status: "pending"
@@ -24,10 +25,13 @@ module:
   history:
     - date: "2025-06-04"
       type: "created"
-      summary: "Diagnóstico de build system realizado. Identificados errores de parsing YAML en archivos PRS, falta validación robusta y tests automatizados."
+      summary: "Diagnóstico de build system realizado. Identificados errores de parsing YAML en arquivos PRS, falta validación robusta y tests automatizados."
     - date: "2025-06-04"
       type: "migrated"
       summary: "Información migrada de m1/ al formato YAML modular."
+    - date: "2025-06-04"
+      type: "completed"
+      summary: "M1.1 completado: Corregido error de indentación YAML en execution-prompt.prs.yaml, creado validate-prs-yaml.js con validación automatizada, reorganizado estructura con scripts/ folder, todos los 17 archivos .prs.yaml validados exitosamente."
   context_summary: |
     Módulo crítico para avance de M2-M6. Arreglar el sistema de build que presenta errores de parsing YAML.
 

@@ -8,7 +8,7 @@ project:
   modules:
     - id: M1
       status: "in progress"
-      next_step: "Continuar con M1.1: Corrección de YAMLs PRS para validar archivos fuente"
+      next_step: "Continuar con M1.2: Robustecer build.js con mejor manejo de errores"
       planning_ref:
         path: "../planning/M1/module-plan.yaml"
       critical_path: true
@@ -68,8 +68,8 @@ project:
       completion_percentage: 14.3
 
     critical_path_status:
-      current_bottleneck: "M1 (Fix Build System)"
-      next_milestone: "M2 ready-to-use file completion"
+      current_bottleneck: "M1 (Fix Build System) - M1.1 completed, M1.2 next"
+      next_milestone: "M1.2 enhanced build.js with error handling"
       estimated_completion: "TBD after M1 resolution"
 
     risks:
