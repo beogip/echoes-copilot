@@ -10,7 +10,7 @@ Detect the origin of an error or malfunction to correct or prevent it. This echo
 
 ## When to Trigger
 
-When the user reports errors, unexpected behaviors, or failures..
+When the user reports errors, unexpected behaviors, or failures.
 
 ## Diagnostic Steps
 
