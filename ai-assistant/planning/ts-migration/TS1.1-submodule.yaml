@@ -1,0 +1,28 @@
+submodule:
+  id: TS1.1
+  name: "Base TypeScript Configuration"
+  objective: |
+    Install and configure TypeScript in the project, ensuring compatibility with Node.js and existing tools.
+  scope: |
+    - Install dependencies: typescript (>=5.0), @types/node (>=18), ts-node, ts-jest, etc.
+    - Create and adjust tsconfig.json.
+    - Configure paths, outDir, include/exclude.
+    - Validate integration with Jest and build scripts.
+  deliverables:
+    - Functional tsconfig.json
+    - Dependencies installed
+  completion_criteria:
+    - Project compiles without errors using tsc
+    - Configuration validated on basic scripts and Jest
+    - Integration validated in a clean environment
+  constraints:
+    - Maintain compatibility with Node.js >= 18
+    - Do not break the current workflow
+    - Keep the initial setup simple and clear
+  notes:
+    - Document any relevant configuration decision in ai-assistant/context/development-context.md for traceability and future support.
+    - Validate that existing scripts work after the initial configuration.
+  history:
+    - date: "2025-06-05"
+      type: "completed"
+      summary: "TS1.1 executed: TypeScript and dependencies installed, tsconfig.json created, configuration validated, and context documented."

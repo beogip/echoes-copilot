@@ -1,0 +1,23 @@
+submodule:
+  id: TS1.3
+  name: "Utilities and Helpers Migration"
+  objective: |
+    Migrate shared utilities and helpers to TypeScript, improving clarity and type safety.
+  scope: |
+    - Rename and migrate utilities to .ts
+    - Add types and refactor imports/exports
+  deliverables:
+    - Utilities in TypeScript
+  completion_criteria:
+    - Utilities compile and pass basic tests
+  constraints:
+    - Preserve original utility logic
+    - Avoid unnecessary complexity
+  notes:
+    - Document any relevant typing or refactor decision in ai-assistant/context/development-context.md
+    - Validate utilities with basic test cases
+    - Run regression or behavioral tests after migration and record results in ai-assistant/context/development-context.md for traceability
+  history:
+    - date: "2025-06-05"
+      type: "planned"
+      summary: "Detailed plan for submodule TS1.3 created for utilities and helpers migration to TypeScript."

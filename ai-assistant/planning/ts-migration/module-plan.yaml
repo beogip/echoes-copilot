@@ -1,0 +1,134 @@
+module:
+  id: TS1
+  name: "TypeScript Migration"
+  context_summary: |
+    Migrate the entire echos-copilot repository from JavaScript to TypeScript, including scripts, utilities, and tests. The goal is to modernize the stack, improve maintainability, and ensure compatibility with modern tooling.
+  current_status: "planned"
+  next_step: "Set up TypeScript and install base dependencies (TS1.1)"
+  completed_deliverables: []
+  submodules:
+    - id: TS1.1
+      name: "Base TypeScript Configuration"
+      status: "completed"
+      objective: |
+        Install and configure TypeScript in the project, ensuring compatibility with Node.js and existing tools.
+      scope: |
+        - Install dependencies: typescript (>=5.0), @types/node (>=18), ts-node, ts-jest, etc.
+        - Create and adjust tsconfig.json.
+        - Configure paths, outDir, include/exclude.
+        - Validate integration with Jest and build scripts.
+      deliverables:
+        - Functional tsconfig.json
+        - Dependencies installed
+      completion_criteria:
+        - Project compiles without errors using tsc
+        - Configuration validated on basic scripts and Jest
+        - Integration validated in a clean environment
+      constraints:
+        - Maintain compatibility with Node.js >= 18
+        - Do not break the current workflow
+        - Keep the initial setup simple and clear
+      notes:
+        - Document any relevant configuration decision in ai-assistant/context/development-context.md for traceability and future support.
+        - Validate that existing scripts work after the initial configuration.
+    - id: TS1.2
+      name: "Main Scripts Migration"
+      status: "pending"
+      objective: |
+        Migrate the main scripts from JavaScript to TypeScript, ensuring basic typing and equivalent functionality.
+      scope: |
+        - Identify all main scripts in /scripts.
+        - Rename .js files to .ts.
+        - Adapt imports/exports to TypeScript syntax.
+        - Add minimal type annotations where relevant.
+        - Validate the functionality of migrated scripts.
+      deliverables:
+        - Main scripts in TypeScript
+        - Basic typing applied
+      completion_criteria:
+        - Scripts compile and work as before
+        - No regressions introduced
+      constraints:
+        - Maintain original logic and functionality
+        - Do not introduce unnecessary dependencies
+        - Keep folder structure and names
+      notes:
+        - Document any relevant typing decision in ai-assistant/context/development-context.md
+        - Validate that migrated scripts are executable from Node.js
+        - Run basic or regression tests after migration and record results in ai-assistant/context/development-context.md
+    - id: TS1.3
+      name: "Utilities and Helpers Migration"
+      status: "pending"
+      objective: |
+        Migrate shared utilities and helpers to TypeScript, improving clarity and type safety.
+      scope: |
+        - Rename and migrate utilities to .ts
+        - Add types and refactor imports/exports
+      deliverables:
+        - Utilities in TypeScript
+      completion_criteria:
+        - Utilities compile and pass basic tests
+      constraints:
+        - Preserve original utility logic
+        - Avoid unnecessary complexity
+      notes:
+        - Document any relevant typing or refactor decision in ai-assistant/context/development-context.md
+        - Validate utilities with basic test cases
+    - id: TS1.4
+      name: "Tests Migration"
+      status: "pending"
+      objective: |
+        Migrate all tests to TypeScript and ensure compatibility with Jest and ts-jest.
+      scope: |
+        - Rename tests to .ts
+        - Adapt test setup and utilities
+        - Configure Jest for TypeScript
+      deliverables:
+        - Tests in TypeScript
+        - Jest/ts-jest configuration
+      completion_criteria:
+        - All tests pass in TypeScript
+      constraints:
+        - Preserve test coverage and logic
+        - Do not break test automation
+      notes:
+        - Document any relevant test migration decision in ai-assistant/context/development-context.md
+        - Validate test runs after migration
+    - id: TS1.5
+      name: "Documentation and Scripts Update"
+      status: "pending"
+      objective: |
+        Update documentation and build/test scripts to reflect TypeScript usage.
+      scope: |
+        - Update package.json (scripts, main, types)
+        - Update README and contribution guides
+      deliverables:
+        - Updated documentation and scripts
+      completion_criteria:
+        - Clear documentation and working scripts
+      constraints:
+        - Keep documentation accurate and concise
+      notes:
+        - Record any major documentation or script change in ai-assistant/context/development-context.md
+    - id: TS1.6
+      name: "Final Validation and Adjustment"
+      status: "pending"
+      objective: |
+        Validate the complete migration, fixing errors and ensuring quality and functionality.
+      scope: |
+        - Run final build and tests
+        - Fix typing or runtime errors
+        - Final review of code and documentation
+      deliverables:
+        - 100% migrated and validated project
+      completion_criteria:
+        - Build and tests pass without errors
+        - Final review approved
+      constraints:
+        - Do not skip any validation step
+      notes:
+        - Document any final adjustment or issue in ai-assistant/context/development-context.md
+  history:
+    - date: "2025-06-05"
+      type: "planned"
+      summary: "TypeScript migration plan created and approved by the user."
