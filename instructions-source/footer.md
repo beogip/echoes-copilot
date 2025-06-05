@@ -31,13 +31,14 @@ ai-assistant/
 
 ### Your Responsibilities
 
-- Read `modules-index.yaml` to find which modules exist
-- For each module, read `module-plan.yaml` to understand:
+- Read `ai-assistant/status/project-status.yaml` to know the project status
+- Read `ai-assistant/modules-index.yaml` to find which modules exist
+- For each module, read `ai-assistant/MX/module-plan.yaml` to understand:
   - What it's doing (`context_summary`)
   - What is done (`completed_deliverables`)
   - What’s next (`next_step`)
   - History of decisions (`history`)
-- Update `status/project-status.yaml` to reflect progress at the project level
+- Update `ai-assistant/status/project-status.yaml` to reflect progress at the project level
 
 ### YAML Example
 
