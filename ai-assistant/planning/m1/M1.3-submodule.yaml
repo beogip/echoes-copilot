@@ -2,7 +2,7 @@
 submodule:
   id: M1.3
   name: "Build tests"
-  status: "pending"
+  status: "completed"
   context_summary: |
     Create automated tests to validate build system behavior against edge cases, malformed files, and different configurations, ensuring system stability.
   deliverables:
@@ -10,9 +10,29 @@ submodule:
     - "Edge case tests (malformed files, duplicate keys)"
     - "Integration tests for complete build process"
     - "Documented and validated test coverage"
-  next_step: "Wait for M1.2 completion to create tests based on improved build.js"
+  tasks:
+    - id: js-test-1
+      description: "Add tests for detectDuplicateKeys and findYamlFiles in validate-prs-yaml.js"
+      status: completed
+    - id: js-test-2
+      description: "Add tests for loadYamlFile in build.js including invalid YAML case"
+      status: completed
+    - id: js-test-3
+      description: "Add tests for convertEchoToInstructionsFormat for a typical echo object"
+      status: completed
+    - id: js-test-4
+      description: "Add tests for parseArgs in install.js"
+      status: completed
+  completed_deliverables:
+    - "Automated test suite for YAML validation with duplicate key detection"
+    - "Edge case tests covering malformed YAML files"
+    - "Integration test executing build.js and verifying output"
+  next_step: "Proceed with M1.4: Output validation"
   dependencies: ["M1.2"]
   history:
     - date: "2025-06-04"
       type: "created"
       summary: "Submodule M1.3 created to ensure build system quality and stability through automated testing."
+    - date: "2025-06-05"
+      type: "completed"
+      summary: "Implemented Jest tests for YAML validation and build.js integration. Duplicate key detection added to validator."

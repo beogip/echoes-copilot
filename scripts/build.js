@@ -738,4 +738,10 @@ if (require.main === module) {
   }
 }
 
-module.exports = { buildInstructions, buildIndividualInstructions, buildAll };
+module.exports = {
+  buildInstructions,
+  buildIndividualInstructions,
+  buildAll,
+  loadYamlFile,
+  convertEchoToInstructionsFormat
+};

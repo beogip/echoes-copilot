@@ -5,6 +5,28 @@ const fs = require('fs');
 const path = require('path');
 const yaml = require('js-yaml');
 
+function detectDuplicateKeys(content) {
+  const lines = content.split(/\r?\n/);
+  const keyMap = {};
+  const duplicates = [];
+  lines.forEach((line, idx) => {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith('#')) return;
+    const indent = line.match(/^\s*/)[0].length;
+    const keyMatch = trimmed.match(/^([A-Za-z0-9_-]+):/);
+    if (keyMatch) {
+      const key = keyMatch[1];
+      if (!keyMap[indent]) keyMap[indent] = new Set();
+      if (keyMap[indent].has(key)) {
+        duplicates.push(`Duplicate key '${key}' at line ${idx + 1}`);
+      } else {
+        keyMap[indent].add(key);
+      }
+    }
+  });
+  return duplicates;
+}
+
 function findYamlFiles(dir) {
   let results = [];
   const list = fs.readdirSync(dir);
@@ -23,6 +45,10 @@ function findYamlFiles(dir) {
 function validateYaml(filePath) {
   try {
     const content = fs.readFileSync(filePath, 'utf8');
+    const duplicates = detectDuplicateKeys(content);
+    if (duplicates.length > 0) {
+      return { file: filePath, valid: false, error: duplicates.join('; ') };
+    }
     yaml.load(content);
     return { file: filePath, valid: true };
   } catch (e) {
@@ -30,19 +56,23 @@ function validateYaml(filePath) {
   }
 }
 
-const baseDir = path.join(__dirname, '..', 'echos-sources');
-const files = findYamlFiles(baseDir);
-let errorCount = 0;
+if (require.main === module) {
+  const baseDir = path.join(__dirname, '..', 'echos-sources');
+  const files = findYamlFiles(baseDir);
+  let errorCount = 0;
 
-console.log(`Validating ${files.length} .prs.yaml files...`);
-files.forEach(f => {
-  const result = validateYaml(f);
-  if (result.valid) {
-    console.log(`✅ ${result.file}`);
-  } else {
-    errorCount++;
-    console.log(`❌ ${result.file}\n    Error: ${result.error}`);
-  }
-});
-console.log(`\nSummary: ${files.length} files checked, ${errorCount} errors found.`);
-process.exit(errorCount === 0 ? 0 : 1);
+  console.log(`Validating ${files.length} .prs.yaml files...`);
+  files.forEach(f => {
+    const result = validateYaml(f);
+    if (result.valid) {
+      console.log(`✅ ${result.file}`);
+    } else {
+      errorCount++;
+      console.log(`❌ ${result.file}\n    Error: ${result.error}`);
+    }
+  });
+  console.log(`\nSummary: ${files.length} files checked, ${errorCount} errors found.`);
+  process.exit(errorCount === 0 ? 0 : 1);
+}
+
+module.exports = { findYamlFiles, validateYaml, detectDuplicateKeys };

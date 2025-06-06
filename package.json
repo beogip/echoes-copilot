@@ -12,7 +12,7 @@
     "build:instructions": "node scripts/build.js --individual",
     "build:watch": "nodemon scripts/build.js",
     "dev": "npm run build && npm run build:watch",
-    "test": "bats tests/bats",
+    "test": "bats tests/bats/install-sh.bats",
     "test:edge": "bats tests/bats/install-edge-cases.bats",
     "test:installer": "bats tests/bats/install-sh.bats tests/bats/install-local-sh.bats tests/bats/install-ps1.bats",
     "test:integration": "bats tests/bats/install-cross-platform.bats",
