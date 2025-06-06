@@ -42,34 +42,33 @@ When you see a comment starting with `ECHO:`, execute the corresponding reasonin
 
 ### 🛠️ **diagnostic** - Technical Debugging
 - **Trigger**: `// ECHO: diagnostic`
-- **Purpose**: Detect the origin of an error or malfunction to correct or prevent it
+- **Purpose**: Detect the origin of an error or malfunction to correct or prevent it. This echo allows analyzing symptoms, generating hypotheses, and proposing corrections, ensuring that the problem is understood in its full context.
 - **File**: `.github/instructions/diagnostic.md`
 
 ### 🧭 **planning** - Project Planning
 - **Trigger**: `// ECHO: planning`
-- **Purpose**: Guide step-by-step planning of a learning, development, or implementation pro...
+- **Purpose**: Guide step-by-step planning of a learning, development, or implementation process, ensuring clarity, adaptability, and structured feedback. Supports roadmap creation for individuals, teams, or systems.
 - **File**: `.github/instructions/planning.md`
 
 ### 🧪 **evaluation** - Code & Design Review
 - **Trigger**: `// ECHO: evaluation`
-- **Purpose**: To issue a structured judgment on an object (idea, result, process, code, or ...
+- **Purpose**: To issue a structured judgment on an object (idea, result, process, code, or design), using clear and validated criteria. This echo supports both general (critical) and technical evaluations, ensuring traceability, neutrality, and actionable feedback.
 - **File**: `.github/instructions/evaluation.md`
 
 ### ⚙️ **optimization** - Performance & Efficiency
 - **Trigger**: `// ECHO: optimization`
-- **Purpose**: Systematically optimize processes, structures, or flows to improve efficiency...
+- **Purpose**: Systematically optimize processes, structures, or flows to improve efficiency without losing functionality. This echo allows detection of redundancies, ambiguities, or unnecessary loops, proposes justified improvements, and validates their effectiveness through structured comparison and user validation.
 - **File**: `.github/instructions/optimization.md`
 
 ### ✅ **coherence** - Flow Correction
 - **Trigger**: `// ECHO: coherence`
-- **Purpose**: Detect if the purpose or direction of the flow has been lost, correct deviati...
+- **Purpose**: Detect if the purpose or direction of the flow has been lost, correct deviations, and resume from the correct point. This echo helps identify and correct contradictions, unnecessary loops, or misalignments, and guides the flow back to its intended goal.
 - **File**: `.github/instructions/coherence.md`
 
 ### 🔢 **prioritization** - Decision Making
 - **Trigger**: `// ECHO: prioritization`
-- **Purpose**: Rank options or ideas based on relevant criteria to decide which one to pursu...
+- **Purpose**: Rank options or ideas based on relevant criteria to decide which one to pursue first. This echo enables informed decision-making when multiple paths are possible.
 - **File**: `.github/instructions/prioritization.md`
-
 ## Advanced Echo Combinations
 
 You can chain multiple echos for complex problems:

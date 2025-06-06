@@ -2,15 +2,15 @@
   "name": "echos-copilot-template",
   "version": "1.0.0",
   "description": "Template for integrating Echo Protocol with GitHub Copilot",
-  "main": "scripts/build.js",
+  "main": "scripts/build/index.ts",
   "directories": {
     "example": "examples"
   },
   "scripts": {
-    "build": "node scripts/build.js",
-    "build:copilot": "node scripts/build.js --copilot",
-    "build:instructions": "node scripts/build.js --individual",
-    "build:watch": "nodemon scripts/build.js",
+    "build": "npx ts-node scripts/build/index.ts",
+    "build:copilot": "npx ts-node scripts/build/index.ts --copilot",
+    "build:instructions": "npx ts-node scripts/build/index.ts --individual",
+    "build:watch": "nodemon --exec 'npx ts-node scripts/build/index.ts'",
     "dev": "npm run build && npm run build:watch",
     "test": "npm run test:bats && npm run test:jest",
     "test:bats": "npm run test:bats:edge && npm run test:bats:installer && npm run test:bats:integration && npm run test:bats:quick",

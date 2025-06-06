@@ -37,8 +37,7 @@ When there's a need to improve a process, reduce redundancy, increase clarity or
      - Were explicit user or system constraints listed?
      - Is it clear what must not be changed?
    - _Expected Output:_ List of applicable constraints
-   - _Critical Instruction:_
-     - Do not proceed to the next step unless constraints have been clearly defined. Ask the user what must be preserved and validate their response.
+   - _Critical Instruction:_ Do not proceed to the next step unless constraints have been clearly defined. Ask the user what must be preserved and validate their response.
 
 4. **Design of the optimized proposal**
 
