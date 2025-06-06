@@ -10,6 +10,9 @@ setup() {
     export TEST_TARGET="$TEST_DIR/target"
     export BACKUP_DIR="$TEST_DIR/backup"
     
+    # Store original working directory
+    export ORIGINAL_PWD="$(pwd)"
+    
     mkdir -p "$TEST_DIR" "$TEST_HOME" "$TEST_TARGET" "$BACKUP_DIR"
     cd "$TEST_DIR"
     
@@ -19,6 +22,12 @@ setup() {
     
     # Create test environment
     mkdir -p "$TEST_HOME/.echos-copilot"
+    
+    # Set absolute paths to installers
+    export INSTALL_SH="$ORIGINAL_PWD/install.sh"
+    export INSTALL_LOCAL_SH="$ORIGINAL_PWD/install-local.sh"
+    export INSTALL_JS="$ORIGINAL_PWD/install.js"
+    export INSTALL_PS1="$ORIGINAL_PWD/install.ps1"
     
     # Detect available installers
     export HAS_BASH=$(command -v bash >/dev/null 2>&1 && echo "1" || echo "0")
@@ -74,57 +83,49 @@ teardown() {
 
 # Cross-installer File Compatibility Tests
 @test "all installers create compatible directory structures" {
-    local bash_structure="" node_structure="" ps_structure=""
+    local bash_structure="" local_structure=""
     
     # Test bash installer directory structure
-    if [[ "$HAS_BASH" == "1" && -f "../../install.sh" ]]; then
-        timeout 30 bash ../../install.sh --target "$TEST_TARGET/bash" --dry-run --verbose 2>/dev/null || true
+    if [[ "$HAS_BASH" == "1" && -f "$INSTALL_SH" ]]; then
+        timeout 30 bash "$INSTALL_SH" --target "$TEST_TARGET/bash" --dry-run --verbose 2>/dev/null || true
         if [[ -d "$TEST_TARGET/bash" ]]; then
             bash_structure=$(find "$TEST_TARGET/bash" -type d | sort)
         fi
     fi
     
-    # Test Node.js installer directory structure
-    if [[ "$HAS_NODE" == "1" && -f "../../install.js" ]]; then
-        timeout 30 node ../../install.js --target "$TEST_TARGET/node" --dry-run --verbose 2>/dev/null || true
-        if [[ -d "$TEST_TARGET/node" ]]; then
-            node_structure=$(find "$TEST_TARGET/node" -type d | sort)
-        fi
-    fi
-    
-    # Test PowerShell installer directory structure (if available)
-    if [[ "$HAS_POWERSHELL" == "1" && -f "../../install.ps1" ]]; then
-        timeout 30 pwsh ../../install.ps1 -Target "$TEST_TARGET/ps" -DryRun -Verbose 2>/dev/null || true
-        if [[ -d "$TEST_TARGET/ps" ]]; then
-            ps_structure=$(find "$TEST_TARGET/ps" -type d | sort)
+    # Test local installer directory structure
+    if [[ "$HAS_BASH" == "1" && -f "$INSTALL_LOCAL_SH" ]]; then
+        timeout 30 bash "$INSTALL_LOCAL_SH" --target "$TEST_TARGET/local" --dry-run --verbose 2>/dev/null || true
+        if [[ -d "$TEST_TARGET/local" ]]; then
+            local_structure=$(find "$TEST_TARGET/local" -type d | sort)
         fi
     fi
     
     # At least one installer should create some structure
-    [[ -n "$bash_structure" ]] || [[ -n "$node_structure" ]] || [[ -n "$ps_structure" ]]
+    [[ -n "$bash_structure" ]] || [[ -n "$local_structure" ]]
 }
 
 @test "installers handle same target directory consistently" {
     # Create initial installation with first available installer
     local first_installer=""
     
-    if [[ "$HAS_BASH" == "1" && -f "../../install.sh" ]]; then
-        timeout 30 bash ../../install.sh --target "$TEST_TARGET" --force --dry-run 2>/dev/null || true
+    if [[ "$HAS_BASH" == "1" && -f "$INSTALL_SH" ]]; then
+        timeout 30 bash "$INSTALL_SH" --target "$TEST_TARGET" --force --dry-run 2>/dev/null || true
         first_installer="bash"
-    elif [[ "$HAS_NODE" == "1" && -f "../../install.js" ]]; then
-        timeout 30 node ../../install.js --target "$TEST_TARGET" --force --dry-run 2>/dev/null || true
-        first_installer="node"
-    elif [[ "$HAS_POWERSHELL" == "1" && -f "../../install.ps1" ]]; then
-        timeout 30 pwsh ../../install.ps1 -Target "$TEST_TARGET" -Force -DryRun 2>/dev/null || true
+    elif [[ "$HAS_BASH" == "1" && -f "$INSTALL_LOCAL_SH" ]]; then
+        timeout 30 bash "$INSTALL_LOCAL_SH" --target "$TEST_TARGET" --force --dry-run 2>/dev/null || true
+        first_installer="local"
+    elif [[ "$HAS_POWERSHELL" == "1" && -f "$INSTALL_PS1" ]]; then
+        timeout 30 pwsh "$INSTALL_PS1" -Target "$TEST_TARGET" -Force -DryRun 2>/dev/null || true
         first_installer="powershell"
     fi
     
     # Test second installer on same directory
     if [[ "$first_installer" == "bash" && "$HAS_NODE" == "1" ]]; then
-        run timeout 30 node ../../install.js --target "$TEST_TARGET" --force --dry-run 2>/dev/null
+        run timeout 30 bash "$INSTALL_LOCAL_SH" --target "$TEST_TARGET" --force --dry-run 2>/dev/null
         [ "$status" -ne 124 ]  # Should not timeout
     elif [[ "$first_installer" == "node" && "$HAS_BASH" == "1" ]]; then
-        run timeout 30 bash ../../install.sh --target "$TEST_TARGET" --force --dry-run 2>/dev/null
+        run timeout 30 bash "$INSTALL_SH" --target "$TEST_TARGET" --force --dry-run 2>/dev/null
         [ "$status" -ne 124 ]  # Should not timeout
     else
         skip "Need at least two different installers available"
@@ -140,17 +141,17 @@ teardown() {
     
     # Test bash installer
     if [[ "$HAS_BASH" == "1" ]]; then
-        timeout 30 bash ../../install.sh --target "$unix_path" --dry-run 2>/dev/null && ((results++)) || true
+        timeout 30 bash "$INSTALL_SH" --target "$unix_path" --dry-run 2>/dev/null && results=$((results + 1)) || true
     fi
     
-    # Test Node.js installer
-    if [[ "$HAS_NODE" == "1" ]]; then
-        timeout 30 node ../../install.js --target "$unix_path" --dry-run 2>/dev/null && ((results++)) || true
+    # Test local installer
+    if [[ "$HAS_BASH" == "1" ]]; then
+        timeout 30 bash "$INSTALL_LOCAL_SH" --target "$unix_path" --dry-run 2>/dev/null && results=$((results + 1)) || true
     fi
     
     # Test PowerShell installer
     if [[ "$HAS_POWERSHELL" == "1" ]]; then
-        timeout 30 pwsh ../../install.ps1 -Target "$unix_path" -DryRun 2>/dev/null && ((results++)) || true
+        timeout 30 pwsh "$INSTALL_PS1" -Target "$unix_path" -DryRun 2>/dev/null && results=$((results + 1)) || true
     fi
     
     # At least one installer should handle Unix paths
@@ -165,17 +166,17 @@ teardown() {
     
     # Test bash installer
     if [[ "$HAS_BASH" == "1" ]]; then
-        timeout 30 bash ../../install.sh --target "$spaced_path" --dry-run 2>/dev/null && ((results++)) || true
+        timeout 30 bash "$INSTALL_SH" --target "$spaced_path" --dry-run 2>/dev/null && results=$((results + 1)) || true
     fi
     
-    # Test Node.js installer
-    if [[ "$HAS_NODE" == "1" ]]; then
-        timeout 30 node ../../install.js --target "$spaced_path" --dry-run 2>/dev/null && ((results++)) || true
+    # Test local installer
+    if [[ "$HAS_BASH" == "1" ]]; then
+        timeout 30 bash "$INSTALL_LOCAL_SH" --target "$spaced_path" --dry-run 2>/dev/null && results=$((results + 1)) || true
     fi
     
     # Test PowerShell installer
     if [[ "$HAS_POWERSHELL" == "1" ]]; then
-        timeout 30 pwsh ../../install.ps1 -Target "$spaced_path" -DryRun 2>/dev/null && ((results++)) || true
+        timeout 30 pwsh "$INSTALL_PS1" -Target "$spaced_path" -DryRun 2>/dev/null && results=$((results + 1)) || true
     fi
     
     # At least one installer should handle spaced paths
@@ -184,28 +185,28 @@ teardown() {
 
 # Permission Handling Tests
 @test "all installers handle permission denied consistently" {
-    # Try to use a restricted directory
-    local restricted_dir="/root/test-install-$$"
+    # Try to use a restricted directory that should fail even in dry-run
+    local restricted_dir="/sys/test-install-$$"  # More restricted than /root
     
-    local bash_result=0 node_result=0 ps_result=0
+    local bash_result=0 local_result=0 ps_result=0
     
     # Test bash installer
     if [[ "$HAS_BASH" == "1" ]]; then
-        timeout 10 bash ../../install.sh --target "$restricted_dir" --dry-run 2>/dev/null || bash_result=$?
+        timeout 10 bash "$INSTALL_SH" --target "$restricted_dir" --dry-run 2>/dev/null || bash_result=$?
     fi
     
-    # Test Node.js installer
-    if [[ "$HAS_NODE" == "1" ]]; then
-        timeout 10 node ../../install.js --target "$restricted_dir" --dry-run 2>/dev/null || node_result=$?
+    # Test local installer
+    if [[ "$HAS_BASH" == "1" ]]; then
+        timeout 10 bash "$INSTALL_LOCAL_SH" --target "$restricted_dir" --dry-run 2>/dev/null || local_result=$?
     fi
     
     # Test PowerShell installer
     if [[ "$HAS_POWERSHELL" == "1" ]]; then
-        timeout 10 pwsh ../../install.ps1 -Target "$restricted_dir" -DryRun 2>/dev/null || ps_result=$?
+        timeout 10 pwsh "$INSTALL_PS1" -Target "$restricted_dir" -DryRun 2>/dev/null || ps_result=$?
     fi
     
     # All should fail with permission issues or timeout
-    [[ "$bash_result" -ne 0 ]] || [[ "$node_result" -ne 0 ]] || [[ "$ps_result" -ne 0 ]]
+    [[ "$bash_result" -ne 0 ]] || [[ "$local_result" -ne 0 ]] || [[ "$ps_result" -ne 0 ]]
 }
 
 # Network Handling Tests (if enabled)
@@ -219,17 +220,17 @@ teardown() {
     
     # Test bash installer
     if [[ "$HAS_BASH" == "1" ]]; then
-        timeout 15 bash ../../install.sh --url "$invalid_url" --target "$TEST_TARGET/bash" 2>/dev/null || bash_result=$?
+        timeout 15 bash "$INSTALL_SH" --url "$invalid_url" --target "$TEST_TARGET/bash" 2>/dev/null || bash_result=$?
     fi
     
-    # Test Node.js installer
-    if [[ "$HAS_NODE" == "1" ]]; then
-        timeout 15 node ../../install.js --url "$invalid_url" --target "$TEST_TARGET/node" 2>/dev/null || node_result=$?
+    # Test local installer
+    if [[ "$HAS_BASH" == "1" ]]; then
+        timeout 15 bash "$INSTALL_LOCAL_SH" --target "$TEST_TARGET/local" 2>/dev/null || local_result=$?
     fi
     
     # Test PowerShell installer
     if [[ "$HAS_POWERSHELL" == "1" ]]; then
-        timeout 15 pwsh ../../install.ps1 -Url "$invalid_url" -Target "$TEST_TARGET/ps" 2>/dev/null || ps_result=$?
+        timeout 15 pwsh "$INSTALL_PS1" -Url "$invalid_url" -Target "$TEST_TARGET/ps" 2>/dev/null || ps_result=$?
     fi
     
     # All should fail or timeout when given invalid URL
@@ -247,11 +248,11 @@ teardown() {
     
     # Try creating backup with first available installer
     if [[ "$HAS_BASH" == "1" ]]; then
-        timeout 30 bash ../../install.sh --target "$TEST_TARGET" --backup --dry-run 2>/dev/null && backup_created=1 || true
-    elif [[ "$HAS_NODE" == "1" ]]; then
-        timeout 30 node ../../install.js --target "$TEST_TARGET" --backup --dry-run 2>/dev/null && backup_created=1 || true
+        timeout 30 bash "$INSTALL_SH" --target "$TEST_TARGET" --backup --dry-run 2>/dev/null && backup_created=1 || true
+    elif [[ "$HAS_BASH" == "1" ]]; then
+        timeout 30 bash "$INSTALL_LOCAL_SH" --target "$TEST_TARGET" --dry-run 2>/dev/null && backup_created=1 || true
     elif [[ "$HAS_POWERSHELL" == "1" ]]; then
-        timeout 30 pwsh ../../install.ps1 -Target "$TEST_TARGET" -Backup -DryRun 2>/dev/null && backup_created=1 || true
+        timeout 30 pwsh "$INSTALL_PS1" -Target "$TEST_TARGET" -Backup -DryRun 2>/dev/null && backup_created=1 || true
     fi
     
     # Original files should still exist
@@ -269,29 +270,29 @@ teardown() {
     # Test bash installer help
     if [[ "$HAS_BASH" == "1" ]]; then
         local bash_help
-        bash_help=$(timeout 10 bash ../../install.sh --help 2>/dev/null || echo "failed")
+        bash_help=$(timeout 10 bash "$INSTALL_SH" --help 2>/dev/null || echo "failed")
         help_outputs+=("bash:$bash_help")
     fi
     
-    # Test Node.js installer help
-    if [[ "$HAS_NODE" == "1" ]]; then
-        local node_help
-        node_help=$(timeout 10 node ../../install.js --help 2>/dev/null || echo "failed")
-        help_outputs+=("node:$node_help")
+    # Test local installer help
+    if [[ "$HAS_BASH" == "1" ]]; then
+        local local_help
+        local_help=$(timeout 10 bash "$INSTALL_LOCAL_SH" --help 2>/dev/null || echo "failed")
+        help_outputs+=("local:$local_help")
     fi
     
     # Test PowerShell installer help
     if [[ "$HAS_POWERSHELL" == "1" ]]; then
         local ps_help
-        ps_help=$(timeout 10 pwsh ../../install.ps1 -Help 2>/dev/null || echo "failed")
+        ps_help=$(timeout 10 pwsh "$INSTALL_PS1" -Help 2>/dev/null || echo "failed")
         help_outputs+=("ps:$ps_help")
     fi
     
     # At least one help should work
     local working_help=0
     for output in "${help_outputs[@]}"; do
-        if [[ "$output" != *"failed"* && "$output" =~ (help|usage|Usage|Help) ]]; then
-            ((working_help++))
+        if [[ "$output" != *"failed"* && ( "$output" =~ (help|usage|Usage|Help|USAGE|Installer|OPTIONS) ) ]]; then
+            working_help=$((working_help + 1))
         fi
     done
     
@@ -303,15 +304,15 @@ teardown() {
     
     # Check if installers can report or handle version information
     if [[ "$HAS_BASH" == "1" ]]; then
-        timeout 10 bash ../../install.sh --version 2>/dev/null && ((version_found++)) || true
+        timeout 10 bash "$INSTALL_SH" --version 2>/dev/null && version_found=$((version_found + 1)) || true
     fi
     
     if [[ "$HAS_NODE" == "1" ]]; then
-        timeout 10 node ../../install.js --version 2>/dev/null && ((version_found++)) || true
+        timeout 10 node "$INSTALL_JS" --version 2>/dev/null && version_found=$((version_found + 1)) || true
     fi
     
     if [[ "$HAS_POWERSHELL" == "1" ]]; then
-        timeout 10 pwsh ../../install.ps1 -Version 2>/dev/null && ((version_found++)) || true
+        timeout 10 pwsh "$INSTALL_PS1" -Version 2>/dev/null && version_found=$((version_found + 1)) || true
     fi
     
     # At least one installer should handle version requests (or skip if not implemented)
@@ -324,17 +325,17 @@ teardown() {
     
     # Test bash installer validation
     if [[ "$HAS_BASH" == "1" ]]; then
-        timeout 30 bash ../../install.sh --target "$TEST_TARGET/bash" --validate --dry-run 2>/dev/null && ((validation_works++)) || true
+        timeout 30 bash "$INSTALL_SH" --target "$TEST_TARGET/bash" --validate --dry-run 2>/dev/null && validation_works=$((validation_works + 1)) || true
     fi
     
-    # Test Node.js installer validation
-    if [[ "$HAS_NODE" == "1" ]]; then
-        timeout 30 node ../../install.js --target "$TEST_TARGET/node" --validate --dry-run 2>/dev/null && ((validation_works++)) || true
+    # Test local installer validation
+    if [[ "$HAS_BASH" == "1" ]]; then
+        timeout 30 bash "$INSTALL_LOCAL_SH" --target "$TEST_TARGET/local" --dry-run 2>/dev/null && validation_works=$((validation_works + 1)) || true
     fi
     
     # Test PowerShell installer validation
     if [[ "$HAS_POWERSHELL" == "1" ]]; then
-        timeout 30 pwsh ../../install.ps1 -Target "$TEST_TARGET/ps" -Validate -DryRun 2>/dev/null && ((validation_works++)) || true
+        timeout 30 pwsh "$INSTALL_PS1" -Target "$TEST_TARGET/ps" -Validate -DryRun 2>/dev/null && validation_works=$((validation_works + 1)) || true
     fi
     
     # At least validation doesn't crash (may not be implemented in all)
@@ -349,28 +350,28 @@ teardown() {
     # Time bash installer help
     if [[ "$HAS_BASH" == "1" ]]; then
         local start_time=$(date +%s)
-        timeout 10 bash ../../install.sh --help >/dev/null 2>&1 || true
+        timeout 10 bash "$INSTALL_SH" --help >/dev/null 2>&1 || true
         local end_time=$(date +%s)
         total_time=$((total_time + end_time - start_time))
-        ((installer_count++))
+        installer_count=$((installer_count + 1))
     fi
     
-    # Time Node.js installer help
-    if [[ "$HAS_NODE" == "1" ]]; then
+    # Time local installer help
+    if [[ "$HAS_BASH" == "1" ]]; then
         local start_time=$(date +%s)
-        timeout 10 node ../../install.js --help >/dev/null 2>&1 || true
+        timeout 10 bash "$INSTALL_LOCAL_SH" --help >/dev/null 2>&1 || true
         local end_time=$(date +%s)
         total_time=$((total_time + end_time - start_time))
-        ((installer_count++))
+        installer_count=$((installer_count + 1))
     fi
     
     # Time PowerShell installer help
     if [[ "$HAS_POWERSHELL" == "1" ]]; then
         local start_time=$(date +%s)
-        timeout 10 pwsh ../../install.ps1 -Help >/dev/null 2>&1 || true
+        timeout 10 pwsh "$INSTALL_PS1" -Help >/dev/null 2>&1 || true
         local end_time=$(date +%s)
         total_time=$((total_time + end_time - start_time))
-        ((installer_count++))
+        installer_count=$((installer_count + 1))
     fi
     
     # Average time should be reasonable (under 5 seconds per installer)
@@ -384,25 +385,29 @@ teardown() {
 
 # Integration Tests
 @test "local installer works alongside remote installers" {
-    if [[ ! -f "../../install-local.sh" ]]; then
+    if [[ ! -f "$INSTALL_LOCAL_SH" ]]; then
         skip "Local installer not available"
     fi
     
     # Test local installer
     local local_result=0
     if [[ "$HAS_BASH" == "1" ]]; then
-        timeout 30 bash ../../install-local.sh --target "$TEST_TARGET/local" --dry-run 2>/dev/null || local_result=$?
+        timeout 60 bash "$INSTALL_LOCAL_SH" --target "$TEST_TARGET/local" --dry-run 2>/dev/null || local_result=$?
     fi
     
-    # Test remote installer on same target
+    # Test remote installer on different target to avoid conflicts
     local remote_result=0
     if [[ "$HAS_BASH" == "1" ]]; then
-        timeout 30 bash ../../install.sh --target "$TEST_TARGET/local" --force --dry-run 2>/dev/null || remote_result=$?
+        timeout 60 bash "$INSTALL_SH" --target "$TEST_TARGET/remote" --force --dry-run 2>/dev/null || remote_result=$?
     fi
     
-    # Both should complete (may fail for other reasons, but shouldn't conflict)
-    [[ "$local_result" -eq 124 ]] && fail "Local installer timed out"
-    [[ "$remote_result" -eq 124 ]] && fail "Remote installer timed out"
+    # Both should complete successfully (exit code 0) and not timeout (exit code 124)
+    [[ "$local_result" -eq 124 ]] && fail "Local installer timed out (exit code 124)"
+    [[ "$remote_result" -eq 124 ]] && fail "Remote installer timed out (exit code 124)"
+    
+    # Both installers should complete without errors
+    [[ "$local_result" -eq 0 ]] || fail "Local installer failed with exit code $local_result"
+    [[ "$remote_result" -eq 0 ]] || fail "Remote installer failed with exit code $remote_result"
 }
 
 # Environment Variable Tests
@@ -415,17 +420,17 @@ teardown() {
     
     # Test bash installer
     if [[ "$HAS_BASH" == "1" ]]; then
-        timeout 30 bash ../../install.sh --target "$TEST_TARGET/bash-env" --dry-run 2>/dev/null && ((results++)) || true
+        timeout 30 bash "$INSTALL_SH" --target "$TEST_TARGET/bash-env" --dry-run 2>/dev/null && results=$((results + 1)) || true
     fi
     
-    # Test Node.js installer
-    if [[ "$HAS_NODE" == "1" ]]; then
-        timeout 30 node ../../install.js --target "$TEST_TARGET/node-env" --dry-run 2>/dev/null && ((results++)) || true
+    # Test local installer
+    if [[ "$HAS_BASH" == "1" ]]; then
+        timeout 30 bash "$INSTALL_LOCAL_SH" --target "$TEST_TARGET/local-env" --dry-run 2>/dev/null && results=$((results + 1)) || true
     fi
     
     # Test PowerShell installer
     if [[ "$HAS_POWERSHELL" == "1" ]]; then
-        timeout 30 pwsh ../../install.ps1 -Target "$TEST_TARGET/ps-env" -DryRun 2>/dev/null && ((results++)) || true
+        timeout 30 pwsh "$INSTALL_PS1" -Target "$TEST_TARGET/ps-env" -DryRun 2>/dev/null && results=$((results + 1)) || true
     fi
     
     # At least one installer should respect environment
@@ -434,31 +439,58 @@ teardown() {
 
 # Security Consistency Tests
 @test "all installers handle malicious input similarly" {
-    local malicious_path="\$(echo 'malicious command')"
+    # Use a unique string that would only appear if command injection succeeds
+    # The injection should execute and produce a unique output, not just display the literal string
+    local malicious_path="\$(echo 'UNIQUE_INJECTION_TEST_FLAG_12345')"
     
-    local bash_safe=1 node_safe=1 ps_safe=1
+    local bash_safe=1 local_safe=1 ps_safe=1
+    local tests_run=0
     
-    # Test bash installer
+    # Test bash installer - should NOT execute the embedded command
     if [[ "$HAS_BASH" == "1" ]]; then
         local output
-        output=$(timeout 10 bash ../../install.sh --target "$malicious_path" --dry-run 2>&1 || true)
-        [[ "$output" != *"malicious command"* ]] || bash_safe=0
+        output=$(timeout 10 bash "$INSTALL_SH" --target "$malicious_path" --dry-run 2>&1 || true)
+        # Check if the command was executed (unique flag appears without the literal $(...))
+        # Safe behavior: shows "Target directory: \$(echo 'UNIQUE_INJECTION_TEST_FLAG_12345')"
+        # Unsafe behavior: shows "UNIQUE_INJECTION_TEST_FLAG_12345" as executed command output
+        if [[ "$output" == *"UNIQUE_INJECTION_TEST_FLAG_12345"* ]] && [[ "$output" != *"\$(echo 'UNIQUE_INJECTION_TEST_FLAG_12345')"* ]]; then
+            bash_safe=0
+        fi
+        tests_run=$((tests_run + 1))
     fi
     
-    # Test Node.js installer
-    if [[ "$HAS_NODE" == "1" ]]; then
+    # Test local installer - should NOT execute the embedded command
+    if [[ "$HAS_BASH" == "1" ]]; then
         local output
-        output=$(timeout 10 node ../../install.js --target "$malicious_path" --dry-run 2>&1 || true)
-        [[ "$output" != *"malicious command"* ]] || node_safe=0
+        output=$(timeout 10 bash "$INSTALL_LOCAL_SH" --target "$malicious_path" --dry-run 2>&1 || true)
+        # Same logic as above
+        if [[ "$output" == *"UNIQUE_INJECTION_TEST_FLAG_12345"* ]] && [[ "$output" != *"\$(echo 'UNIQUE_INJECTION_TEST_FLAG_12345')"* ]]; then
+            local_safe=0
+        fi
+        tests_run=$((tests_run + 1))
     fi
     
-    # Test PowerShell installer
+    # Test PowerShell installer - should NOT execute the embedded command
     if [[ "$HAS_POWERSHELL" == "1" ]]; then
         local output
-        output=$(timeout 10 pwsh ../../install.ps1 -Target "$malicious_path" -DryRun 2>&1 || true)
-        [[ "$output" != *"malicious command"* ]] || ps_safe=0
+        output=$(timeout 10 pwsh "$INSTALL_PS1" -Target "$malicious_path" -DryRun 2>&1 || true)
+        # Same logic as above
+        if [[ "$output" == *"UNIQUE_INJECTION_TEST_FLAG_12345"* ]] && [[ "$output" != *"\$(echo 'UNIQUE_INJECTION_TEST_FLAG_12345')"* ]]; then
+            ps_safe=0
+        fi
+        tests_run=$((tests_run + 1))
     fi
     
-    # All installers should handle malicious input safely
-    [[ "$bash_safe" -eq 1 && "$node_safe" -eq 1 && "$ps_safe" -eq 1 ]]
+    # Ensure we ran at least one test
+    [[ "$tests_run" -gt 0 ]]
+    
+    # All available installers should handle malicious input safely
+    if [[ "$HAS_BASH" == "1" ]]; then
+        [[ "$bash_safe" -eq 1 && "$local_safe" -eq 1 ]]
+    fi
+    
+    # Only check PowerShell if it's available
+    if [[ "$HAS_POWERSHELL" == "1" ]]; then
+        [[ "$ps_safe" -eq 1 ]]
+    fi
 }

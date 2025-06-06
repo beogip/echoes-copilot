@@ -9,4 +9,6 @@ module.exports = {
     '^.+\\.(ts|tsx)$': ['ts-jest', { tsconfig: 'tsconfig.json' }]
   },
   moduleFileExtensions: ['ts', 'js', 'json', 'node'],
+  // Set NODE_ENV to test for consistent timestamp snapshots
+  setupFiles: ['<rootDir>/jest.setup.js']
 };

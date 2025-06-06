@@ -1,0 +1,5 @@
+# Example large YAML file for stress testing
+items:
+  - item1
+  - item2
+  # ... (repeat as needed for large file)
