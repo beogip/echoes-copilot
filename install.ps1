@@ -1,59 +1,79 @@
 # 🧠🤖 Echos + Copilot Template Installer (PowerShell)
 # Advanced installer script with backup, rollback, and Windows support
+# This script provides complete cross-platform installation capabilities
+# Supports both individual instruction files and comprehensive installation modes
+# Includes robust error handling, backup/restore functionality, and logging
 
+# Define command line parameters with detailed descriptions
 param(
-    [string]$Mode = "instructions",  # "instructions" or "comprehensive"
-    [switch]$Force,
-    [switch]$Verbose,
-    [switch]$Rollback,
-    [switch]$Help
+    [string]$Mode = "instructions",  # Installation mode: "instructions" or "comprehensive"
+    [switch]$Force,                  # Force installation, overwrite existing files
+    [switch]$Verbose,                # Enable detailed logging and output
+    [switch]$Rollback,               # Rollback to previous installation using backup
+    [switch]$Help                    # Display help information and usage examples
 )
 
-# Configuration
+# Script configuration and global constants
+# Version information for tracking and compatibility
 $Script:VERSION = "1.0.0"
+# GitHub API endpoint for downloading files from the repository
 $Script:GITHUB_REPO = "https://api.github.com/repos/beogip/echos-copilot/contents"
+# Backup directory with timestamp for version control
 $Script:BACKUP_DIR = ".github\echos-backup-$(Get-Date -Format 'yyyyMMdd-HHmmss')"
+# Target installation directory (standard GitHub directory)
 $Script:TARGET_DIR = ".github"
+# Log file location in system temporary directory
 $Script:LOG_FILE = "$env:TEMP\echos-copilot-install.log"
 
-# Global state
+# Global state tracking variables
+# Track whether backup is available for rollback operations
 $Script:ROLLBACK_AVAILABLE = $false
 
 #region Helper Functions
+# Collection of utility functions for logging, file operations, and error handling
 
+# Write timestamped log entries to file and optionally to console
 function Write-Log {
     param([string]$Message)
+    # Create timestamp for each log entry
     $timestamp = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
+    # Write to log file with error handling
     "$timestamp - $Message" | Add-Content -Path $Script:LOG_FILE
+    # Display in console if verbose mode is enabled
     if ($Verbose) {
         Write-Host "[LOG] $Message" -ForegroundColor Blue
     }
 }
 
+# Display success messages in console and log
 function Write-Success {
     param([string]$Message)
     Write-Host "✅ $Message" -ForegroundColor Green
     Write-Log "SUCCESS: $Message"
 }
 
+# Display error messages in console and log
 function Write-Error {
     param([string]$Message)
     Write-Host "❌ $Message" -ForegroundColor Red
     Write-Log "ERROR: $Message"
 }
 
+# Display warning messages in console and log
 function Write-Warning {
     param([string]$Message)
     Write-Host "⚠️  $Message" -ForegroundColor Yellow
     Write-Log "WARNING: $Message"
 }
 
+# Display informational messages in console and log
 function Write-Info {
     param([string]$Message)
     Write-Host "ℹ️  $Message" -ForegroundColor Cyan
     Write-Log "INFO: $Message"
 }
 
+# Show the initial banner with script information
 function Show-Banner {
     Write-Host ""
     Write-Host "🧠🤖 " -NoNewline -ForegroundColor Blue
@@ -64,6 +84,7 @@ function Show-Banner {
     Write-Host ""
 }
 
+# Display help information and usage examples
 function Show-Help {
     @"
 🧠🤖 Echos + Copilot Template Installer
@@ -91,6 +112,7 @@ For more information: https://github.com/beogip/echos-copilot
 "@
 }
 
+# Check system prerequisites before installation
 function Test-Prerequisites {
     Write-Info "Checking system prerequisites..."
     
@@ -133,6 +155,7 @@ function Test-Prerequisites {
     return $true
 }
 
+# Backup existing files before installation
 function Backup-ExistingFiles {
     Write-Info "Creating backup of existing files..."
     
@@ -175,6 +198,7 @@ function Backup-ExistingFiles {
     }
 }
 
+# Download files from GitHub repository
 function Get-FileFromGitHub {
     param(
         [string]$FilePath,
@@ -211,6 +235,7 @@ function Get-FileFromGitHub {
     }
 }
 
+# Install individual instruction files in instructions mode
 function Install-InstructionsMode {
     Write-Info "Installing individual instruction files..."
     
@@ -250,6 +275,7 @@ function Install-InstructionsMode {
     }
 }
 
+# Install comprehensive copilot-instructions.md file
 function Install-ComprehensiveMode {
     Write-Info "Installing comprehensive copilot-instructions.md file..."
     
@@ -266,6 +292,7 @@ function Install-ComprehensiveMode {
     }
 }
 
+# Test and validate installation
 function Test-Installation {
     Write-Info "Validating installation..."
     
@@ -307,6 +334,7 @@ function Test-Installation {
     return $valid
 }
 
+# Rollback to previous installation using backup
 function Invoke-Rollback {
     if (-not $Script:ROLLBACK_AVAILABLE) {
         Write-Error "No rollback available"
@@ -348,6 +376,7 @@ function Invoke-Rollback {
     }
 }
 
+# Show post-installation information and usage instructions
 function Show-PostInstallInfo {
     Write-Host ""
     Write-Success "🎉 Installation completed successfully!"
@@ -384,6 +413,7 @@ function Show-PostInstallInfo {
 
 #region Main Execution
 
+# Main function to orchestrate the installation process
 function Main {
     # Handle help
     if ($Help) {
