@@ -630,5 +630,6 @@ module.exports = {
     main,
     downloadFileFromGitHub,
     validateInstallation,
-    checkPrerequisites
+    checkPrerequisites,
+    parseArgs
 };

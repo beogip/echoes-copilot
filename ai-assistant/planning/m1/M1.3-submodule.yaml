@@ -10,6 +10,19 @@ submodule:
     - "Edge case tests (malformed files, duplicate keys)"
     - "Integration tests for complete build process"
     - "Documented and validated test coverage"
+  tasks:
+    - id: js-test-1
+      description: "Add tests for detectDuplicateKeys and findYamlFiles in validate-prs-yaml.js"
+      status: completed
+    - id: js-test-2
+      description: "Add tests for loadYamlFile in build.js including invalid YAML case"
+      status: completed
+    - id: js-test-3
+      description: "Add tests for convertEchoToInstructionsFormat for a typical echo object"
+      status: completed
+    - id: js-test-4
+      description: "Add tests for parseArgs in install.js"
+      status: completed
   completed_deliverables:
     - "Automated test suite for YAML validation with duplicate key detection"
     - "Edge case tests covering malformed YAML files"
