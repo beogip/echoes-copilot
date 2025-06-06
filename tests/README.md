@@ -42,4 +42,8 @@ This directory contains test scripts and documentation for the Echos Copilot pro
 
 ## CI Integration
 
-- (Optional) Integrate both test suites in your CI pipeline for full coverage.
+This repository includes a GitHub Actions workflow that runs both Jest and Bats
+tests automatically. The workflow is defined in
+`.github/workflows/test.yml` and executes on every push or pull request.
+If you add new tests, they will be picked up by the action with no extra
+configuration.
