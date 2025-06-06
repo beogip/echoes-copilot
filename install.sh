@@ -27,6 +27,17 @@ ECHOS_INSTALLER_FORCE_INSTALL=false
 ECHOS_INSTALLER_VERBOSE=false
 ECHOS_INSTALLER_ROLLBACK_AVAILABLE=false
 
+# Alias variables for non-namespaced references
+SCRIPT_VERSION="$ECHOS_INSTALLER_SCRIPT_VERSION"
+GITHUB_REPO="$ECHOS_INSTALLER_GITHUB_REPO"
+BACKUP_DIR="$ECHOS_INSTALLER_BACKUP_DIR"
+TARGET_DIR="$ECHOS_INSTALLER_TARGET_DIR"
+LOG_FILE="$ECHOS_INSTALLER_LOG_FILE"
+INSTALL_MODE="$ECHOS_INSTALLER_INSTALL_MODE"
+FORCE_INSTALL="$ECHOS_INSTALLER_FORCE_INSTALL"
+VERBOSE="$ECHOS_INSTALLER_VERBOSE"
+ROLLBACK_AVAILABLE="$ECHOS_INSTALLER_ROLLBACK_AVAILABLE"
+
 # Logging function
 installer_installer_log() {
     echo "$(date '+%Y-%m-%d %H:%M:%S') - $1" >> "$ECHOS_INSTALLER_LOG_FILE"
@@ -34,6 +45,14 @@ installer_installer_log() {
         echo -e "${ECHOS_INSTALLER_BLUE}[LOG]${ECHOS_INSTALLER_NC} $1"
     fi
 }
+
+# Wrapper functions for backwards compatibility
+installer_log() { installer_installer_log "$@"; }
+log() { installer_installer_log "$@"; }
+installer_print_success() { installer_installer_print_success "$@"; }
+installer_print_error() { installer_installer_print_error "$@"; }
+installer_print_warning() { installer_installer_print_warning "$@"; }
+installer_print_info() { installer_installer_print_info "$@"; }
 
 # Print functions
 installer_installer_print_success() {
@@ -86,6 +105,7 @@ EOF
 
 # Parse command line arguments
 parse_arguments() {
+    local request_rollback=false
     while [[ $# -gt 0 ]]; do
         case $1 in
             -m|--mode)
@@ -105,8 +125,8 @@ parse_arguments() {
                 shift
                 ;;
             --rollback)
-                rollback_installation
-                exit 0
+                request_rollback=true
+                shift
                 ;;
             -h|--help)
                 show_help
@@ -119,6 +139,11 @@ parse_arguments() {
                 ;;
         esac
     done
+
+    if [[ "$request_rollback" == true ]]; then
+        rollback_installation
+        exit 0
+    fi
 }
 
 # Check prerequisites
@@ -353,7 +378,7 @@ check_conflicts() {
     fi
     
     if [[ "$conflicts" == true ]]; then
-        installer_print_info "Existing files will be backed up before installation"
+        installer_print_info "Existing files will be backed up to a backup directory before installation"
         read -p "Continue with installation? (y/N): " -n 1 -r
         echo
         if [[ ! $REPLY =~ ^[Yy]$ ]]; then
@@ -369,7 +394,16 @@ main() {
     echo "=================================================="
     
     parse_arguments "$@"
-    
+
+    # Refresh alias variables after argument parsing
+    INSTALL_MODE="$ECHOS_INSTALLER_INSTALL_MODE"
+    FORCE_INSTALL="$ECHOS_INSTALLER_FORCE_INSTALL"
+    VERBOSE="$ECHOS_INSTALLER_VERBOSE"
+    TARGET_DIR="$ECHOS_INSTALLER_TARGET_DIR"
+    BACKUP_DIR="$ECHOS_INSTALLER_BACKUP_DIR"
+    LOG_FILE="$ECHOS_INSTALLER_LOG_FILE"
+    SCRIPT_VERSION="$ECHOS_INSTALLER_SCRIPT_VERSION"
+
     installer_print_info "Installation mode: $INSTALL_MODE"
     installer_print_info "Force install: $FORCE_INSTALL"
     installer_print_info "Verbose logging: $VERBOSE"
