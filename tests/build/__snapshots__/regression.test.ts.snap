@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Build Regression should maintain error output consistency for duplicate keys: duplicate-keys-error-output 1`] = `
+"10:38:09 [[31merror[39m]: YAML parse error in duplicate-keys.yaml: duplicated mapping key (2:1)
+
+ 1 | key: value
+ 2 | key: duplicate
+-----^
+YAMLException: duplicated mapping key (2:1)
+
+ 1 | key: value
+ 2 | key: duplicate
+-----^
+    at generateError (/Users/beogip/Github/echos-copilot/node_modules/js-yaml/lib/loader.js:183:10)
+    at throwError (/Users/beogip/Github/echos-copilot/node_modules/js-yaml/lib/loader.js:187:9)
+    at storeMappingPair (/Users/beogip/Github/echos-copilot/node_modules/js-yaml/lib/loader.js:358:7)
+    at readBlockMapping (/Users/beogip/Github/echos-copilot/node_modules/js-yaml/lib/loader.js:1173:9)
+    at composeNode (/Users/beogip/Github/echos-copilot/node_modules/js-yaml/lib/loader.js:1441:12)
+    at readDocument (/Users/beogip/Github/echos-copilot/node_modules/js-yaml/lib/loader.js:1625:3)
+    at loadDocuments (/Users/beogip/Github/echos-copilot/node_modules/js-yaml/lib/loader.js:1688:5)
+    at Object.load (/Users/beogip/Github/echos-copilot/node_modules/js-yaml/lib/loader.js:1714:19)
+    at loadYamlFile (/Users/beogip/Github/echos-copilot/scripts/build.js:257:19)
+    at /Users/beogip/Github/echos-copilot/scripts/build.js:851:20
+"
+`;
+
+exports[`Build Regression should maintain error output consistency for malformed YAML: malformed-yaml-error-output 1`] = `
+"10:38:09 [[31merror[39m]: YAML parse error in malformed.yaml: can not read a block mapping entry; a multiline key may not be an implicit key (5:6)
+
+ 2 | key: value
+ 3 |   - invalid
+ 4 | foo [bar
+ 5 |   baz: 123
+----------^
+ 6 |   - listitem1
+ 7 |   - listitem2
+YAMLException: can not read a block mapping entry; a multiline key may not be an implicit key (5:6)
+
+ 2 | key: value
+ 3 |   - invalid
+ 4 | foo [bar
+ 5 |   baz: 123
+----------^
+ 6 |   - listitem1
+ 7 |   - listitem2
+    at generateError (/Users/beogip/Github/echos-copilot/node_modules/js-yaml/lib/loader.js:183:10)
+    at throwError (/Users/beogip/Github/echos-copilot/node_modules/js-yaml/lib/loader.js:187:9)
+    at readBlockMapping (/Users/beogip/Github/echos-copilot/node_modules/js-yaml/lib/loader.js:1145:9)
+    at composeNode (/Users/beogip/Github/echos-copilot/node_modules/js-yaml/lib/loader.js:1441:12)
+    at readDocument (/Users/beogip/Github/echos-copilot/node_modules/js-yaml/lib/loader.js:1625:3)
+    at loadDocuments (/Users/beogip/Github/echos-copilot/node_modules/js-yaml/lib/loader.js:1688:5)
+    at Object.load (/Users/beogip/Github/echos-copilot/node_modules/js-yaml/lib/loader.js:1714:19)
+    at loadYamlFile (/Users/beogip/Github/echos-copilot/scripts/build.js:257:19)
+    at /Users/beogip/Github/echos-copilot/scripts/build.js:851:20
+    at Array.forEach (<anonymous>)
+"
+`;
+
+exports[`Build Regression should not break on large YAML files (performance regression): large-yaml-build-output 1`] = `
+"Build succeeded for: /Users/beogip/Github/echos-copilot/tests/build/fixtures/large-file.yaml
+"
+`;
+
+exports[`Build Regression should not break previous valid build scenarios (output regression): valid-yaml-build-output 1`] = `
+"Build succeeded for: /Users/beogip/Github/echos-copilot/tests/build/fixtures/valid.yaml
+"
+`;

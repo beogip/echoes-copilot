@@ -125,8 +125,8 @@ teardown() {
     mkdir -p .github/instructions
     echo "test content" > .github/instructions/test.md
     
-    # Mock network call to prevent actual download
-    run timeout 5 bash "$INSTALL_SCRIPT" --mode instructions
+    # Mock network call to prevent actual download, provide 'y' to continue
+    run bash -c 'echo "y" | timeout 5 bash '"$INSTALL_SCRIPT"' --mode instructions'
     
     # Check that backup was attempted (even if install fails)
     if [ -d .github ]; then

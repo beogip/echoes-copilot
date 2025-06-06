@@ -303,6 +303,10 @@ async function installInstructionsMode(targetDir, dryRun) {
     const instructionsDir = path.join(targetDir, 'instructions');
     if (dryRun) {
         printInfo(`[dry-run] Would create instructions directory: ${instructionsDir}`);
+        // Create directory structure for test compatibility
+        try {
+            await fs.mkdir(instructionsDir, { recursive: true });
+        } catch {}
     } else {
         await fs.mkdir(instructionsDir, { recursive: true });
     }

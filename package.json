@@ -12,22 +12,33 @@
     "build:instructions": "node scripts/build.js --individual",
     "build:watch": "nodemon scripts/build.js",
     "dev": "npm run build && npm run build:watch",
-    "test": "bats tests/bats",
-    "test:edge": "bats tests/bats/install-edge-cases.bats",
-    "test:installer": "bats tests/bats/install-sh.bats tests/bats/install-local-sh.bats tests/bats/install-ps1.bats",
-    "test:integration": "bats tests/bats/install-cross-platform.bats",
-    "test:unit": "echo 'No unit tests defined for shell scripts' && exit 0",
-    "test:quick": "bats tests/bats/install-sh.bats tests/bats/install-local-sh.bats",
-    "test:verbose": "bats --verbose tests/bats",
-    "validate:prs": "node scripts/validate-prs-yaml.js"
+    "test": "npm run test:bats && npm run test:jest",
+    "test:bats": "npm run test:bats:edge && npm run test:bats:installer && npm run test:bats:integration && npm run test:bats:quick",
+    "test:bats:edge": "bats tests/bats/install-edge-cases.bats",
+    "test:bats:installer": "bats tests/bats/install-sh.bats tests/bats/install-local-sh.bats tests/bats/install-ps1.bats",
+    "test:bats:integration": "bats tests/bats/install-cross-platform.bats",
+    "test:bats:unit": "echo 'No unit tests defined for shell scripts' && exit 0",
+    "test:bats:quick": "bats tests/bats/install-sh.bats tests/bats/install-local-sh.bats",
+    "test:bats:verbose": "bats --verbose tests/bats",
+    "validate:prs": "node scripts/validate-prs-yaml.js",
+    "test:jest": "jest",
+    "test:jest:edge": "jest tests/build/build.edge-cases.test.ts",
+    "test:jest:integration": "jest tests/build/integration.test.ts",
+    "test:jest:regression": "jest tests/build/regression.test.ts"
   },
   "dependencies": {
     "js-yaml": "^4.1.0",
     "winston": "^3.17.0"
   },
   "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^22.15.30",
     "jest": "^29.7.0",
-    "nodemon": "^3.0.0"
+    "nodemon": "^3.0.0",
+    "ts-jest": "^29.3.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   },
   "keywords": [
     "echo-protocol",

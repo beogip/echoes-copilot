@@ -1,0 +1,29 @@
+submodule:
+  id: TS1.2
+  name: "Main Scripts Migration"
+  objective: |
+    Migrate the main scripts from JavaScript to TypeScript, ensuring basic typing and equivalent functionality.
+  scope: |
+    - Identify all main scripts in /scripts.
+    - Rename .js files to .ts.
+    - Adapt imports/exports to TypeScript syntax.
+    - Add minimal type annotations where relevant.
+    - Validate the functionality of migrated scripts.
+  deliverables:
+    - Main scripts in TypeScript
+    - Basic typing applied
+  completion_criteria:
+    - Scripts compile and work as before
+    - No regressions introduced
+  constraints:
+    - Maintain original logic and functionality
+    - Do not introduce unnecessary dependencies
+    - Keep folder structure and names
+  notes:
+    - Document any relevant typing decision in ai-assistant/context/development-context.md
+    - Validate that migrated scripts are executable from Node.js
+    - Run basic or regression tests after migration and record results in ai-assistant/context/development-context.md
+  history:
+    - date: "2025-06-05"
+      type: "planned"
+      summary: "Detailed plan for submodule TS1.2 created for main scripts migration to TypeScript."

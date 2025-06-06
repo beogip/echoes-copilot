@@ -8,7 +8,7 @@ project:
   modules:
     - id: M1
       status: "in progress"
-      next_step: "Continuar con M1.2: Robustecer build.js con mejor manejo de errores"
+      next_step: "Continue with M1.4: Output validation for comprehensive build system verification"
       planning_ref:
         path: "../planning/M1/module-plan.yaml"
       critical_path: true
@@ -82,8 +82,8 @@ project:
       completion_percentage: 25.0
 
     critical_path_status:
-      current_bottleneck: "M1 (Fix Build System) - M1.1 completed, M1.2 next"
-      next_milestone: "M1.2 enhanced build.js with error handling"
+      current_bottleneck: "M1 (Fix Build System) - M1.3 completed, M1.4 next"
+      next_milestone: "M1.4 output validation for comprehensive build system verification"
       estimated_completion: "TBD after M1 resolution"
 
     risks:
@@ -97,7 +97,7 @@ project:
         impact: "Medium - may require alternative approaches"
         mitigation: "Contingency plans for lite/full versions prepared"
 
-    last_updated: "2025-06-04"
+    last_updated: "2025-06-06"
     next_review_date: "2025-06-11"
 
     tracking_system:

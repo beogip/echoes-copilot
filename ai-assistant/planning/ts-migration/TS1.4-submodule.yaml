@@ -1,0 +1,25 @@
+submodule:
+  id: TS1.4
+  name: "Tests Migration"
+  objective: |
+    Migrate all tests to TypeScript and ensure compatibility with Jest and ts-jest.
+  scope: |
+    - Rename tests to .ts
+    - Adapt test setup and utilities
+    - Configure Jest for TypeScript
+  deliverables:
+    - Tests in TypeScript
+    - Jest/ts-jest configuration
+  completion_criteria:
+    - All tests pass in TypeScript
+  constraints:
+    - Preserve test coverage and logic
+    - Do not break test automation
+  notes:
+    - Document any relevant test migration decision in ai-assistant/context/development-context.md
+    - Validate test runs after migration
+    - Run regression or behavioral tests after migration and record results in ai-assistant/context/development-context.md for traceability
+  history:
+    - date: "2025-06-05"
+      type: "planned"
+      summary: "Detailed plan for submodule TS1.4 created for tests migration to TypeScript."

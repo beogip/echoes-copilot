@@ -10,7 +10,7 @@ Rank options or ideas based on relevant criteria to decide which one to pursue f
 
 ## When to Trigger
 
-When multiple alternatives are available and it’s necessary to decide which to prioritize, develop, or discard based on value, impact, or feasibility..
+When multiple alternatives are available and it’s necessary to decide which to prioritize, develop, or discard based on value, impact, or feasibility.
 
 ## Decisional Steps
 

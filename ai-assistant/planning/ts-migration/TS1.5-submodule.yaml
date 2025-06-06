@@ -1,0 +1,23 @@
+submodule:
+  id: TS1.5
+  name: "Documentation and Scripts Update"
+  objective: |
+    Update documentation and build/test scripts to reflect TypeScript usage.
+  scope: |
+    - Update package.json (scripts, main, types)
+    - Update README and contribution guides
+  deliverables:
+    - Updated documentation and scripts
+  completion_criteria:
+    - Clear documentation and working scripts
+  constraints:
+    - Keep documentation accurate and concise
+  notes:
+    - Record any major documentation or script change in ai-assistant/context/development-context.md
+    - Validate that all documentation and scripts are up to date and functional
+    - Request user or peer review of updated documentation and scripts after changes
+    - Record validation and review results in ai-assistant/context/development-context.md for traceability
+  history:
+    - date: "2025-06-05"
+      type: "planned"
+      summary: "Detailed plan for submodule TS1.5 created for documentation and scripts update."

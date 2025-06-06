@@ -130,8 +130,10 @@ teardown() {
 # === PREREQUISITE VALIDATION TESTS ===
 
 @test "install-local.sh validates source instructions directory" {
-    # Test without proper source structure (will fail unless we're in echos-copilot repo)
-    run bash "$INSTALL_LOCAL_SCRIPT" "$TARGET_DIR" --mode instructions
+    # Test without proper source structure (copy script to isolated directory)
+    cp "$INSTALL_LOCAL_SCRIPT" "$TARGET_DIR/install-local.sh"
+    cd "$TARGET_DIR"
+    run bash "./install-local.sh" . --mode instructions
     # Should either succeed (if source exists) or fail with proper error
     if [ "$status" -eq 1 ]; then
         [[ "$output" == *"Instructions directory not found"* ]] || [[ "$output" == *"npm run build"* ]]

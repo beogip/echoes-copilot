@@ -1,0 +1,8 @@
+# Example malformed YAML file for testing
+key: value
+  - invalid
+foo [bar
+  baz: 123
+  - listitem1
+  - listitem2
+  key-without-value
