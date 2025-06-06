@@ -10,7 +10,7 @@ Systematically optimize processes, structures, or flows to improve efficiency wi
 
 ## When to Trigger
 
-When there's a need to improve a process, reduce redundancy, increase clarity or efficiency,  or verify whether an alternative proposal is superior..
+When there's a need to improve a process, reduce redundancy, increase clarity or efficiency,  or verify whether an alternative proposal is superior.
 
 ## Technical Steps
 

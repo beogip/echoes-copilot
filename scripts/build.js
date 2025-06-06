@@ -17,15 +17,19 @@ const path = require('path');
 const yaml = require('js-yaml');
 const winston = require('winston');
 
-// Configure Winston logger
+// Configure Winston logger with console transport that outputs to stderr for errors
 const logger = winston.createLogger({
   level: process.env.LOG_LEVEL || 'info',
   format: winston.format.combine(
-    winston.format.timestamp({ format: 'HH:mm:ss' }),
+    // Support external timestamp configuration for testing
+    process.env.WINSTON_TIMESTAMP_FORMAT?.startsWith('fixed:')
+      ? winston.format.timestamp({ format: () => process.env.WINSTON_TIMESTAMP_FORMAT.replace('fixed:', '') })
+      : winston.format.timestamp({ format: 'HH:mm:ss' }),
     winston.format.errors({ stack: true })
   ),
   transports: [
     new winston.transports.Console({
+      stderrLevels: ['error', 'warn'], // Send errors and warnings to stderr for test compatibility
       format: winston.format.combine(
         winston.format.colorize(),
         winston.format.printf(({ timestamp, level, message, stack }) => {
@@ -42,6 +46,18 @@ const logger = winston.createLogger({
     })
   ]
 });
+
+// Helper function to log errors consistently (replaces dual logging pattern)
+function logError(message, context = {}) {
+  logger.error(message, context);
+  buildMetrics.errors.push(typeof message === 'string' ? message : message.toString());
+}
+
+// Helper function to log warnings consistently
+function logWarning(message, context = {}) {
+  logger.warn(message, context);
+  buildMetrics.warnings.push(typeof message === 'string' ? message : message.toString());
+}
 
 // Build metrics tracking
 const buildMetrics = {
@@ -107,59 +123,159 @@ const CONFIG = {
  */
 function loadYamlFile(filePath) {
   const fileName = path.basename(filePath);
-  
   try {
     // Check file existence
     if (!fs.existsSync(filePath)) {
-      logger.error(`File not found: ${filePath}`);
+      const errMsg = `File not found: ${filePath}`;
+      logError(errMsg);
       buildMetrics.errors.push(`Missing file: ${fileName}`);
       return null;
     }
-
+    // Check for symlink loop or hard link
+    let stat;
+    try {
+      stat = fs.lstatSync(filePath);
+      if (stat.isSymbolicLink()) {
+        // Detect symlink loop (points to itself or too many levels)
+        const realPath = fs.realpathSync.native(filePath);
+        if (realPath === filePath) {
+          const errMsg = `Symlink loop detected: ${filePath}`;
+          logError(errMsg);
+          buildMetrics.errors.push(`Symlink loop: ${fileName}`);
+          return null;
+        }
+      }
+      if (!stat.isFile()) {
+        const errMsg = `Not a regular file: ${filePath}`;
+        logError(errMsg);
+        buildMetrics.errors.push(`Not a regular file: ${fileName}`);
+        return null;
+      }
+      if (stat.nlink > 1) {
+        const errMsg = `Hard link detected: ${filePath}`;
+        logError(errMsg);
+        buildMetrics.errors.push(`Hard link: ${fileName}`);
+        return null;
+      }
+    } catch (statError) {
+      const errMsg = `Cannot stat file: ${filePath} (${statError.message})`;
+      logError(errMsg);
+      buildMetrics.errors.push(`Stat error: ${fileName}`);
+      return null;
+    }
     // Check file readability
     try {
       fs.accessSync(filePath, fs.constants.R_OK);
     } catch (accessError) {
-      logger.error(`Cannot read file: ${filePath}`, { error: accessError.message });
+      const errMsg = `Cannot read file: ${filePath} (${accessError.message})`;
+      logError(errMsg);
       buildMetrics.errors.push(`Unreadable file: ${fileName}`);
       return null;
     }
-
-    const content = fs.readFileSync(filePath, 'utf8');
-    
-    // Validate content is not empty
-    if (!content.trim()) {
-      logger.warn(`Empty YAML file: ${fileName}`);
-      buildMetrics.warnings.push(`Empty file: ${fileName}`);
+    // Check for suspicious filename (unicode, emoji, traversal)
+    if (/[^\x00-\x7F]/.test(fileName) || /[\u{1F600}-\u{1F64F}]/u.test(fileName) || fileName.includes('..') || fileName.includes('/') || fileName.includes('\\')) {
+      const errMsg = `Suspicious or invalid filename: ${fileName}`;
+      logError(errMsg);
+      buildMetrics.errors.push(`Invalid filename: ${fileName}`);
       return null;
     }
-
-    const data = yaml.load(content);
-    
-    // Validate parsed data
+    let content;
+    try {
+      content = fs.readFileSync(filePath);
+    } catch (readError) {
+      const errMsg = `Cannot read file: ${filePath} (${readError.message})`;
+      logError(errMsg);
+      buildMetrics.errors.push(`Read error: ${fileName}`);
+      return null;
+    }
+    // Check for binary (non-UTF-8) or BOM
+    if (content[0] === 0xef && content[1] === 0xbb && content[2] === 0xbf) {
+      const errMsg = `BOM detected in file: ${fileName}`;
+      logError(errMsg);
+      buildMetrics.errors.push(`BOM: ${fileName}`);
+      return null;
+    }
+    if (content.some(b => b === 0x00)) {
+      const errMsg = `Binary file detected: ${fileName}`;
+      logError(errMsg);
+      buildMetrics.errors.push(`Binary file: ${fileName}`);
+      return null;
+    }
+    let text;
+    try {
+      text = content.toString('utf8');
+    } catch (utf8Error) {
+      const errMsg = `Invalid UTF-8 in file: ${fileName}`;
+      logError(errMsg);
+      buildMetrics.errors.push(`Invalid UTF-8: ${fileName}`);
+      return null;
+    }
+    // Check for empty, whitespace, tabs, CRLF, only comments
+    if (!text.trim() || /^\s+$/.test(text)) {
+      const warnMsg = `Empty or whitespace-only file: ${fileName}`;
+      logWarning(warnMsg);
+      // Return empty structure instead of null for empty files
+      return {
+        id: 'empty',
+        name: 'Empty File',
+        purpose: 'Empty file detected',
+        trigger: '',
+        steps: [],
+        output: '',
+        examples: []
+      };
+    }
+    if (/^[#\s\r\n]+$/.test(text)) {
+      const warnMsg = `File contains only comments or whitespace: ${fileName}`;
+      logWarning(warnMsg);
+      // Return empty structure instead of null for comment-only files
+      return {
+        id: 'comments-only',
+        name: 'Comments Only File',
+        purpose: 'File contains only comments',
+        trigger: '',
+        steps: [],
+        output: '',
+        examples: []
+      };
+    }
+    if (/\r\n/.test(text)) {
+      const errMsg = `CRLF line endings detected: ${fileName}`;
+      logError(errMsg);
+      buildMetrics.errors.push(`CRLF line endings: ${fileName}`);
+      return null;
+    }
+    if (/^\t+$/.test(text)) {
+      const errMsg = `File contains only tabs: ${fileName}`;
+      logError(errMsg);
+      buildMetrics.errors.push(`Only tabs: ${fileName}`);
+      return null;
+    }
+    // Try YAML parse
+    let data;
+    try {
+      data = yaml.load(text);
+    } catch (error) {
+      const errMsg = `YAML parse error in ${fileName}: ${error.message}`;
+      logError(errMsg, { filePath: filePath, stack: error.stack });
+      return null;
+    }
     if (!data) {
-      logger.warn(`YAML file parsed to null/undefined: ${fileName}`);
-      buildMetrics.warnings.push(`Invalid YAML structure: ${fileName}`);
+      const errMsg = `YAML file parsed to null/undefined: ${fileName}`;
+      logError(errMsg);
       return null;
     }
-    
     // Handle echo-protocol format (array with single echo object)
     if (Array.isArray(data) && data.length > 0) {
       logger.debug(`Loaded array format YAML: ${fileName}`);
       return data[0]; // Return the first (and usually only) echo
     }
-    
     // Handle direct object format
     logger.debug(`Loaded object format YAML: ${fileName}`);
     return data;
-    
   } catch (error) {
-    logger.error(`Error loading YAML file: ${fileName}`, { 
-      error: error.message,
-      filePath: filePath,
-      stack: error.stack 
-    });
-    buildMetrics.errors.push(`YAML parse error in ${fileName}: ${error.message}`);
+    const errMsg = `YAML parse error in ${fileName}: ${error.message}`;
+    logError(errMsg, { filePath: filePath, stack: error.stack });
     return null;
   }
 }
@@ -247,7 +363,7 @@ function convertEchoToInstructionsFormat(echo, config) {
     markdown += '## When to Trigger\n\n';
     const triggerText = echo.trigger || echo.trigger_context || echo.when || 
                        `Use these instructions when ${name} analysis is needed`;
-    markdown += `${triggerText}.\n\n`;
+    markdown += `${triggerText}\n\n`;
     
     // Steps section with comprehensive validation
     if (echo.steps && Array.isArray(echo.steps)) {
@@ -726,8 +842,36 @@ function buildAll() {
 if (require.main === module) {
   // Check for command line arguments
   const args = process.argv.slice(2);
-  
-  if (args.includes('--individual') || args.includes('-i')) {
+
+  // If direct YAML/file arguments are provided, process them individually
+  if (args.length > 0 && args.every(arg => arg.endsWith('.yaml') || arg.endsWith('.yml') || fs.existsSync(arg))) {
+    let hadError = false;
+    let hadWarning = false;
+    args.forEach(fileArg => {
+      const data = loadYamlFile(fileArg);
+      const fileName = require('path').basename(fileArg);
+      const fileContent = fs.existsSync(fileArg) ? fs.readFileSync(fileArg, 'utf8') : '';
+      const isEmptyWarning = buildMetrics.warnings.some(w => w.includes(fileName) && w.includes('Empty'));
+      const isOtherWarning = buildMetrics.warnings.some(w => w.includes(fileName) && !w.includes('Empty'));
+      if (data) {
+        console.log(`Build succeeded for: ${fileArg}`);
+      } else if (isEmptyWarning && !isOtherWarning) {
+        console.warn(`WARNING: Build completed with warning for: ${fileArg}`);
+        hadWarning = true;
+      } else {
+        // If file is not empty, treat as parse error and exit immediately
+        if (fileContent.trim()) {
+          process.exit(1);
+        } else {
+          hadError = true;
+        }
+      }
+      if (buildMetrics.errors.length > 0) {
+        process.exit(1);
+      }
+    });
+    process.exit(0);
+  } else if (args.includes('--individual') || args.includes('-i')) {
     buildIndividualInstructions();
     displayBuildMetrics();
   } else if (args.includes('--copilot') || args.includes('-c')) {

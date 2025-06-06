@@ -10,7 +10,7 @@ Guide step-by-step planning of a learning, development, or implementation proces
 
 ## When to Trigger
 
-Triggered when the user wants to learn something, organize a complex task, improve a situation, or build an action plan..
+Triggered when the user wants to learn something, organize a complex task, improve a situation, or build an action plan.
 
 ## Formative Steps
 
