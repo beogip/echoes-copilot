@@ -1,25 +1,22 @@
-- echo: 🤝 Eco de Consenso – Modo Negociación
-  id: consensus-negotiation
-  mode: Negociación
-  purpose: >-
-    Alcanzar acuerdos entre partes con visiones distintas mediante negociación estructurada.
-  trigger: >-
-    Cuando hay múltiples actores con posturas diferentes y se desea una solución compartida.
+echo: "🤝 Eco de Consenso – Modo Negociación"
+id: consensus-negotation
+mode: Negociación
+purpose: >-
+  Facilitar la negociación y el consenso entre partes con intereses o perspectivas diferentes.
+trigger: >-
+  Cuando se requiere llegar a un acuerdo o resolver un conflicto entre partes.
 
-  steps:
-    - name: Mapeo de posturas
-      goal: Identificar quiénes participan y qué quiere cada uno
+steps:
+  - name: Presentación de posiciones
+    goal: Exponer las posturas de cada parte involucrada.
+  - name: Identificación de intereses
+    goal: Identificar los intereses subyacentes de cada parte.
+  - name: Generación de opciones
+    goal: Proponer alternativas de solución.
+  - name: Evaluación de opciones
+    goal: Analizar ventajas y desventajas de cada alternativa.
+  - name: Construcción del acuerdo
+    goal: Definir los términos del acuerdo alcanzado.
 
-    - name: Identificación de puntos comunes
-      goal: Detectar coincidencias entre las partes
-
-    - name: Alineación de objetivos y límites
-      goal: Establecer qué cede y qué no cada parte
-
-    - name: Propuesta de síntesis
-      goal: Formular una solución que combine intereses
-
-    - name: Validación del acuerdo
-      goal: Confirmar que todas las partes aceptan la propuesta
-
-  output_format: Posturas + puntos comunes + límites + propuesta + validación final
+output_format: >-
+  Acuerdo estructurado con posiciones, intereses, opciones y términos finales.

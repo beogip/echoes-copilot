@@ -21,9 +21,10 @@ steps:
   - name: Retroalimentación final (opcional)
     goal: Permitir al usuario comentar la utilidad del resultado y sugerir ajustes futuros.
 
-output_format: Resultado estructurado con:
-  - Prompt original
-  - Preguntas/respuestas de aclaración (si hubo)
-  - Prompt final optimizado
-  - Resultado ejecutado
-  - (Opcional) Retroalimentación del usuario
+output_format: |-
+  Resultado estructurado con:
+    - Prompt original
+    - Preguntas/respuestas de aclaración (si hubo)
+    - Prompt final optimizado
+    - Resultado ejecutado
+    - (Opcional) Retroalimentación del usuario

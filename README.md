@@ -134,6 +134,22 @@ npm run test:verbose # Detailed output with additional logging
 
 > 🧪 **Optimized Edge Cases**: The edge case tests now include performance monitoring, reduced code duplication (75% less), and cross-platform compatibility for macOS/Linux.
 
+### YAML Validation Utility
+
+Validate all YAML echo files or a single file for schema and formatting:
+
+```bash
+# Validar todos los archivos .yaml en echos-sources/
+npx ts-node scripts/validate-prs-yaml.ts
+
+# Validar un solo archivo específico
+e.g.
+npx ts-node scripts/validate-prs-yaml.ts echos-sources/creativity/creativity-divergent.prs.es.yaml
+```
+
+- El validador reporta errores de formato, raíz de objeto y sintaxis YAML.
+- Útil para CI/CD, revisión de PRs y desarrollo local.
+
 ### Customization
 
 1. **Edit sources** in `instructions-source/`

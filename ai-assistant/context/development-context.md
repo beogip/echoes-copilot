@@ -144,4 +144,10 @@ When applying Echo Protocol patterns to software development, always consider th
 - These errors are isolated to the example folder and do not affect the main migration plan
 - Decision: Proceed with migration for main project; example folder will be handled separately if needed
 
+## YAML Validation Utility
+
+- Use `npx ts-node scripts/validate-prs-yaml.ts` to validate all echo YAML files for schema and formatting.
+- Use `npx ts-node scripts/validate-prs-yaml.ts <file.yaml>` to validate a single file.
+- The validator reports formatting, object root, and YAML syntax errors. Integrate in CI/CD for robust echo protocol development.
+
 This context should guide how echos are applied in real development scenarios, ensuring that structured reasoning enhances rather than impedes the development process.

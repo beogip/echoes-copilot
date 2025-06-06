@@ -26,9 +26,10 @@ steps:
   - name: Final feedback (optional)
     goal: Allow the user to comment on the result and suggest improvements.
 
-output_format: Structured result with:
-  - Original prompt
-  - Clarification Q&A (if any)
-  - Final optimized prompt
-  - Executed result
-  - (Optional) User feedback
+output_format: |-
+  Structured result with:
+    - Original prompt
+    - Clarification Q&A (if any)
+    - Final optimized prompt
+    - Executed result
+    - (Optional) User feedback

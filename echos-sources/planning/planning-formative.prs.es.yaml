@@ -80,16 +80,16 @@ steps:
         - deliverables
         - dependencies
   - name: Visualización del progreso + Adaptación dinámica
-      goal: Definir cómo se medirá el avance y cómo se adaptará el plan.
-      validation:
-        - ¿Se definieron señales o métricas de avance?
-        - ¿Se incluyó un mecanismo de ajuste dinámico?
-      expected_output: >-
-        Sistema de seguimiento compuesto por:
-          - Lista de indicadores por módulo
-          - Frecuencia de revisión
-          - Formato de seguimiento (dashboard, checklist, tabla, log de ejecución)
-          - Criterios para adaptar el plan si hay desvíos
+    goal: Definir cómo se medirá el avance y cómo se adaptará el plan.
+    validation:
+      - ¿Se definieron señales o métricas de avance?
+      - ¿Se incluyó un mecanismo de ajuste dinámico?
+    expected_output: >-
+      Sistema de seguimiento compuesto por:
+        - Lista de indicadores por módulo
+        - Frecuencia de revisión
+        - Formato de seguimiento (dashboard, checklist, tabla, log de ejecución)
+        - Criterios para adaptar el plan si hay desvíos
 output_format: >-
   Roadmap estructurado en formato serializable (YAML o Markdown) con tabla de módulos (name, purpose, context_description,
   deliverables, dependencies), puntos críticos, y estrategia de seguimiento y adaptación.

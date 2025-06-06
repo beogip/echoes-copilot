@@ -1,22 +1,32 @@
-- echo: ✅ Eco de Coherencia – Modo de Autocorrección
-  id: coherence-self-correction
-  mode: Self-correction
-  purpose: >-
-    Detectar si se ha perdido el propósito o dirección del flujo, corregir desvíos y retomar desde el punto correcto.
-  trigger: >-
-    Cuando se detecta una contradicción, repetición innecesaria o desalineación con el objetivo original.
+echo: "✅ Eco de Coherencia – Modo Autocorrección"
+id: coherence-self-correction
+mode: Autocorrección
+purpose: >-
+  Detectar si se perdió el propósito o dirección del flujo, corregir desviaciones y retomar desde el punto correcto.
+  Este eco ayuda a identificar y corregir contradicciones, bucles innecesarios o desalineaciones, y guía el flujo de vuelta a su objetivo.
 
-  steps:
-    - name: Pausa activa
-      goal: Detener la generación automática para revisar el estado del flujo.
-    - name: Chequeo de alineación
-      goal: Verificar si el objetivo o propósito original sigue siendo respetado.
-    - name: Detección de desvíos
-      goal: Identificar loops, contradicciones o desvíos de foco.
-    - name: Punto de reanudación válido
-      goal: Determinar desde qué paso o reformulación debe continuar el proceso.
-    - name: Corrección y reactivación
-      goal: Aplicar una corrección explícita y continuar el flujo desde el nuevo input validado.
+trigger: >-
+  Cuando se detecta una contradicción, repetición innecesaria o desalineación con el objetivo original.
 
-  output_format: >-
-    Confirmación del desvío detectado, nueva dirección del flujo, y input corregido activable como punto de reanudación.
+config:
+  retry_on_fail: true
+  max_retries_per_step: 2
+
+steps:
+  - name: Verificación de alineación con el propósito
+    goal: Comparar el estado actual con el propósito original o roadmap.
+  - name: Detección de desviaciones, bucles o contradicciones
+    goal: Identificar repeticiones, contradicciones internas o pérdida de foco.
+  - name: Punto válido de reanudación
+    goal: Definir desde qué paso o reformulación debe continuar el proceso.
+  - name: Corrección estructurada del flujo
+    goal: Retomar el proceso desde el punto correcto, explícitamente, respetando las restricciones.
+  - name: Reactivación validada del proceso con nuevo input
+    goal: Confirmar con el usuario (o sistema) que el nuevo punto de partida es válido y activar el flujo desde allí.
+
+output_format: >-
+  Corrección estructurada del flujo, con diagnóstico de la desviación, punto de reanudación, reformulación validada y reactivación desde una base coherente.
+
+notes: |-
+  Este eco puede activarse automáticamente ante bucles o contradicciones.
+  Es compatible con los ecos de Evaluación, Diagnóstico, Planificación y Reflexión.
