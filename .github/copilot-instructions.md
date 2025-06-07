@@ -149,12 +149,13 @@ project:
       pending_modules: 4
 ```
 
-### Rules
+## Rules
 
 - Do not modify planning files unless explicitly told to.
 - Only update project-status.yaml when progress is confirmed.
 - Never delete history or submodules.
 - Keep YAML formatting strict and clean.
+- When an Echo command is written (e.g., `// ECHO: planning`), the AI must first read the corresponding Echo Protocol file and then apply each step from the echo definition to the user's query, step by step, in the order defined in the echo.
 
 ### Example Tasks
 

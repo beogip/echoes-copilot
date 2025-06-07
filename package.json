@@ -20,7 +20,7 @@
     "test:bats:unit": "echo 'No unit tests defined for shell scripts' && exit 0",
     "test:bats:quick": "bats tests/bats/install-sh.bats tests/bats/install-local-sh.bats",
     "test:bats:verbose": "bats --verbose tests/bats",
-    "validate:prs": "node scripts/validate-prs-yaml.js",
+    "validate:prs": "npx ts-node scripts/validate-prs-yaml.ts",
     "test:jest": "jest",
     "test:jest:edge": "jest tests/build/build.edge-cases.test.ts",
     "test:jest:integration": "jest tests/build/integration.test.ts",
