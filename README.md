@@ -43,10 +43,14 @@ Get started in seconds with automatic installation:
 ```bash
 # Unix/macOS/Linux
 curl -sSL https://raw.githubusercontent.com/beogip/echos-copilot/main/install.sh | bash
+```
 
+```bash
 # Windows PowerShell
 Invoke-WebRequest -Uri "https://raw.githubusercontent.com/beogip/echos-copilot/main/install.ps1" -OutFile "install.ps1"; .\install.ps1
+```
 
+```bash
 # Node.js (Cross-platform)
 curl -sSL https://raw.githubusercontent.com/beogip/echos-copilot/main/install.js | node
 ```
