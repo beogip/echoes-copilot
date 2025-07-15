@@ -245,12 +245,12 @@ install_instructions() {
     
     # List of instruction files to download
     local files=(
-        "diagnostic-Diagnostic.instructions.md"
-        "planning-Formative.instructions.md"
-        "evaluation-Evaluative.instructions.md"
-        "optimization-Technical.instructions.md"
-        "coherence-Self-correction.instructions.md"
-        "prioritization-Decisional.instructions.md"
+        "diagnostic.instructions.md"
+        "planning.instructions.md"
+        "evaluation.instructions.md"
+        "optimization.instructions.md"
+        "coherence.instructions.md"
+        "prioritization.instructions.md"
     )
     
     local failed_downloads=()
@@ -284,7 +284,7 @@ install_comprehensive() {
         installer_print_info "[DRY RUN] Would download copilot-instructions.md to $ECHOS_INSTALLER_TARGET_DIR"
         return 0
     fi
-    local url="${GITHUB_REPO}/.github/copilot-instructions.md"
+    local url="${ECHOS_INSTALLER_GITHUB_REPO}/.github/copilot-instructions.md"
     local output="$ECHOS_INSTALLER_TARGET_DIR/copilot-instructions.md"
     if ! download_file "$url" "$output"; then
         installer_print_error "Failed to download copilot-instructions.md"
@@ -487,6 +487,7 @@ main() {
 
 # Only run main function if script is executed directly, not sourced
 # Also respect TESTING_MODE environment variable
-if [[ "${BASH_SOURCE[0]}" == "${0}" ]] && [[ "${TESTING_MODE:-}" != "1" ]]; then
+# Handle cases where BASH_SOURCE might be unbound (e.g., when piped from curl)
+if [[ "${BASH_SOURCE[0]:-$0}" == "${0}" ]] && [[ "${TESTING_MODE:-}" != "1" ]]; then
     main "$@"
 fi

@@ -311,12 +311,12 @@ async function installInstructionsMode(targetDir, dryRun) {
         await fs.mkdir(instructionsDir, { recursive: true });
     }
     const instructionFiles = [
-        'diagnostic-Diagnostic.instructions.md',
-        'planning-Formative.instructions.md',
-        'evaluation-Evaluative.instructions.md',
-        'optimization-Technical.instructions.md',
-        'coherence-Self-correction.instructions.md',
-        'prioritization-Decisional.instructions.md'
+        'diagnostic.instructions.md',
+        'planning.instructions.md',
+        'evaluation.instructions.md',
+        'optimization.instructions.md',
+        'coherence.instructions.md',
+        'prioritization.instructions.md'
     ];
     let successCount = 0;
     for (const file of instructionFiles) {

@@ -247,12 +247,12 @@ function Install-InstructionsMode {
     
     # List of instruction files to download
     $instructionFiles = @(
-        "diagnostic-Diagnostic.instructions.md",
-        "planning-Formative.instructions.md",
-        "evaluation-Evaluative.instructions.md",
-        "optimization-Technical.instructions.md",
-        "coherence-Self-correction.instructions.md",
-        "prioritization-Decisional.instructions.md"
+        "diagnostic.instructions.md",
+        "planning.instructions.md",
+        "evaluation.instructions.md",
+        "optimization.instructions.md",
+        "coherence.instructions.md",
+        "prioritization.instructions.md"
     )
     
     $successCount = 0
