@@ -1,25 +1,25 @@
-- echo: 🔢 Eco de Priorización – Modo Decisional
-  id: prioritization-decisional
-  mode: Decisional
-  purpose: >-
-    Ordenar opciones según criterios para tomar decisiones más claras.
-  trigger: >-
-    Cuando hay varias alternativas viables y se necesita decidir cuál seguir o en qué orden.
+echo: 🔢 Eco de Priorización – Modo Decisional
+id: prioritization-decisional
+mode: Decisional
+purpose: >-
+  Ordenar opciones según criterios para tomar decisiones más claras.
+trigger: >-
+  Cuando hay varias alternativas viables y se necesita decidir cuál seguir o en qué orden.
 
-  steps:
-    - name: Listado de opciones
-      goal: Nombrar todas las alternativas posibles
+steps:
+  - name: Listado de opciones
+    goal: Nombrar todas las alternativas posibles
 
-    - name: Definición de criterios
-      goal: Establecer en qué se basará la decisión (valor, esfuerzo, urgencia, etc.)
+  - name: Definición de criterios
+    goal: Establecer en qué se basará la decisión (valor, esfuerzo, urgencia, etc.)
 
-    - name: Evaluación comparativa
-      goal: Analizar cada opción según los criterios definidos
+  - name: Evaluación comparativa
+    goal: Analizar cada opción según los criterios definidos
 
-    - name: Selección priorizada
-      goal: Ordenar las opciones y justificar la elección
+  - name: Selección priorizada
+    goal: Ordenar las opciones y justificar la elección
 
-    - name: Revisión de efectos
-      goal: Anticipar consecuencias y necesidades posteriores
+  - name: Revisión de efectos
+    goal: Anticipar consecuencias y necesidades posteriores
 
-  output_format: Lista ordenada de opciones + elección justificada + implicancias clave
+output_format: Lista ordenada de opciones + elección justificada + implicancias clave

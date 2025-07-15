@@ -48,9 +48,10 @@ steps:
       - ¿Se registraron sugerencias de mejora si hubo?
     expected_output: Comentarios de usuario.
 
-output_format: Registro completo incluyendo:
-  - Prompt original
-  - Información faltante detectada
-  - Prompt optimizado final
-  - Resultado ejecutado
-  - Feedback (opcional)
+output_format: |-
+  Registro completo incluyendo:
+    - Prompt original
+    - Información faltante detectada
+    - Prompt optimizado final
+    - Resultado ejecutado
+    - Feedback (opcional)

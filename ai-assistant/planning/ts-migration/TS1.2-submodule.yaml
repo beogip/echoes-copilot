@@ -27,3 +27,36 @@ submodule:
     - date: "2025-06-05"
       type: "planned"
       summary: "Detailed plan for submodule TS1.2 created for main scripts migration to TypeScript."
+    - date: "2025-06-06"
+      type: "analysis"
+      summary: |
+        Completed TS1.2.1: Listed and analyzed main scripts in /scripts.
+        - build.js: Combines modular echo files into copilot-instructions.md; handles logging (Winston), error handling, build validation, integrity checks, performance monitoring, and build metrics.
+        - validate-prs-yaml.js: Recursively finds and validates .prs.yaml files in echos-sources/, parses YAML, and reports validation results and errors.
+    - date: "2025-06-06"
+      type: "planning"
+      summary: |
+        TS1.2.2 Modular breakdown for build.js proposed:
+        - file-ops.js: file system utilities (read, write, traverse)
+        - echo-merge.js: echo file parsing and merging logic
+        - logger.js: Winston logger setup and helpers
+        - error-handler.js: error handling utilities
+        - validation.js: build validation and integrity checks
+        - metrics.js: performance and metrics collection
+        - index.js: main build orchestrator (imports modules above)
+        Each module should export clear functions/classes, use dependency injection for logger where possible, and be independently testable. Incremental validation after each refactor is required.
+  tasks:
+    - id: TS1.2.1
+      description: "List all main scripts in /scripts and analyze their responsibilities."
+    - id: TS1.2.2
+      description: "Propose a modular breakdown for build.js (e.g., file ops, build logic, utils, logging)."
+    - id: TS1.2.3
+      description: "Refactor build.js into multiple .js files in scripts/build/ (one per responsibility)."
+    - id: TS1.2.4
+      description: "Validate that the refactored JS build process works as before."
+    - id: TS1.2.5
+      description: "For each subfile: rename to .ts, migrate to TypeScript, add types, update imports/exports, document decisions, and test the migrated block."
+    - id: TS1.2.6
+      description: "Update build entry point to build.ts and ensure it re-exports main functionality."
+    - id: TS1.2.7
+      description: "Run regression/basic tests and validate the complete migrated process."

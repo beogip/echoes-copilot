@@ -102,12 +102,12 @@ Creates individual `.instructions.md` files that GitHub Copilot loads automatica
 
 **Files created:**
 
-- `.github/instructions/coherence-Self-correction.instructions.md`
-- `.github/instructions/diagnostic-Diagnostic.instructions.md`
-- `.github/instructions/evaluation-Evaluative.instructions.md`
-- `.github/instructions/optimization-Technical.instructions.md`
-- `.github/instructions/planning-Formative.instructions.md`
-- `.github/instructions/prioritization-Decisional.instructions.md`
+- `.github/instructions/coherence.instructions.md`
+- `.github/instructions/diagnostic.instructions.md`
+- `.github/instructions/evaluation.instructions.md`
+- `.github/instructions/optimization.instructions.md`
+- `.github/instructions/planning.instructions.md`
+- `.github/instructions/prioritization.instructions.md`
 
 **Advantages:**
 
@@ -219,12 +219,12 @@ After successful installation, your project will have:
 your-project/
 ├── .github/
 │   ├── instructions/                     # Instructions mode
-│   │   ├── coherence-Self-correction.instructions.md
-│   │   ├── diagnostic-Diagnostic.instructions.md
-│   │   ├── evaluation-Evaluative.instructions.md
-│   │   ├── optimization-Technical.instructions.md
-│   │   ├── planning-Formative.instructions.md
-│   │   └── prioritization-Decisional.instructions.md
+│   │   ├── coherence.instructions.md
+│   │   ├── diagnostic.instructions.md
+│   │   ├── evaluation.instructions.md
+│   │   ├── optimization.instructions.md
+│   │   ├── planning.instructions.md
+│   │   └── prioritization.instructions.md
 │   │
 │   ├── copilot-instructions.md          # Comprehensive mode
 │   └── echos-backup-YYYYMMDD-HHMMSS/    # Backup directory
@@ -331,7 +331,7 @@ ls -la .github/
 2. **Verify file content**:
 
    ```bash
-   head -n 20 .github/instructions/diagnostic-Diagnostic.instructions.md
+   head -n 20 .github/instructions/diagnostic.instructions.md
    ```
 
 3. **Restart VS Code** and try again

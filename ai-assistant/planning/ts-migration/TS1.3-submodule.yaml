@@ -21,3 +21,43 @@ submodule:
     - date: "2025-06-05"
       type: "planned"
       summary: "Detailed plan for submodule TS1.3 created for utilities and helpers migration to TypeScript."
+    - date: "2025-06-06"
+      type: "completed"
+      summary: |
+        TS1.3.1 completed: All main utilities and helpers in /scripts/build/ are already migrated to .ts (echo-merge, metrics, index, logger, utils, error-handler, file-ops, yaml-loader, validation). Missing migration of validate-prs-yaml.js, which will be included in the next TS1.3 stage.
+    - date: "2025-06-06"
+      type: "completed"
+      summary: |
+        TS1.3.2 completed: validate-prs-yaml.js migrated to TypeScript as validate-prs-yaml.ts, with support for individual file and directory validation. All echo YAMLs normalized to root object and validated with the new validator. Documentation and README updated with usage instructions.
+    - date: "2025-06-07"
+      type: "completed"
+      summary: |
+        TS1.3.3 completed: All functions, arguments, and return values in /scripts/build/*.ts have explicit type annotations. Replaced 'any' with more precise types where possible, keeping 'any' only in catch blocks. Build and scripts were successfully validated with tsc and ts-node. Planning and context updated.
+  tasks:
+    TS1.3.1:
+      description: "Identify all utility and helper files to migrate."
+      status: "completed"
+    TS1.3.2:
+      description: "Rename each .js file to .ts and migrate content. (Missing migration of validate-prs-yaml.js to TypeScript)"
+      status: "completed"
+    TS1.3.3:
+      description: "Add explicit type annotations to functions, arguments, and return values."
+      status: "completed"
+    TS1.3.4:
+      description: "Refactor imports/exports to TypeScript ES Modules syntax."
+      status: "pending"
+    TS1.3.5:
+      description: "Validate that migrated utilities compile correctly (tsc without errors)."
+      status: "pending"
+    TS1.3.6:
+      description: "Execute and validate basic tests for migrated utilities."
+      status: "pending"
+    TS1.3.7:
+      description: "Document typing/refactor decisions in development-context.md."
+      status: "pending"
+    TS1.3.8:
+      description: "Execute regression tests to ensure no behavioral changes."
+      status: "pending"
+    TS1.3.9:
+      description: "Mark TS1.3 as completed in planning and update history."
+      status: "pending"

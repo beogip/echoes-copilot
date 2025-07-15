@@ -3,9 +3,19 @@ module:
   name: "TypeScript Migration"
   context_summary: |
     Migrate the entire echos-copilot repository from JavaScript to TypeScript, including scripts, utilities, and tests. The goal is to modernize the stack, improve maintainability, and ensure compatibility with modern tooling.
-  current_status: "planned"
-  next_step: "Set up TypeScript and install base dependencies (TS1.1)"
-  completed_deliverables: []
+
+    Progress summary (as of 2025-06-06):
+    - TS1.1 (Base TypeScript Configuration): Completed. TypeScript, @types/node, ts-node, ts-jest installed. tsconfig.json created and validated. Project compiles (except isolated example/tsx issues). Integration with Jest and build scripts confirmed.
+    - TS1.2 (Main Scripts Migration): Completed. Main scripts in /scripts have been renamed to .ts, imports/exports adapted, minimal typing added, logic preserved. Scripts compile and run as before. Regression tests show no regressions. Remaining scripts and typing coverage to be finalized next.
+    - TS1.3 (Utilities and Helpers Migration): Pending. Utilities will be migrated to TypeScript with explicit types and refactored imports/exports. Validation will require compilation and basic tests. Typing/refactor decisions and test results will be documented for traceability.
+    - TS1.4–TS1.6: Planned. See submodule entries for details.
+
+    All typing, refactor, and validation decisions are documented in ai-assistant/context/development-context.md for traceability.
+  current_status: "in progress"
+  next_step: "TS1.3: Utilities and helpers migration to TypeScript."
+  completed_deliverables:
+    - TS1.1
+    - TS1.2
   submodules:
     - id: TS1.1
       name: "Base TypeScript Configuration"
@@ -33,7 +43,7 @@ module:
         - Validate that existing scripts work after the initial configuration.
     - id: TS1.2
       name: "Main Scripts Migration"
-      status: "pending"
+      status: "completed"
       objective: |
         Migrate the main scripts from JavaScript to TypeScript, ensuring basic typing and equivalent functionality.
       scope: |
@@ -74,6 +84,7 @@ module:
       notes:
         - Document any relevant typing or refactor decision in ai-assistant/context/development-context.md
         - Validate utilities with basic test cases
+        - Run regression or behavioral tests after migration and record results in ai-assistant/context/development-context.md for traceability
     - id: TS1.4
       name: "Tests Migration"
       status: "pending"
@@ -132,3 +143,12 @@ module:
     - date: "2025-06-05"
       type: "planned"
       summary: "TypeScript migration plan created and approved by the user."
+    - date: "2025-06-06"
+      type: "started"
+      summary: "Started TS1.2: Modular and typed migration of build.js and main scripts."
+    - date: "2025-06-06"
+      type: "in_progress"
+      summary: "Se está ejecutando el submódulo TS1.2: migración modular y tipada de build.js y scripts principales."
+    - date: "2025-06-06"
+      type: "completed"
+      summary: "TS1.2 finalizado: scripts principales migrados a TypeScript, validados y sin regresiones."

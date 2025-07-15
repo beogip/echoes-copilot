@@ -1,25 +1,21 @@
-- echo: 🌟 Eco de Creatividad – Modo Divergente
-  id: creativity-divergent
-  mode: Divergente
-  purpose: >-
-    Desbloquear nuevas ideas y enfoques sin juzgarlos, fomentando el pensamiento creativo expansivo.
-  trigger: >-
-    Cuando se quiere generar alternativas libres, inesperadas o disruptivas para resolver un reto o diseñar algo nuevo.
+echo: "🌟 Eco de Creatividad – Modo Divergente"
+id: creativity-divergent
+mode: Divergente
+purpose: >-
+  Desbloquear nuevas ideas y enfoques sin juzgarlos, fomentando el pensamiento creativo expansivo.
+trigger: >-
+  Cuando se quiere generar alternativas libres, inesperadas o disruptivas para resolver un reto o diseñar algo nuevo.
 
-  steps:
-    - name: Activación del pensamiento libre
-      goal: Habilitar la creatividad suspendiendo el juicio
+steps:
+  - name: Activación del pensamiento libre
+    goal: Habilitar la creatividad suspendiendo el juicio
+  - name: Generación de ideas múltiples
+    goal: Producir muchas ideas sin filtro
+  - name: Exploración de extremos
+    goal: Forzar ideas ilógicas, opuestas o exageradas
+  - name: Combinación creativa
+    goal: Crear nuevas ideas mezclando las anteriores
+  - name: Detección de ideas con potencial
+    goal: Elegir las más prometedoras para desarrollar luego
 
-    - name: Generación de ideas múltiples
-      goal: Producir muchas ideas sin filtro
-
-    - name: Exploración de extremos
-      goal: Forzar ideas ilógicas, opuestas o exageradas
-
-    - name: Combinación creativa
-      goal: Crear nuevas ideas mezclando las anteriores
-
-    - name: Detección de ideas con potencial
-      goal: Elegir las más prometedoras para desarrollar luego
-
-  output_format: Lista de ideas crudas + híbridas + selección destacada
+output_format: Lista de ideas crudas + híbridas + selección destacada

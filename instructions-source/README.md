@@ -50,3 +50,19 @@ The build script will:
 - **Reusability**: Leverage official echo-protocol definitions
 - **Maintainability**: Easier to update and version
 - **Consistency**: Automated formatting and structure
+
+## YAML Validation Utility
+
+You can validate all echo YAML files or a single file for schema and formatting:
+
+```bash
+# Validate all .yaml files in echos-sources/
+npx ts-node scripts/validate-prs-yaml.ts
+
+# Validate a single file
+e.g.
+npx ts-node scripts/validate-prs-yaml.ts echos-sources/creativity/creativity-divergent.prs.es.yaml
+```
+
+- The validator reports formatting, object root, and YAML syntax errors.
+- Useful for CI/CD, PR review, and local development.
