@@ -1,7 +1,7 @@
 // index.ts - Main build orchestrator for modular Echo Protocol build system
 
 import logger from './logger';
-import { handleError } from './error-handler';
+import { handleError } from '../utils/error-handler';
 import { fileExists } from './file-ops';
 import { buildIndividualInstructions, buildInstructions, BuildConfig } from './echo-merge';
 import { isValidEcho } from './validation';
@@ -38,6 +38,12 @@ function loadBuildConfig(): BuildConfig | null {
   return null;
 }
 
+function printErrorsToStderr(errors: string[]) {
+  if (errors && errors.length > 0) {
+    errors.forEach(e => console.error('ERROR:', e));
+  }
+}
+
 function main(): void {
   const buildMetrics: BuildMetrics = createBuildMetrics();
   logger.info('Starting modular build process...');
@@ -50,6 +56,7 @@ function main(): void {
       buildMetrics.errors.push('No build configuration found');
       finalizeBuildMetrics(buildMetrics);
       logger.info(getMetricsReport(buildMetrics));
+      printErrorsToStderr(buildMetrics.errors);
       process.exit(1);
     }
 
@@ -59,6 +66,7 @@ function main(): void {
       buildMetrics.errors.push('No echos defined in build configuration');
       finalizeBuildMetrics(buildMetrics);
       logger.info(getMetricsReport(buildMetrics));
+      printErrorsToStderr(buildMetrics.errors);
       process.exit(1);
     }
 
@@ -74,6 +82,7 @@ function main(): void {
     });
 
     // 4. Execute merge/instructions generation
+    let hadCriticalError = false;
     try {
       // Build individual instruction files
       buildIndividualInstructions(
@@ -94,15 +103,21 @@ function main(): void {
     } catch (mergeErr: any) {
       logger.error('Error during echo merge/buildInstructions', { error: mergeErr.message });
       buildMetrics.errors.push('Error during echo merge/buildInstructions');
+      hadCriticalError = true;
     }
 
     // 5. Finalize metrics and report
     finalizeBuildMetrics(buildMetrics);
     logger.info(getMetricsReport(buildMetrics));
+    if (buildMetrics.errors.length > 0 || hadCriticalError) {
+      printErrorsToStderr(buildMetrics.errors);
+      process.exit(1);
+    }
   } catch (err: any) {
     handleError(err, logger, buildMetrics);
     finalizeBuildMetrics(buildMetrics);
     logger.info(getMetricsReport(buildMetrics));
+    printErrorsToStderr(buildMetrics.errors);
     process.exit(1);
   }
 }
@@ -110,7 +125,7 @@ function main(): void {
 if (require.main === module) {
   // Handle command line arguments like the original build.js
   const args = process.argv.slice(2);
-  
+
   if (args.length > 0) {
     // Check for specific build modes
     if (args.includes('--individual') || args.includes('-i')) {
@@ -126,6 +141,10 @@ if (require.main === module) {
         );
         finalizeBuildMetrics(buildMetrics);
         logger.info(getMetricsReport(buildMetrics));
+        if (buildMetrics.errors.length > 0) {
+          printErrorsToStderr(buildMetrics.errors);
+          process.exit(1);
+        }
       }
     } else if (args.includes('--copilot') || args.includes('-c')) {
       // Build copilot instructions only
@@ -141,6 +160,10 @@ if (require.main === module) {
         );
         finalizeBuildMetrics(buildMetrics);
         logger.info(getMetricsReport(buildMetrics));
+        if (buildMetrics.errors.length > 0) {
+          printErrorsToStderr(buildMetrics.errors);
+          process.exit(1);
+        }
       }
     } else {
       // Default: run full build

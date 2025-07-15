@@ -14,7 +14,11 @@ import { EchoData } from './validation';
  * @param buildMetrics - Build metrics object
  * @returns Parsed YAML data or null on error
  */
-function loadYamlFile(filePath: string, logger: winston.Logger, buildMetrics: BuildMetrics): EchoData | null {
+function loadYamlFile(
+  filePath: string,
+  logger: winston.Logger,
+  buildMetrics: BuildMetrics
+): EchoData | null {
   if (!filePath || typeof filePath !== 'string') {
     logger.error('Invalid filePath argument for loadYamlFile');
     buildMetrics.errors.push('Invalid filePath argument');
@@ -109,7 +113,7 @@ function loadYamlFile(filePath: string, logger: winston.Logger, buildMetrics: Bu
     // Check for empty, whitespace, tabs, CRLF, only comments
     if (!text.trim() || /^\s+$/.test(text)) {
       logger.warn(`Empty or whitespace-only file: ${fileName}`);
-      buildMetrics.warnings.push(`Empty file: ${fileName}`);
+      if (buildMetrics.warnings) buildMetrics.warnings.push(`Empty file: ${fileName}`);
       // Return empty structure instead of null for empty files
       return {
         id: 'empty',
@@ -124,7 +128,7 @@ function loadYamlFile(filePath: string, logger: winston.Logger, buildMetrics: Bu
 
     if (/^[#\s\r\n]+$/.test(text)) {
       logger.warn(`File contains only comments or whitespace: ${fileName}`);
-      buildMetrics.warnings.push(`Comments only: ${fileName}`);
+      if (buildMetrics.warnings) buildMetrics.warnings.push(`Comments only: ${fileName}`);
       // Return empty structure instead of null for comment-only files
       return {
         id: 'comments-only',

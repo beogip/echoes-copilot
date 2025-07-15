@@ -1,18 +1,19 @@
 // error-handler.ts - Error and warning logging helpers for build scripts
+// (moved from build/ to utils/ for cross-script use)
 
 import winston from 'winston';
 
-interface BuildMetrics {
+export interface BuildMetrics {
   errors: string[];
   warnings: string[];
 }
 
-const buildMetrics: BuildMetrics = {
+export const buildMetrics: BuildMetrics = {
   errors: [],
   warnings: []
 };
 
-function handleError(error: Error, logger: winston.Logger, buildMetrics: any): void {
+export function handleError(error: Error, logger: winston.Logger, buildMetrics: BuildMetrics): void {
   logger.error('Fatal error occurred', { 
     error: error.message,
     stack: error.stack 
@@ -20,22 +21,14 @@ function handleError(error: Error, logger: winston.Logger, buildMetrics: any): v
   buildMetrics.errors.push(error.message);
 }
 
-function logError(logger: winston.Logger, message: string | Error, context: any = {}): void {
+export function logError(logger: winston.Logger, message: string | Error, context: Record<string, unknown> = {}): void {
   const messageStr = typeof message === 'string' ? message : message.message;
   logger.error(messageStr, context);
   buildMetrics.errors.push(messageStr);
 }
 
-function logWarning(logger: winston.Logger, message: string | Error, context: any = {}): void {
+export function logWarning(logger: winston.Logger, message: string | Error, context: Record<string, unknown> = {}): void {
   const messageStr = typeof message === 'string' ? message : message.message;
   logger.warn(messageStr, context);
   buildMetrics.warnings.push(messageStr);
 }
-
-export {
-  BuildMetrics,
-  handleError,
-  logError,
-  logWarning,
-  buildMetrics
-};

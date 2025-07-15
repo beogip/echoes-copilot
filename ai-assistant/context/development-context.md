@@ -144,6 +144,14 @@ When applying Echo Protocol patterns to software development, always consider th
 - These errors are isolated to the example folder and do not affect the main migration plan
 - Decision: Proceed with migration for main project; example folder will be handled separately if needed
 
+## TS1.3.3 TypeScript Migration Notes (2025-06-07)
+
+- All functions, arguments, and return values in `/scripts/build/*.ts` now have explicit type annotations.
+- Replaced `any` with more precise types (such as `Partial<EchoConfig & EchoData>`, `Record<string, unknown>`, etc.) where possible, keeping `any` only in `catch` blocks for error handling.
+- The build was successfully validated with `tsc` and `ts-node`.
+- Updated planning (`TS1.3-submodule.yaml`) and documented progress in this context.
+- No type errors or warnings detected after migration.
+
 ## YAML Validation Utility
 
 - Use `npx ts-node scripts/validate-prs-yaml.ts` to validate all echo YAML files for schema and formatting.
