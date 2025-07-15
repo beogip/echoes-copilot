@@ -316,6 +316,14 @@ validate_installation() {
         fi
         
         installer_print_success "Found $file_count instruction files"
+        
+        # Also validate comprehensive file if it exists (should exist in default mode)
+        if [[ -f "$ECHOS_INSTALLER_TARGET_DIR/copilot-instructions.md" ]]; then
+            local file_size=$(wc -c < "$ECHOS_INSTALLER_TARGET_DIR/copilot-instructions.md")
+            if [[ $file_size -gt 1000 ]]; then
+                installer_print_success "Comprehensive file also available ($(( file_size / 1024 ))KB)"
+            fi
+        fi
     else
         if [[ ! -f "$ECHOS_INSTALLER_TARGET_DIR/copilot-instructions.md" ]]; then
             installer_print_error "copilot-instructions.md not found"
@@ -438,12 +446,21 @@ main() {
 
     # Install based on mode
     if [[ "$ECHOS_INSTALLER_INSTALL_MODE" == "instructions" ]]; then
+        # Install individual instruction files
         if ! install_instructions; then
             installer_print_error "Installation failed"
             if [[ "$ECHOS_INSTALLER_ROLLBACK_AVAILABLE" == true ]]; then
                 installer_print_info "Run './install.sh --rollback' to restore backup"
             fi
             exit 1
+        fi
+        
+        # Also install comprehensive file for users who prefer manual configuration
+        installer_print_info "Installing comprehensive file as additional option..."
+        if ! install_comprehensive; then
+            installer_print_warning "Failed to install comprehensive file, but individual files were successful"
+        else
+            installer_print_success "Both individual and comprehensive files installed"
         fi
     else
         if ! install_comprehensive; then
@@ -463,12 +480,14 @@ main() {
     installer_print_info "Next steps:"
     if [[ "$ECHOS_INSTALLER_INSTALL_MODE" == "instructions" ]]; then
         echo "  1. GitHub Copilot will automatically load the instruction files"
-        echo "  2. Use // ECHO: <echo_name> in your code comments"
-        echo "  3. Available echos: diagnostic, planning, evaluation, optimization, coherence, prioritization"
+        echo "  2. Available echos: diagnostic, planning, evaluation, optimization, coherence, prioritization"
+        echo ""
+        echo "  📄 Additional option:"
+        echo "  3. If you prefer manual setup, copilot-instructions.md is also available"
+        echo "     Copy its content to GitHub Copilot Settings > Instructions"
     else
         echo "  1. Copy the content of .github/copilot-instructions.md"
         echo "  2. Paste it in GitHub Copilot Settings > Instructions"
-        echo "  3. Use // ECHO: <echo_name> in your code comments"
     fi
     echo ""
     installer_print_info "Documentation: https://github.com/beogip/echos-copilot"

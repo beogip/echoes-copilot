@@ -474,10 +474,11 @@ function showPostInstallInfo(mode, targetDir) {
     if (mode === 'instructions') {
         console.log(`📁 Individual instruction files installed in: ${COLORS.YELLOW}${targetDir}/instructions/${COLORS.RESET}`);
         console.log('');
-        console.log(`${COLORS.CYAN}Usage in VS Code:${COLORS.RESET}`);
-        console.log(`${COLORS.GRAY}  // ECHO: diagnostic${COLORS.RESET}`);
-        console.log(`${COLORS.GRAY}  # ECHO: planning${COLORS.RESET}`);
-        console.log(`${COLORS.GRAY}  /* ECHO: evaluation */${COLORS.RESET}`);
+        console.log(`${COLORS.CYAN}GitHub Copilot will automatically load the instruction files${COLORS.RESET}`);
+        console.log(`${COLORS.GRAY}Available echos: diagnostic, planning, evaluation, optimization, coherence, prioritization${COLORS.RESET}`);
+        console.log('');
+        console.log(`${COLORS.CYAN}Additional option:${COLORS.RESET}`);
+        console.log(`${COLORS.GRAY}Manual setup available via copilot-instructions.md${COLORS.RESET}`);
     } else {
         console.log(`📄 Comprehensive instructions installed: ${COLORS.YELLOW}${targetDir}/copilot-instructions.md${COLORS.RESET}`);
         console.log('');
@@ -601,7 +602,18 @@ async function main() {
         // Install based on mode
         let installSuccess = false;
         if (options.mode === 'instructions') {
+            // Install individual instruction files
             installSuccess = await installInstructionsMode(options.targetDir, options.dryRun);
+            if (installSuccess) {
+                // Also install comprehensive file for users who prefer manual configuration
+                printInfo('Installing comprehensive file as additional option...');
+                const comprehensiveSuccess = await installComprehensiveMode(options.targetDir, options.dryRun);
+                if (!comprehensiveSuccess) {
+                    printWarning('Failed to install comprehensive file, but individual files were successful');
+                } else {
+                    printSuccess('Both individual and comprehensive files installed');
+                }
+            }
         } else if (options.mode === 'comprehensive') {
             installSuccess = await installComprehensiveMode(options.targetDir, options.dryRun);
         }

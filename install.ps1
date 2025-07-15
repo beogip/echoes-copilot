@@ -386,10 +386,11 @@ function Show-PostInstallInfo {
         Write-Host "📁 Individual instruction files installed in: " -NoNewline
         Write-Host ".github\instructions\" -ForegroundColor Yellow
         Write-Host ""
-        Write-Host "Usage in VS Code:" -ForegroundColor Cyan
-        Write-Host "  // ECHO: diagnostic" -ForegroundColor Gray
-        Write-Host "  # ECHO: planning" -ForegroundColor Gray
-        Write-Host "  /* ECHO: evaluation */" -ForegroundColor Gray
+        Write-Host "GitHub Copilot will automatically load the instruction files" -ForegroundColor Cyan
+        Write-Host "Available echos: diagnostic, planning, evaluation, optimization, coherence, prioritization" -ForegroundColor Gray
+        Write-Host ""
+        Write-Host "Additional option:" -ForegroundColor Cyan
+        Write-Host "Manual setup available via copilot-instructions.md" -ForegroundColor Gray
     }
     else {
         Write-Host "📄 Comprehensive instructions installed: " -NoNewline
@@ -458,7 +459,18 @@ function Main {
         # Install based on mode
         $installSuccess = $false
         if ($Mode -eq "instructions") {
+            # Install individual instruction files
             $installSuccess = Install-InstructionsMode
+            if ($installSuccess) {
+                # Also install comprehensive file for users who prefer manual configuration
+                Write-InfoMessage "Installing comprehensive file as additional option..."
+                $comprehensiveSuccess = Install-ComprehensiveMode
+                if (-not $comprehensiveSuccess) {
+                    Write-WarningMessage "Failed to install comprehensive file, but individual files were successful"
+                } else {
+                    Write-SuccessMessage "Both individual and comprehensive files installed"
+                }
+            }
         }
         elseif ($Mode -eq "comprehensive") {
             $installSuccess = Install-ComprehensiveMode

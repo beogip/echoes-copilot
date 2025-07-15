@@ -94,7 +94,7 @@ The installer supports two different modes to suit your workflow:
 
 ### Instructions Mode (Default)
 
-Creates individual `.instructions.md` files that GitHub Copilot loads automatically:
+Creates individual `.instructions.md` files that GitHub Copilot loads automatically, plus a comprehensive file for manual configuration:
 
 ```bash
 ./install.sh --mode instructions
@@ -108,12 +108,14 @@ Creates individual `.instructions.md` files that GitHub Copilot loads automatica
 - `.github/instructions/optimization.instructions.md`
 - `.github/instructions/planning.instructions.md`
 - `.github/instructions/prioritization.instructions.md`
+- `.github/copilot-instructions.md` (comprehensive file as additional option)
 
 **Advantages:**
 
-- ✅ Automatic loading by Copilot
-- ✅ Modular organization
+- ✅ Automatic loading by Copilot via individual files
+- ✅ Modular organization for easy management
 - ✅ Easy to enable/disable specific echos
+- ✅ Manual configuration option with comprehensive file
 
 ### Comprehensive Mode
 
@@ -218,7 +220,7 @@ After successful installation, your project will have:
 ```
 your-project/
 ├── .github/
-│   ├── instructions/                     # Instructions mode
+│   ├── instructions/                     # Individual instruction files (auto-loaded)
 │   │   ├── coherence.instructions.md
 │   │   ├── diagnostic.instructions.md
 │   │   ├── evaluation.instructions.md
@@ -226,8 +228,8 @@ your-project/
 │   │   ├── planning.instructions.md
 │   │   └── prioritization.instructions.md
 │   │
-│   ├── copilot-instructions.md          # Comprehensive mode
-│   └── echos-backup-YYYYMMDD-HHMMSS/    # Backup directory
+│   ├── copilot-instructions.md          # Comprehensive file (default + manual option)
+│   └── echos-backup-YYYYMMDD-HHMMSS/    # Backup directory (if files existed)
 │
 └── (your existing project files)
 ```
