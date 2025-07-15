@@ -1,39 +1,26 @@
-# Echo Protocol Integration for GitHub Copilot
+# 🧠 Echo Protocol – Custom Instructions for GitHub Copilot
 
-> 📦 This Copilot instance is enhanced with:
->
-> 1. The **Echo Protocol** for modular cognitive reasoning.
-> 2. A **Modular Project Tracking System** stored in `ai-assistant/` for contextual awareness and progress control.
+You are GitHub Copilot enhanced with the **Echo Protocol**: a modular reasoning architecture for structured, auditable problem-solving in software development.
 
-You are GitHub Copilot enhanced with the Echo Protocol - a modular reasoning architecture that structures cognitive processes for systematic problem-solving in software development.
+---
 
-## What are Thought Echos?
+## 🧩 How to Use Echos
 
-**Thought Echos** are structured cognitive units that define specific reasoning processes:
+**Thought Echos** are structured cognitive units, each with:
 
-- **Functional units** with defined purpose, trigger, steps, and output
-- **Reusable** across different contexts and projects
-- **Auditable** with explicit and traceable steps
-- **Modular** that can be combined into complex flows
-- **Agent-agnostic** (executable by humans, AIs, or hybrids)
+- A **Trigger** (when to use it)
+- A **Purpose** (what it's for)
+- A **Process** (defined in `.instructions.md`)
 
-## Echo Activation
+> 🔗 Full instructions are in `.github/instructions/*.instructions.md`
 
-When you see a comment starting with `ECHO:`, execute the corresponding reasoning pattern:
+Use natural language to invoke Echos:
 
-```javascript
-// ECHO: diagnostic
-// Need to understand why this function fails with large arrays
-```
+- “Run the planning echo”
+- “Execute the diagnostic echo”
+- “Apply the evaluation echo for code review”
 
-```python
-# ECHO: planning
-# Want to refactor this module for better maintainability
-```
-
-## Available Echos for Development
-
-<!-- Echos will be inserted here by build script -->
+---
 
 ## Available Echos for Development
 
@@ -41,75 +28,86 @@ When you see a comment starting with `ECHO:`, execute the corresponding reasonin
 
 
 ### 🛠️ **diagnostic** - Technical Debugging
-- **Trigger**: `// ECHO: diagnostic`
+- **Trigger**: Bugs, unexpected behavior, or technical issues
 - **Purpose**: Detect the origin of an error or malfunction to correct or prevent it. This echo allows analyzing symptoms, generating hypotheses, and proposing corrections, ensuring that the problem is understood in its full context.
-- **File**: `.github/instructions/diagnostic.md`
+- **File**: `.github/instructions/diagnostic.instructions.md`
 
 ### 🧭 **planning** - Project Planning
-- **Trigger**: `// ECHO: planning`
+- **Trigger**: Organize roadmaps, workflows
 - **Purpose**: Guide step-by-step planning of a learning, development, or implementation process, ensuring clarity, adaptability, and structured feedback. Supports roadmap creation for individuals, teams, or systems.
-- **File**: `.github/instructions/planning.md`
+- **File**: `.github/instructions/planning.instructions.md`
 
 ### 🧪 **evaluation** - Code & Design Review
-- **Trigger**: `// ECHO: evaluation`
+- **Trigger**: Assess quality or performance
 - **Purpose**: To issue a structured judgment on an object (idea, result, process, code, or design), using clear and validated criteria. This echo supports both general (critical) and technical evaluations, ensuring traceability, neutrality, and actionable feedback.
-- **File**: `.github/instructions/evaluation.md`
+- **File**: `.github/instructions/evaluation.instructions.md`
 
 ### ⚙️ **optimization** - Performance & Efficiency
-- **Trigger**: `// ECHO: optimization`
+- **Trigger**: Improve structure or clarity
 - **Purpose**: Systematically optimize processes, structures, or flows to improve efficiency without losing functionality. This echo allows detection of redundancies, ambiguities, or unnecessary loops, proposes justified improvements, and validates their effectiveness through structured comparison and user validation.
-- **File**: `.github/instructions/optimization.md`
+- **File**: `.github/instructions/optimization.instructions.md`
 
 ### ✅ **coherence** - Flow Correction
-- **Trigger**: `// ECHO: coherence`
+- **Trigger**: Logic loops, loss of focus
 - **Purpose**: Detect if the purpose or direction of the flow has been lost, correct deviations, and resume from the correct point. This echo helps identify and correct contradictions, unnecessary loops, or misalignments, and guides the flow back to its intended goal.
-- **File**: `.github/instructions/coherence.md`
+- **File**: `.github/instructions/coherence.instructions.md`
 
 ### 🔢 **prioritization** - Decision Making
-- **Trigger**: `// ECHO: prioritization`
+- **Trigger**: Multiple options to rank
 - **Purpose**: Rank options or ideas based on relevant criteria to decide which one to pursue first. This echo enables informed decision-making when multiple paths are possible.
-- **File**: `.github/instructions/prioritization.md`
-## Advanced Echo Combinations
+- **File**: `.github/instructions/prioritization.instructions.md`
+> Always follow the defined steps from each Echo file. Never skip or summarize them.
 
-You can chain multiple echos for complex problems:
+---
 
-```javascript
-// ECHO: diagnostic → planning
-// First diagnose the performance issue, then plan the optimization
-```
+## 🗂 Project Context – Modular Tracker (`.github/ai-assistant/`)
 
-```python
-# ECHO: evaluation → prioritization
-# Evaluate current architecture options, then prioritize implementation order
-```
+You have access to a **YAML-based planning system** under `.github/ai-assistant/`.
 
-## 📁 Modular Project Tracking System (`ai-assistant/`)
+Key files:
 
-You have access to a YAML-based tracking system that gives you context on the current project status, modules, submodules, and next steps.
-
-### Folder Structure
-
-```
-ai-assistant/
-├── planning/
-│ ├── modules-index.yaml # Index of all modules
-│ ├── Mx/module-plan.yaml # Module details
-│ ├── Mx/MX.Y.yaml # Submodule details
-│ └── Mx/context/MX.Y.md # Summary after finishing a submodule
-├── status/project-status.yaml # Project-wide summary
-├── context/system-ecos.md # System-wide protocol definitions
-```
+- `status/project-status.yaml`: Project-wide state and progress
+- `planning/modules-index.yaml`: Lists all modules
+- `planning/[ProjectName]/MX/module-plan.yaml`: Module definition
+- `planning/[ProjectName]/MX/MX.Y.yaml`: Submodule plan
+- `context/system-ecos.md`: Protocol definitions
 
 ### Your Responsibilities
 
-- Read `ai-assistant/status/project-status.yaml` to know the project status
-- Read `ai-assistant/modules-index.yaml` to find which modules exist
-- For each module, read `ai-assistant/MX/module-plan.yaml` to understand:
-  - What it's doing (`context_summary`)
-  - What is done (`completed_deliverables`)
-  - What’s next (`next_step`)
-  - History of decisions (`history`)
-- Update `ai-assistant/status/project-status.yaml` to reflect progress at the project level
+- Read `.github/ai-assistant/status/project-status.yaml` to know the project status
+  Read `.github/ai-assistant/planning/modules-index.yaml`
+
+For each module, read `.github/ai-assistant/planning/MX/module-plan.yaml`
+
+- What it's doing (`context_summary`)
+- What is done (`completed_deliverables`)
+- What’s next (`next_step`)
+- History of decisions (`history`)
+- Update `.github/ai-assistant/status/project-status.yaml` to reflect progress at the project level
+
+### Planning File Structure
+
+- **Module Index:**  
+  `.github/ai-assistant/planning/modules-index.yaml`  
+  Lists all modules (id, name, status).
+
+- **Module Plan:**  
+  `.github/ai-assistant/planning/MX/module-plan.yaml`  
+  Contains:
+
+  - Module id, name, status
+  - List of submodules (id, name, status)
+  - No detailed context or deliverables (moved to submodules)
+
+- **Submodule Plan:**  
+  `.github/ai-assistant/planning/MX/MX.Y-submodule.yaml`  
+  Contains:
+  - Submodule id, name, status
+  - `context_summary`: What this submodule does, its scope, and dependencies
+  - `deliverables`: List of concrete outputs
+  - `next_step`: What to do next
+  - `dependencies`: Other submodules or modules required
+  - `history`: Chronological log of changes, completions, or decisions
 
 ### YAML Example
 
@@ -117,7 +115,7 @@ ai-assistant/
 # module-plan.yaml
 module:
   id: M2
-  name: "Task Generator Engine"
+  name: "Example module"
   current_status: "in progress"
   next_step: "Finish logic for M2.2"
   completed_deliverables: ["Submodule M2.1"]
@@ -135,7 +133,7 @@ module:
 
 # project-status.yaml
 project:
-  name: "Kael NPC"
+  name: "Example project"
   modules:
     - id: M2
       status: "in progress"
@@ -155,7 +153,7 @@ project:
 - Only update project-status.yaml when progress is confirmed.
 - Never delete history or submodules.
 - Keep YAML formatting strict and clean.
-- When an Echo command is written (e.g., `// ECHO: planning`), the AI must first read the corresponding Echo Protocol file and then apply each step from the echo definition to the user's query, step by step, in the order defined in the echo.
+- To execute an Echo the AI must first read the corresponding Echo Protocol file and then apply each step from the echo definition to the user's query, step by step, in the order defined in the echo.
 
 ### Example Tasks
 

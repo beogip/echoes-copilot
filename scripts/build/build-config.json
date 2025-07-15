@@ -9,37 +9,37 @@
       "name": "diagnostic",
       "file": "diagnostic/diagnostic-technical.prs.yaml",
       "emoji": "🛠️",
-      "trigger": "diagnostic"
+      "trigger": "Bugs, unexpected behavior, or technical issues"
     },
     {
       "name": "planning",
       "file": "planning/planning-formative.prs.yaml",
       "emoji": "🧭",
-      "trigger": "planning"
+      "trigger": "Organize roadmaps, workflows"
     },
     {
       "name": "evaluation",
       "file": "evaluation/evaluation-structured.prs.yaml",
       "emoji": "🧪",
-      "trigger": "evaluation"
+      "trigger": "Assess quality or performance"
     },
     {
       "name": "optimization",
       "file": "optimization/optimization-technical.prs.yaml",
       "emoji": "⚙️",
-      "trigger": "optimization"
+      "trigger": "Improve structure or clarity"
     },
     {
       "name": "coherence",
       "file": "coherence/coherence-self-correction.prs.yaml",
       "emoji": "✅",
-      "trigger": "coherence"
+      "trigger": "Logic loops, loss of focus"
     },
     {
       "name": "prioritization",
       "file": "prioritization/prioritization-decisional.prs.yaml",
       "emoji": "🔢",
-      "trigger": "prioritization"
+      "trigger": "Multiple options to rank"
     }
   ]
 }

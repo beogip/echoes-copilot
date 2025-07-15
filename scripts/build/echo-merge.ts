@@ -6,7 +6,7 @@ import path from 'path';
 import winston from 'winston';
 import { BuildMetrics } from './metrics';
 import { EchoConfig, generateFallbackContent } from './utils';
-import { EchoData } from './validation';
+import { EchoData, validateEchoYaml } from './validation';
 
 interface BuildConfig {
   sourceDir: string;
@@ -35,7 +35,7 @@ interface ExampleData {
   description?: string;
 }
 
-function validateEchoData(echo: any, name: string): boolean {
+function validateEchoData(echo: Partial<EchoConfig & EchoData>, name: string): boolean {
   if (!echo || typeof echo !== 'object') return false;
   if (!echo.purpose && !echo.objective && !echo.steps) return false;
   return true;
@@ -48,11 +48,15 @@ function safeReadFile(filePath: string, logger: winston.Logger, buildMetrics: Bu
     return null;
   }
   try {
-    if (!fs.existsSync(filePath)) {
-      logger.warn(`File not found: ${filePath}`);
-      return null;
+    try {
+      return fs.readFileSync(filePath, 'utf8');
+    } catch (err: any) {
+      if (err.code === 'ENOENT') {
+        logger.warn(`File not found: ${filePath}`);
+        return null;
+      }
+      throw err;
     }
-    return fs.readFileSync(filePath, 'utf8');
   } catch (error: any) {
     logger.error(`Error reading file ${filePath}:`, { error: error.message });
     buildMetrics.warnings.push(`File read error: ${path.basename(filePath)}`);
@@ -60,7 +64,13 @@ function safeReadFile(filePath: string, logger: winston.Logger, buildMetrics: Bu
   }
 }
 
-function generateStepsSection(steps: StepData[], mode: string, name: string, logger: winston.Logger, buildMetrics: BuildMetrics): string {
+function generateStepsSection(
+  steps: StepData[],
+  mode: string,
+  name: string,
+  logger: winston.Logger,
+  buildMetrics: BuildMetrics
+): string {
   if (!steps || !Array.isArray(steps)) {
     logger.warn(`No valid steps found for echo: ${name}`);
     buildMetrics.warnings.push(`No steps: ${name}`);
@@ -112,7 +122,7 @@ function generateStepsSection(steps: StepData[], mode: string, name: string, log
   return markdown;
 }
 
-function generateExamplesSection(examples: (string | ExampleData)[]): string {
+function generateExamplesSection(examples: Array<string | ExampleData>): string {
   if (!examples || !Array.isArray(examples) || examples.length === 0) return '';
   let markdown = '\n## Examples\n\n';
   examples.forEach((example, index) => {
@@ -130,7 +140,12 @@ function generateExamplesSection(examples: (string | ExampleData)[]): string {
   return markdown + '\n';
 }
 
-function convertEchoToInstructionsFormat(echo: EchoData, config: EchoConfig, logger: winston.Logger, buildMetrics: BuildMetrics): string {
+function convertEchoToInstructionsFormat(
+  echo: EchoData,
+  config: EchoConfig,
+  logger: winston.Logger,
+  buildMetrics: BuildMetrics
+): string {
   if (!echo || !config || !logger || !buildMetrics) {
     if (logger) logger.error('Missing arguments in convertEchoToInstructionsFormat');
     if (buildMetrics) buildMetrics.errors.push('Missing arguments in convertEchoToInstructionsFormat');
@@ -254,9 +269,11 @@ function buildIndividualInstructions(
       try {
         const echoPath = path.join(config.echoProtocolDir, echoConfig.file);
         logger.debug(`Processing echo: ${echoConfig.name} from ${echoPath}`);
-        
         let echoData = loadYamlFile(echoPath);
-        
+        // Validate YAML after loading
+        if (echoData) {
+          validateEchoYaml(echoData, buildMetrics);
+        }
         if (!echoData) {
           logger.error(`Failed to load echo data for ${echoConfig.name}`);
           buildMetrics.errors.push(`Failed to load: ${echoConfig.name}`);
@@ -268,11 +285,11 @@ function buildIndividualInstructions(
           };
           logger.info(`Generated fallback content for ${echoConfig.name}`);
         }
-        
+        const fileName = `${echoConfig.name}.instructions.md`;
         const instructionContent = convertEchoToInstructionsFormat(echoData, echoConfig, logger, buildMetrics);
-        const outputPath = path.join(config.instructionsDir, `${echoConfig.name}.md`);
+        const outputPath = path.join(config.instructionsDir, fileName);
         fs.writeFileSync(outputPath, instructionContent, 'utf8');
-        logger.info(`✅ Generated: ${echoConfig.name}.md`);
+        logger.info(`✅ Generated: ${fileName}`);
         buildMetrics.processedFiles.push(echoConfig.name);
       } catch (echoError: any) {
         logger.error(`Error processing echo ${echoConfig.name}`, { error: echoError.message, stack: echoError.stack });
@@ -324,6 +341,10 @@ function buildInstructions(
       try {
         const echoPath = path.join(config.echoProtocolDir, echoConfig.file);
         const echoData = loadYamlFile(echoPath);
+        // Validate YAML after loading
+        if (echoData) {
+          validateEchoYaml(echoData, buildMetrics);
+        }
         if (!echoData) {
           logger.warn(`Skipping echo index entry for ${echoConfig.name} (no data)`);
           buildMetrics.warnings.push(`Index skip: ${echoConfig.name}`);
@@ -332,9 +353,9 @@ function buildInstructions(
         const purpose = echoData.purpose || echoData.objective || 'Systematic analysis and recommendations';
         const category = getEchoCategory(echoConfig.name);
         echoIndex += `\n### ${echoConfig.emoji} **${echoConfig.name}** - ${category}\n`;
-        echoIndex += `- **Trigger**: \`// ECHO: ${echoConfig.trigger}\`\n`;
+        echoIndex += `- **Trigger**: ${echoConfig.trigger}\n`;
         echoIndex += `- **Purpose**: ${purpose}\n`;
-        echoIndex += `- **File**: \`.github/instructions/${echoConfig.name}.md\`\n`;
+        echoIndex += `- **File**: \`.github/instructions/${echoConfig.name}.instructions.md\`\n`;
       } catch (indexError: any) {
         logger.error(`Error building index for ${echoConfig.name}`, { error: indexError.message });
         buildMetrics.errors.push(`Index error: ${echoConfig.name}`);

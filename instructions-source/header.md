@@ -21,7 +21,3 @@ Use natural language to invoke Echos:
 - “Apply the evaluation echo for code review”
 
 ---
-
-## 🔧 Available Echos
-
-<!-- Echos will be inserted here by build script -->
