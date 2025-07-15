@@ -17,7 +17,7 @@ param(
 # Version information for tracking and compatibility
 $Script:VERSION = "1.0.0"
 # GitHub API endpoint for downloading files from the repository
-$Script:GITHUB_REPO = "https://api.github.com/repos/beogip/echos-copilot/contents"
+$Script:GITHUB_REPO = "https://raw.githubusercontent.com/beogip/echos-copilot/main"
 # Backup directory with timestamp for version control
 $Script:BACKUP_DIR = ".github\echos-backup-$(Get-Date -Format 'yyyyMMdd-HHmmss')"
 # Target installation directory (standard GitHub directory)

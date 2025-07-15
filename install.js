@@ -12,7 +12,7 @@ const { promisify } = require('util');
 // Configuration
 const CONFIG = {
     VERSION: '1.0.0',
-    GITHUB_REPO: 'https://api.github.com/repos/beogip/echos-copilot/contents',
+    GITHUB_REPO: 'https://raw.githubusercontent.com/beogip/echos-copilot/main',
     TARGET_DIR: '.github',
     LOG_FILE: path.join(require('os').tmpdir(), 'echos-copilot-install.log'),
     USER_AGENT: 'EchosCopilotInstaller/1.0'

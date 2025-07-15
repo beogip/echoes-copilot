@@ -10,7 +10,7 @@ INSTALLER_NAMESPACE="ECHOS_INSTALLER"
 
 # Configuration (namespaced)
 declare -r ECHOS_INSTALLER_SCRIPT_VERSION="1.0.0"
-declare -r ECHOS_INSTALLER_GITHUB_REPO="https://api.github.com/repos/beogip/echos-copilot/contents"
+declare -r ECHOS_INSTALLER_GITHUB_REPO="https://raw.githubusercontent.com/beogip/echos-copilot/main"
 ECHOS_INSTALLER_BACKUP_DIR=".github/echos-backup-$(date +%Y%m%d-%H%M%S)"
 ECHOS_INSTALLER_TARGET_DIR=".github"
 declare -r ECHOS_INSTALLER_LOG_FILE="/tmp/echos-copilot-install.log"
