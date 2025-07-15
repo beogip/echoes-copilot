@@ -1,74 +1,74 @@
-- echo: 🧾 Audit Echo – Structural Mode
-  id: audit-structural
-  mode: Audit
-  purpose: >-
-    Audit the architecture of a functional system (echos, modules, flows, tools, etc.) to detect redundancies, gaps, inconsistencies, or areas for structural improvement.
+echo: 🧾 Audit Echo – Structural Mode
+id: audit-structural
+mode: Audit
+purpose: >-
+  Audit the architecture of a functional system (echos, modules, flows, tools, etc.) to detect redundancies, gaps, inconsistencies, or areas for structural improvement.
 
-  trigger: >-
-    When you want to review the overall structure of a system to assess its organization, completeness, and functional balance.
+trigger: >-
+  When you want to review the overall structure of a system to assess its organization, completeness, and functional balance.
 
-  steps:
-    - name: Structural mapping
-      goal: >-
-        List and visually or hierarchically represent all elements of the system to be audited.
-      validation:
-        - Was the complete list retrieved?
-        - Were internal relationships or hierarchies represented?
-      expected_output: Current system representation
-      input_required: true
-      input_questions:
-        - What system or set do you want to audit?
-        - Can you list the elements, modules, or components that comprise it?
+steps:
+  - name: Structural mapping
+    goal: >-
+      List and visually or hierarchically represent all elements of the system to be audited.
+    validation:
+      - Was the complete list retrieved?
+      - Were internal relationships or hierarchies represented?
+    expected_output: Current system representation
+    input_required: true
+    input_questions:
+      - What system or set do you want to audit?
+      - Can you list the elements, modules, or components that comprise it?
 
-    - name: Functional classification
-      goal: >-
-        Group the elements by domains or categories according to their function, purpose, or type of reasoning.
-      validation:
-        - Does each group have a clear functional criterion?
-        - Were all elements assigned?
-      expected_output: Functional classification of all elements
-      input_required: false
+  - name: Functional classification
+    goal: >-
+      Group the elements by domains or categories according to their function, purpose, or type of reasoning.
+    validation:
+      - Does each group have a clear functional criterion?
+      - Were all elements assigned?
+    expected_output: Functional classification of all elements
+    input_required: false
 
-    - name: Redundancy and inconsistency detection
-      goal: >-
-        Detect repeated, unnecessary, or contradictory elements, and identify inconsistencies or overlaps.
-      validation:
-        - Are redundancies or contradictions clearly listed?
-        - Are the causes or risks of each detected?
-      expected_output: List of redundancies and inconsistencies
-      input_required: false
+  - name: Redundancy and inconsistency detection
+    goal: >-
+      Detect repeated, unnecessary, or contradictory elements, and identify inconsistencies or overlaps.
+    validation:
+      - Are redundancies or contradictions clearly listed?
+      - Are the causes or risks of each detected?
+    expected_output: List of redundancies and inconsistencies
+    input_required: false
 
-    - name: Gap detection
-      goal: >-
-        Identify missing, incomplete, or underdeveloped areas in the system.
-      validation:
-        - Are all gaps or missing functions described?
-        - Are their impacts or risks explained?
-      expected_output: List of detected gaps
-      input_required: optional
-      input_questions:
-        - Is there anything missing that you would like to see covered in this system?
-        - Is there any function you expected but is not present?
+  - name: Gap detection
+    goal: >-
+      Identify missing, incomplete, or underdeveloped areas in the system.
+    validation:
+      - Are all gaps or missing functions described?
+      - Are their impacts or risks explained?
+    expected_output: List of detected gaps
+    input_required: optional
+    input_questions:
+      - Is there anything missing that you would like to see covered in this system?
+      - Is there any function you expected but is not present?
 
-    - name: Structural improvement proposal
-      goal: >-
-        Integrate all findings into a proposal for reorganization, expansion, or adjustment.
-      validation:
-        - Is the proposal justified by the previous audit?
-        - Is it clear, viable, and aligned with the system's objectives?
-      expected_output: Structured improvement plan (with comparative map if applicable)
-      input_required: true
-      input_questions:
-        - Do you want to reorganize, remove, or create new elements?
-        - Which structural improvements do you find most useful?
+  - name: Structural improvement proposal
+    goal: >-
+      Integrate all findings into a proposal for reorganization, expansion, or adjustment.
+    validation:
+      - Is the proposal justified by the previous audit?
+      - Is it clear, viable, and aligned with the system's objectives?
+    expected_output: Structured improvement plan (with comparative map if applicable)
+    input_required: true
+    input_questions:
+      - Do you want to reorganize, remove, or create new elements?
+      - Which structural improvements do you find most useful?
 
-  output_format: >-
-    Current system representation + functional classification + list of redundancies + detected gaps + structural improvement proposal.
+output_format: >-
+  Current system representation + functional classification + list of redundancies + detected gaps + structural improvement proposal.
 
-  notes: |-
-    This echo acts as an architectural review. Ideal for thought ecosystems, conceptual collections, or functional tools.
+notes: |-
+  This echo acts as an architectural review. Ideal for thought ecosystems, conceptual collections, or functional tools.
 
-    Suggested combinations:
-    - 🧭 Coherence → To validate the purpose of each part
-    - 🧪 Evaluation → To analyze the quality of each component
-    - ⚙️ Optimization → To improve individual elements before reorganizing
+  Suggested combinations:
+  - 🧭 Coherence → To validate the purpose of each part
+  - 🧪 Evaluation → To analyze the quality of each component
+  - ⚙️ Optimization → To improve individual elements before reorganizing
