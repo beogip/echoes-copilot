@@ -1,27 +1,33 @@
 # 🧠🤖 Echos + Copilot Template
 
-A template for integrating the **Echo Protocol** with **GitHub Copilot**, creating a programming assistant that uses structured reasoning patterns to solve software development problems.
-
-> **⚠️ IMPORTANT NOTE**: This project demonstrates both correct AND incorrect echo usage. The files `ai-assistant/planning/M1-M6` initially contained echo labels without following systematic steps (wrong approach). The file `M1-build-system-diagnostic.md` has been corrected to show proper echo execution. This serves as a learning example of the difference between echo labels vs. actual echo reasoning.
+A template for integrating the **Echo Protocol** with **GitHub Copilot**, creating a programming assistant that uses structured reasoning patterns to solve software development problems through intelligent chat interaction.
 
 ## 🎯 What is this template?
 
-This repository combines two powerful technologies:
+This repository enhances GitHub Copilot with structured reasoning capabilities:
 
-- **Echo Protocol**: Modular functional reasoning architecture for structuring cognitive processes
-- **GitHub Copilot**: AI assistant for programming
+- **Echo Protocol**: Modular reasoning patterns for systematic problem-solving
+- **GitHub Copilot Integration**: Seamless activation through chat or automatic detection
+- **Intelligent Reasoning**: AI that follows validated cognitive patterns for software development
 
-The result is an assistant that not only generates code, but **reasons in a structured way** about development problems, following validated cognitive patterns.
+The result is an enhanced Copilot that not only generates code, but **reasons systematically** about development problems, automatically applying the most appropriate reasoning pattern for your specific context.
 
 ## 🧠 What are Echos?
 
-**Thought Echos** are structured cognitive units that define specific reasoning processes:
+**Thought Echos** are structured cognitive units that define specific reasoning processes for GitHub Copilot:
 
-- **Functional units** with defined purpose, trigger, steps, and output
-- **Reusable** across different contexts and projects
-- **Auditable** with explicit and traceable steps
-- **Modular** that can be combined into complex flows
-- **Agent-agnostic** (executable by humans, AIs, or hybrids)
+- **Structured reasoning patterns** that guide AI analysis and problem-solving
+- **Automatic activation** when appropriate context is detected
+- **Manual invocation** through direct chat requests
+- **Auditable processes** with explicit and traceable steps
+- **Modular design** that can be combined for complex workflows
+
+### How Echos Work with GitHub Copilot
+
+1. **Automatic Detection**: Copilot analyzes your questions and code context to determine when to apply specific Echo patterns
+2. **Manual Activation**: You can explicitly request an Echo (e.g., "Run the diagnostic echo on this error")
+3. **Structured Output**: Each Echo follows a systematic approach with defined steps and validation criteria
+4. **Contextual Adaptation**: Echos adapt their analysis to your specific programming language, framework, and problem domain
 
 ### Echo Types for Development
 
@@ -57,37 +63,40 @@ curl -sSL https://raw.githubusercontent.com/beogip/echos-copilot/main/install.js
 
 > 📋 **Need detailed installation instructions?** See the [Installation Guide](INSTALLATION-GUIDE.md) for comprehensive setup options, troubleshooting, and advanced configuration.
 
-### 2. Start using echos in your code
+### 2. Start using Echos with GitHub Copilot
 
-Once installed, activate echos using special comments:
+Once installed, GitHub Copilot will automatically load the Echo instructions. You can activate Echos in two ways:
 
-```javascript
-// ECHO: diagnostic
-// Need to understand why this function fails with large arrays
+#### **Direct Chat Activation (Recommended)**
+Ask GitHub Copilot to use a specific Echo directly in your conversation:
 
-function processLargeArray(data) {
-  // Current code...
-}
+```
+"Run the diagnostic echo to analyze this performance issue"
+"Execute the planning echo for implementing user authentication"
+"Apply the evaluation echo to review this API design"
 ```
 
-```python
-# ECHO: planning
-# Want to refactor this module for better maintainability
+#### **AI-Driven Activation (Automatic)**
+GitHub Copilot will automatically choose and execute the appropriate Echo based on your question or code context:
 
-class DataProcessor:
-    # Current code...
+```
+"This function is running slowly, help me understand why"
+→ Copilot automatically applies the diagnostic echo
+
+"I need to refactor this module safely"  
+→ Copilot automatically applies the planning + optimization echos
 ```
 
-### 3. Available echo patterns
+### 3. Available Echo patterns
 
-| Command                   | Description                |
-| ------------------------- | -------------------------- |
-| `// ECHO: diagnostic`     | Analyze and debug problems |
-| `// ECHO: planning`       | Create structured plans    |
-| `// ECHO: evaluation`     | Review code and proposals  |
-| `// ECHO: optimization`   | Improve efficiency         |
-| `// ECHO: coherence`      | Verify consistency         |
-| `// ECHO: prioritization` | Rank tasks and features    |
+| Echo Type             | Purpose                    | Example Usage                           |
+| --------------------- | -------------------------- | --------------------------------------- |
+| **Diagnostic**        | Analyze and debug problems | "Run diagnostic echo on this error"    |
+| **Planning**          | Create structured plans    | "Use planning echo for this feature"   |
+| **Evaluation**        | Review code and proposals  | "Apply evaluation echo to this code"   |
+| **Optimization**      | Improve efficiency         | "Execute optimization echo here"       |
+| **Coherence**         | Verify consistency         | "Run coherence echo on this module"    |
+| **Prioritization**    | Rank tasks and features    | "Use prioritization echo for backlog"  |
 
 ## 📁 Project Architecture
 
@@ -190,34 +199,46 @@ npx ts-node scripts/validate-prs-yaml.ts echos-sources/creativity/creativity-div
 
 ### Bug diagnosis
 
-```javascript
-// ECHO: diagnostic
-// Login fails intermittently in production
+**Your request:**
+> "This login function fails intermittently in production. Run the diagnostic echo to help me understand why."
 
+**Copilot with Diagnostic Echo will:**
+1. Isolate the intermittent failure pattern
+2. Collect symptoms (timing, frequency, user patterns)  
+3. Form technical hypotheses (token timing, race conditions, etc.)
+4. Prioritize most likely causes
+5. Propose specific tests to verify
+
+```javascript
 async function authenticateUser(credentials) {
-  // Copilot will analyze the problem following:
-  // 1. Problem isolation
-  // 2. Symptom collection
-  // 3. Technical hypothesis
-  // 4. Hypothesis prioritization
-  // 5. Test proposal
+  // Copilot provides structured analysis of potential issues:
+  // - Race conditions in token validation
+  // - Database connection timeouts
+  // - Network latency patterns
+  // With specific testing recommendations
 }
 ```
 
 ### Feature planning
 
-```python
-# ECHO: planning
-# Implement distributed cache system
+**Your request:**
+> "I need to implement a distributed cache system. Use the planning echo to structure this."
 
+**Copilot with Planning Echo will:**
+1. Clarify objectives (performance targets, scalability requirements)
+2. Analyze current context and constraints
+3. Diagnose current state (existing session management)
+4. Detect obstacles (consistency, network partitions)  
+5. Define execution modules (cache layer, invalidation, monitoring)
+6. Create progress tracking (metrics, validation points)
+
+```python
 class CacheManager:
-    # Copilot will create a plan including:
-    # 1. Clear objectives
-    # 2. Context and constraints
-    # 3. Current state diagnosis
-    # 4. Obstacle detection
-    # 5. Execution modules
-    # 6. Tracking system
+    # Copilot provides structured implementation plan:
+    # - Module breakdown with dependencies
+    # - Performance benchmarks and validation
+    # - Risk mitigation strategies
+    # - Testing and rollout approach
 ```
 
 ## 🤝 Contributing
