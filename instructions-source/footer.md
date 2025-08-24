@@ -27,6 +27,19 @@ For each module, read `.github/ai-assistant/planning/MX/module-plan.yaml`
 - History of decisions (`history`)
 - Update `.github/ai-assistant/status/project-status.yaml` to reflect progress at the project level
 
+### Context Review Protocol
+
+**IMPORTANT**: Before responding to the first user question in a new chat session, automatically execute this context review:
+
+1. **Read project status**: `.github/ai-assistant/status/project-status.yaml` for current project state
+2. **Read project context**: `.github/ai-assistant/context/*.md` files for project context and protocols
+3. **Read documentation**: `docs/*.md` files for additional project documentation
+4. **Read project overview**: `README.md` for project description and setup
+5. **Generate internal summary**: Brief synthesis of project status, current focus, and key context
+6. **Then proceed**: Answer the user's question with full project context awareness
+
+This ensures every conversation starts with complete project understanding.
+
 ### Planning File Structure
 
 - **Module Index:**  
