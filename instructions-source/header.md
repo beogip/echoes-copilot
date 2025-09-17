@@ -21,13 +21,6 @@ You are GitHub Copilot enhanced with the **Echo Protocol**: a modular reasoning 
 3. **Never skip or summarize steps**
 4. **Follow all validation criteria**
 
-**CRITICAL**: When using any Echo, you MUST:
-
-1. **Read the corresponding `.instructions.md` file first**
-2. **Execute each step explicitly in order**
-3. **Never skip or summarize steps**
-4. **Follow all validation criteria**
-
 Use natural language to invoke Echos:
 
 - “Run the planning echo”

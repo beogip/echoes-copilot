@@ -315,8 +315,8 @@ async function installInstructionsMode(targetDir, dryRun) {
         'planning.prompt.md',
         'evaluation.prompt.md',
         'optimization.prompt.md',
-        'coherence.instructions.md',
-        'prioritization.instructions.md'
+        'coherence.prompt.md',
+        'prioritization.prompt.md'
     ];
     let successCount = 0;
     for (const file of instructionFiles) {
@@ -378,7 +378,7 @@ async function validateInstallation(mode, targetDir, dryRun) {
         try {
             await fs.access(instructionsDir);
             const files = await fs.readdir(instructionsDir);
-            const instructionFiles = files.filter(f => f.endsWith('.instructions.md'));
+            const instructionFiles = files.filter(f => f.endsWith('.prompt.md'));
             if (instructionFiles.length < 6) {
                 printError(`Missing instruction files (found ${instructionFiles.length}, expected 6)`);
                 valid = false;

@@ -245,18 +245,18 @@ install_instructions() {
     
     # List of instruction files to download
     local files=(
-        "diagnostic.instructions.md"
-        "planning.instructions.md"
-        "evaluation.instructions.md"
-        "optimization.instructions.md"
-        "coherence.instructions.md"
-        "prioritization.instructions.md"
+        "diagnostic.prompt.md"
+        "planning.prompt.md"
+        "evaluation.prompt.md"
+        "optimization.prompt.md"
+        "coherence.prompt.md"
+        "prioritization.prompt.md"
     )
     
     local failed_downloads=()
     
     for file in "${files[@]}"; do
-        local url="${ECHOS_INSTALLER_GITHUB_REPO}/.github/instructions/${file}"
+        local url="${ECHOS_INSTALLER_GITHUB_REPO}/.github/prompts/${file}"
         local output="$instructions_dir/$file"
         
         installer_print_info "Downloading $file..."
@@ -309,7 +309,7 @@ validate_installation() {
             return 1
         fi
         
-        local file_count=$(find "$instructions_dir" -name "*.instructions.md" | wc -l)
+        local file_count=$(find "$instructions_dir" -name "*.prompt.md" | wc -l)
         if [[ $file_count -lt 6 ]]; then
             installer_print_error "Expected 6 instruction files, found $file_count"
             return 1

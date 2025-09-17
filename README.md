@@ -68,6 +68,7 @@ curl -sSL https://raw.githubusercontent.com/beogip/echos-copilot/main/install.js
 Once installed, GitHub Copilot will automatically load the Echo instructions. You can activate Echos in two ways:
 
 #### **Direct Chat Activation (Recommended)**
+
 Ask GitHub Copilot to use a specific Echo directly in your conversation:
 
 ```
@@ -77,26 +78,27 @@ Ask GitHub Copilot to use a specific Echo directly in your conversation:
 ```
 
 #### **AI-Driven Activation (Automatic)**
+
 GitHub Copilot will automatically choose and execute the appropriate Echo based on your question or code context:
 
 ```
 "This function is running slowly, help me understand why"
 → Copilot automatically applies the diagnostic echo
 
-"I need to refactor this module safely"  
+"I need to refactor this module safely"
 → Copilot automatically applies the planning + optimization echos
 ```
 
 ### 3. Available Echo patterns
 
-| Echo Type             | Purpose                    | Example Usage                           |
-| --------------------- | -------------------------- | --------------------------------------- |
-| **Diagnostic**        | Analyze and debug problems | "Run diagnostic echo on this error"    |
-| **Planning**          | Create structured plans    | "Use planning echo for this feature"   |
-| **Evaluation**        | Review code and proposals  | "Apply evaluation echo to this code"   |
-| **Optimization**      | Improve efficiency         | "Execute optimization echo here"       |
-| **Coherence**         | Verify consistency         | "Run coherence echo on this module"    |
-| **Prioritization**    | Rank tasks and features    | "Use prioritization echo for backlog"  |
+| Echo Type          | Purpose                    | Example Usage                         |
+| ------------------ | -------------------------- | ------------------------------------- |
+| **Diagnostic**     | Analyze and debug problems | "Run diagnostic echo on this error"   |
+| **Planning**       | Create structured plans    | "Use planning echo for this feature"  |
+| **Evaluation**     | Review code and proposals  | "Apply evaluation echo to this code"  |
+| **Optimization**   | Improve efficiency         | "Execute optimization echo here"      |
+| **Coherence**      | Verify consistency         | "Run coherence echo on this module"   |
+| **Prioritization** | Rank tasks and features    | "Use prioritization echo for backlog" |
 
 ## 📁 Project Architecture
 
@@ -200,11 +202,13 @@ npx ts-node scripts/validate-prs-yaml.ts echos-sources/creativity/creativity-div
 ### Bug diagnosis
 
 **Your request:**
+
 > "This login function fails intermittently in production. Run the diagnostic echo to help me understand why."
 
 **Copilot with Diagnostic Echo will:**
+
 1. Isolate the intermittent failure pattern
-2. Collect symptoms (timing, frequency, user patterns)  
+2. Collect symptoms (timing, frequency, user patterns)
 3. Form technical hypotheses (token timing, race conditions, etc.)
 4. Prioritize most likely causes
 5. Propose specific tests to verify
@@ -222,13 +226,15 @@ async function authenticateUser(credentials) {
 ### Feature planning
 
 **Your request:**
+
 > "I need to implement a distributed cache system. Use the planning echo to structure this."
 
 **Copilot with Planning Echo will:**
+
 1. Clarify objectives (performance targets, scalability requirements)
 2. Analyze current context and constraints
 3. Diagnose current state (existing session management)
-4. Detect obstacles (consistency, network partitions)  
+4. Detect obstacles (consistency, network partitions)
 5. Define execution modules (cache layer, invalidation, monitoring)
 6. Create progress tracking (metrics, validation points)
 
