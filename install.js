@@ -89,7 +89,7 @@ Usage:
 
 OPTIONS:
     --mode <mode>       Installation mode (default: instructions)
-                        • instructions - Install individual .instructions.md files
+                        • prompts - Install individual .prompt.md files
                         • comprehensive - Install single copilot-instructions.md
     --target <dir>      Target directory for installation (default: .github)
     --force             Force installation, overwrite existing files
@@ -237,7 +237,7 @@ async function backupExistingFiles(targetDir, dryRun) {
             }
             const files = await fs.readdir(instructionsDir);
             for (const file of files) {
-                if (file.endsWith('.instructions.md')) {
+                if (file.endsWith('.prompt.md')) {
                     if (dryRun) {
                         printInfo(`[dry-run] Would copy ${path.join(instructionsDir, file)} to ${path.join(backupInstructionsDir, file)}`);
                     } else {
@@ -311,16 +311,16 @@ async function installInstructionsMode(targetDir, dryRun) {
         await fs.mkdir(instructionsDir, { recursive: true });
     }
     const instructionFiles = [
-        'diagnostic.instructions.md',
-        'planning.instructions.md',
-        'evaluation.instructions.md',
-        'optimization.instructions.md',
+        'diagnostic.prompt.md',
+        'planning.prompt.md',
+        'evaluation.prompt.md',
+        'optimization.prompt.md',
         'coherence.instructions.md',
         'prioritization.instructions.md'
     ];
     let successCount = 0;
     for (const file of instructionFiles) {
-        const sourcePath = `.github/instructions/${file}`;
+        const sourcePath = `.github/prompts/${file}`;
         const targetPath = path.join(instructionsDir, file);
         if (dryRun) {
             printInfo(`[dry-run] Would download ${sourcePath} to ${targetPath}`);

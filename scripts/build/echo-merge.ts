@@ -285,7 +285,7 @@ function buildIndividualInstructions(
           };
           logger.info(`Generated fallback content for ${echoConfig.name}`);
         }
-        const fileName = `${echoConfig.name}.instructions.md`;
+        const fileName = `${echoConfig.name}.prompt.md`;
         const instructionContent = convertEchoToInstructionsFormat(echoData, echoConfig, logger, buildMetrics);
         const outputPath = path.join(config.instructionsDir, fileName);
         fs.writeFileSync(outputPath, instructionContent, 'utf8');
@@ -355,7 +355,7 @@ function buildInstructions(
         echoIndex += `\n### ${echoConfig.emoji} **${echoConfig.name}** - ${category}\n`;
         echoIndex += `- **Trigger**: ${echoConfig.trigger}\n`;
         echoIndex += `- **Purpose**: ${purpose}\n`;
-        echoIndex += `- **File**: \`.github/instructions/${echoConfig.name}.instructions.md\`\n`;
+        echoIndex += `- **File**: \`.github/prompts/${echoConfig.name}.prompt.md\`\n`;
       } catch (indexError: any) {
         logger.error(`Error building index for ${echoConfig.name}`, { error: indexError.message });
         buildMetrics.errors.push(`Index error: ${echoConfig.name}`);

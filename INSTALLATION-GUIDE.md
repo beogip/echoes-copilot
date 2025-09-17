@@ -82,7 +82,7 @@ For full control over the installation process:
 
    ```bash
    # For individual instructions mode
-   cp -r .github/instructions/ /path/to/your/project/.github/
+   cp -r .github/prompts/ /path/to/your/project/.github/
 
    # OR for comprehensive mode
    cp .github/copilot-instructions.md /path/to/your/project/.github/
@@ -102,7 +102,7 @@ Creates individual `.instructions.md` files that GitHub Copilot loads automatica
 
 **Files created:**
 
-- `.github/instructions/coherence.instructions.md`
+- `.github/prompts/coherence.prompt.md`
 - `.github/instructions/diagnostic.instructions.md`
 - `.github/instructions/evaluation.instructions.md`
 - `.github/instructions/optimization.instructions.md`

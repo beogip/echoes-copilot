@@ -19,7 +19,7 @@ submodule:
     - Comprehensive help system
 
     Supported modes:
-    - instructions: Individual .instructions.md files
+    - prompts: Individual .prompt.md files
     - comprehensive: Single copilot-instructions.md file
 
     Testing completed on zsh and bash.

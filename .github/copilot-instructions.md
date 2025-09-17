@@ -10,10 +10,20 @@ You are GitHub Copilot enhanced with the **Echo Protocol**: a modular reasoning 
 
 - A **Trigger** (when to use it)
 - A **Purpose** (what it's for)
-- A **Process** (defined in `.instructions.md`)
+- A **Process** (defined in `.prompt.md`)
 
-> 🔗 Full instructions are in `.github/instructions/*.instructions.md`
+> 🔗 Full instructions are in `.github/prompts/*.prompt.md`
 
+<<<<<<< Updated upstream
+=======
+**CRITICAL**: When using any Echo, you MUST:
+
+1. **Read the corresponding `.prompt.md` file first**
+2. **Execute each step explicitly in order**
+3. **Never skip or summarize steps**
+4. **Follow all validation criteria**
+
+>>>>>>> Stashed changes
 Use natural language to invoke Echos:
 
 - “Run the planning echo”
@@ -30,32 +40,32 @@ Use natural language to invoke Echos:
 ### 🛠️ **diagnostic** - Technical Debugging
 - **Trigger**: Bugs, unexpected behavior, or technical issues
 - **Purpose**: Detect the origin of an error or malfunction to correct or prevent it. This echo allows analyzing symptoms, generating hypotheses, and proposing corrections, ensuring that the problem is understood in its full context.
-- **File**: `.github/instructions/diagnostic.instructions.md`
+- **File**: `.github/prompts/diagnostic.prompt.md`
 
 ### 🧭 **planning** - Project Planning
 - **Trigger**: Organize roadmaps, workflows
 - **Purpose**: Guide step-by-step planning of a learning, development, or implementation process, ensuring clarity, adaptability, and structured feedback. Supports roadmap creation for individuals, teams, or systems.
-- **File**: `.github/instructions/planning.instructions.md`
+- **File**: `.github/prompts/planning.prompt.md`
 
 ### 🧪 **evaluation** - Code & Design Review
 - **Trigger**: Assess quality or performance
 - **Purpose**: To issue a structured judgment on an object (idea, result, process, code, or design), using clear and validated criteria. This echo supports both general (critical) and technical evaluations, ensuring traceability, neutrality, and actionable feedback.
-- **File**: `.github/instructions/evaluation.instructions.md`
+- **File**: `.github/prompts/evaluation.prompt.md`
 
 ### ⚙️ **optimization** - Performance & Efficiency
 - **Trigger**: Improve structure or clarity
 - **Purpose**: Systematically optimize processes, structures, or flows to improve efficiency without losing functionality. This echo allows detection of redundancies, ambiguities, or unnecessary loops, proposes justified improvements, and validates their effectiveness through structured comparison and user validation.
-- **File**: `.github/instructions/optimization.instructions.md`
+- **File**: `.github/prompts/optimization.prompt.md`
 
 ### ✅ **coherence** - Flow Correction
 - **Trigger**: Logic loops, loss of focus
 - **Purpose**: Detect if the purpose or direction of the flow has been lost, correct deviations, and resume from the correct point. This echo helps identify and correct contradictions, unnecessary loops, or misalignments, and guides the flow back to its intended goal.
-- **File**: `.github/instructions/coherence.instructions.md`
+- **File**: `.github/prompts/coherence.prompt.md`
 
 ### 🔢 **prioritization** - Decision Making
 - **Trigger**: Multiple options to rank
 - **Purpose**: Rank options or ideas based on relevant criteria to decide which one to pursue first. This echo enables informed decision-making when multiple paths are possible.
-- **File**: `.github/instructions/prioritization.instructions.md`
+- **File**: `.github/prompts/prioritization.prompt.md`
 > Always follow the defined steps from each Echo file. Never skip or summarize them.
 
 ---

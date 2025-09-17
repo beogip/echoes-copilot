@@ -257,7 +257,7 @@ function Install-InstructionsMode {
     
     $successCount = 0
     foreach ($file in $instructionFiles) {
-        $sourcePath = ".github/instructions/$file"
+        $sourcePath = ".github/prompts/$file"
         $targetPath = "$instructionsDir\$file"
         
         if (Get-FileFromGitHub -FilePath $sourcePath -OutputPath $targetPath) {

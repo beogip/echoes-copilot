@@ -2,7 +2,7 @@
   "sourceDir": "../../instructions-source",
   "outputFile": "copilot-instructions.md",
   "outputDir": "../../.github",
-  "instructionsDir": "../../.github/instructions",
+  "instructionsDir": "../../.github/prompts",
   "echoProtocolDir": "../../echos-sources",
   "echos": [
     {

@@ -265,7 +265,7 @@ validate_installation() {
     
     if [[ "$INSTALL_MODE" == "instructions" ]]; then
         if [[ -d "$target_github/instructions" ]]; then
-            local file_count=$(find "$target_github/instructions" -name "*.instructions.md" | wc -l)
+            local file_count=$(find "$target_github/prompts" -name "*.prompt.md" | wc -l)
             if [[ $file_count -gt 0 ]]; then
                 print_success "Installation validated: $file_count instruction files found"
                 return 0
@@ -319,7 +319,7 @@ EOF
     if [[ "$VERBOSE" == true ]]; then
         print_info "Listing installed files:"
         if [[ "$INSTALL_MODE" == "instructions" ]]; then
-            ls -la "$TARGET_PROJECT_DIR/.github/instructions/"
+            ls -la "$TARGET_PROJECT_DIR/.github/prompts/"
         else
             ls -la "$TARGET_PROJECT_DIR/.github/copilot-instructions.md"
         fi
