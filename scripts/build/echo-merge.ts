@@ -364,7 +364,8 @@ function buildInstructions(
         echoIndex += `\n### ${echoConfig.emoji} **${echoConfig.name}** - ${category}\n`;
         echoIndex += `- **Trigger**: ${echoConfig.trigger}\n`;
         echoIndex += `- **Purpose**: ${purpose}\n`;
-        echoIndex += `- **File**: \`${echoConstants?.getEchoFilePath(echoConfig.name) || `.github/prompts/${echoConfig.name}.prompt.md`}\`\n`;
+        const echoNameSafe = (typeof echoConfig.name === 'string' && echoConfig.name.trim().length > 0) ? echoConfig.name : 'unknown';
+        echoIndex += `- **File**: \`${echoConstants?.getEchoFilePath(echoNameSafe) || `.github/prompts/${echoNameSafe}.prompt.md`}\`\n`;
       } catch (indexError: any) {
         logger.error(`Error building index for ${echoConfig.name}`, { error: indexError.message });
         buildMetrics.errors.push(`Index error: ${echoConfig.name}`);
