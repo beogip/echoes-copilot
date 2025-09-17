@@ -122,8 +122,8 @@ teardown() {
 
 @test "install.sh creates backup directory when .github exists" {
     # Create mock .github directory
-    mkdir -p .github/instructions
-    echo "test content" > .github/instructions/test.md
+    mkdir -p .github/prompts
+    echo "test content" > .github/prompts/test.md
     
     # Mock network call to prevent actual download, provide 'y' to continue
     run bash -c 'echo "y" | timeout 5 bash '"$INSTALL_SCRIPT"' --mode instructions'
