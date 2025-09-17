@@ -243,20 +243,19 @@ install_instructions() {
     fi
     mkdir -p "$instructions_dir"
     
-    # List of instruction files to download
-    local files=(
-        "diagnostic.prompt.md"
-        "planning.prompt.md"
-        "evaluation.prompt.md"
-        "optimization.prompt.md"
-        "coherence.prompt.md"
-        "prioritization.prompt.md"
-    )
+    # Load echo configuration
+    source "$(dirname "$0")/config/load-config.sh"
+    load_echo_config
+    
+    # Get list of instruction files from configuration
+    local files
+    read -ra files <<< "$(get_echo_files)"
+    local prompts_dir="$(get_prompts_dir)"
     
     local failed_downloads=()
     
     for file in "${files[@]}"; do
-        local url="${ECHOS_INSTALLER_GITHUB_REPO}/.github/prompts/${file}"
+        local url="${ECHOS_INSTALLER_GITHUB_REPO}/$prompts_dir/${file}"
         local output="$instructions_dir/$file"
         
         installer_print_info "Downloading $file..."
@@ -308,8 +307,11 @@ validate_installation() {
             installer_print_error "Instructions directory not found"
             return 1
         fi
+        # Load configuration for validation
+        source "$(dirname "$0")/config/load-config.sh"
+        local file_extension="$(get_file_extension)"
         
-        local file_count=$(find "$instructions_dir" -name "*.prompt.md" | wc -l)
+        local file_count=$(find "$instructions_dir" -name "*${file_extension}" | wc -l)
         if [[ $file_count -lt 6 ]]; then
             installer_print_error "Expected 6 instruction files, found $file_count"
             return 1

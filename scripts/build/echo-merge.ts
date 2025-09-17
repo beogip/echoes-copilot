@@ -8,6 +8,15 @@ import { BuildMetrics } from './metrics';
 import { EchoConfig, generateFallbackContent } from './utils';
 import { EchoData, validateEchoYaml } from './validation';
 
+// Load centralized configuration
+const EchoConstants = require('../../config/config-loader.js');
+let echoConstants: any;
+try {
+  echoConstants = new EchoConstants();
+} catch (error) {
+  console.error('Warning: Could not load echo configuration in build');
+  echoConstants = null;
+}
 interface BuildConfig {
   sourceDir: string;
   outputFile: string;
@@ -285,7 +294,7 @@ function buildIndividualInstructions(
           };
           logger.info(`Generated fallback content for ${echoConfig.name}`);
         }
-        const fileName = `${echoConfig.name}.prompt.md`;
+        const fileName = `${echoConfig.name}${echoConstants?.getFileExtension() || '.prompt.md'}`;
         const instructionContent = convertEchoToInstructionsFormat(echoData, echoConfig, logger, buildMetrics);
         const outputPath = path.join(config.instructionsDir, fileName);
         fs.writeFileSync(outputPath, instructionContent, 'utf8');
@@ -355,7 +364,7 @@ function buildInstructions(
         echoIndex += `\n### ${echoConfig.emoji} **${echoConfig.name}** - ${category}\n`;
         echoIndex += `- **Trigger**: ${echoConfig.trigger}\n`;
         echoIndex += `- **Purpose**: ${purpose}\n`;
-        echoIndex += `- **File**: \`.github/prompts/${echoConfig.name}.prompt.md\`\n`;
+        echoIndex += `- **File**: \`${echoConstants?.getEchoFilePath(echoConfig.name) || `.github/prompts/${echoConfig.name}.prompt.md`}\`\n`;
       } catch (indexError: any) {
         logger.error(`Error building index for ${echoConfig.name}`, { error: indexError.message });
         buildMetrics.errors.push(`Index error: ${echoConfig.name}`);
