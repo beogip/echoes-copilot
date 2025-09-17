@@ -10,6 +10,15 @@ const https = require('https');
 const { promisify } = require('util');
 
 // Configuration
+const EchoConfig = require('./config/config-loader.js');
+let echoConfig;
+try {
+    echoConfig = new EchoConfig();
+} catch (error) {
+    console.error('Warning: Could not load echo configuration, using defaults');
+    echoConfig = null;
+}
+
 const CONFIG = {
     VERSION: '1.0.0',
     GITHUB_REPO: 'https://raw.githubusercontent.com/beogip/echos-copilot/main',
@@ -89,7 +98,7 @@ Usage:
 
 OPTIONS:
     --mode <mode>       Installation mode (default: instructions)
-                        • instructions - Install individual .instructions.md files
+                        • prompts - Install individual ${echoConfig?.getFileExtension() || '.prompt.md'} files
                         • comprehensive - Install single copilot-instructions.md
     --target <dir>      Target directory for installation (default: .github)
     --force             Force installation, overwrite existing files
@@ -237,7 +246,7 @@ async function backupExistingFiles(targetDir, dryRun) {
             }
             const files = await fs.readdir(instructionsDir);
             for (const file of files) {
-                if (file.endsWith('.instructions.md')) {
+                if (file.endsWith(echoConfig?.getFileExtension() || '.prompt.md')) {
                     if (dryRun) {
                         printInfo(`[dry-run] Would copy ${path.join(instructionsDir, file)} to ${path.join(backupInstructionsDir, file)}`);
                     } else {
@@ -310,17 +319,15 @@ async function installInstructionsMode(targetDir, dryRun) {
     } else {
         await fs.mkdir(instructionsDir, { recursive: true });
     }
-    const instructionFiles = [
-        'diagnostic.instructions.md',
-        'planning.instructions.md',
-        'evaluation.instructions.md',
-        'optimization.instructions.md',
-        'coherence.instructions.md',
-        'prioritization.instructions.md'
+    
+    // Use global echo configuration
+    const instructionFiles = echoConfig?.getEchoFiles() || [
+        'diagnostic.prompt.md', 'planning.prompt.md', 'evaluation.prompt.md',
+        'optimization.prompt.md', 'coherence.prompt.md', 'prioritization.prompt.md'
     ];
     let successCount = 0;
     for (const file of instructionFiles) {
-        const sourcePath = `.github/instructions/${file}`;
+        const sourcePath = `${echoConfig?.getPromptsDir() || '.github/prompts'}/${file}`;
         const targetPath = path.join(instructionsDir, file);
         if (dryRun) {
             printInfo(`[dry-run] Would download ${sourcePath} to ${targetPath}`);
@@ -378,7 +385,7 @@ async function validateInstallation(mode, targetDir, dryRun) {
         try {
             await fs.access(instructionsDir);
             const files = await fs.readdir(instructionsDir);
-            const instructionFiles = files.filter(f => f.endsWith('.instructions.md'));
+            const instructionFiles = files.filter(f => f.endsWith(echoConfig?.getFileExtension() || '.prompt.md'));
             if (instructionFiles.length < 6) {
                 printError(`Missing instruction files (found ${instructionFiles.length}, expected 6)`);
                 valid = false;

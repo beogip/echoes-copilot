@@ -94,7 +94,7 @@ USAGE:
 
 OPTIONS:
     -Mode <mode>        Installation mode (default: instructions)
-                        • instructions - Install individual .instructions.md files
+                        • instructions - Install individual .prompt.md files
                         • comprehensive - Install single copilot-instructions.md
 
     -Force              Force installation, overwrite existing files
@@ -178,7 +178,7 @@ function Backup-ExistingFiles {
         
         if (Test-Path "$Script:TARGET_DIR\instructions") {
             Copy-Item "$Script:TARGET_DIR\instructions" "$Script:BACKUP_DIR\instructions" -Recurse -Force
-            $instructionFiles = (Get-ChildItem "$Script:TARGET_DIR\instructions" -Filter "*.instructions.md").Count
+            $instructionFiles = (Get-ChildItem "$Script:TARGET_DIR\instructions" -Filter "*.prompt.md").Count
             $filesCopied += $instructionFiles
         }
         
@@ -247,17 +247,17 @@ function Install-InstructionsMode {
     
     # List of instruction files to download
     $instructionFiles = @(
-        "diagnostic.instructions.md",
-        "planning.instructions.md",
-        "evaluation.instructions.md",
-        "optimization.instructions.md",
-        "coherence.instructions.md",
-        "prioritization.instructions.md"
+        "diagnostic.prompt.md",
+        "planning.prompt.md",
+        "evaluation.prompt.md",
+        "optimization.prompt.md",
+        "coherence.prompt.md",
+        "prioritization.prompt.md"
     )
     
     $successCount = 0
     foreach ($file in $instructionFiles) {
-        $sourcePath = ".github/instructions/$file"
+        $sourcePath = ".github/prompts/$file"
         $targetPath = "$instructionsDir\$file"
         
         if (Get-FileFromGitHub -FilePath $sourcePath -OutputPath $targetPath) {
@@ -305,7 +305,7 @@ function Test-Installation {
             $valid = $false
         }
         else {
-            $instructionFiles = Get-ChildItem $instructionsDir -Filter "*.instructions.md"
+            $instructionFiles = Get-ChildItem $instructionsDir -Filter "*.prompt.md"
             if ($instructionFiles.Count -lt 6) {
                 Write-Error "Missing instruction files (found $($instructionFiles.Count), expected 6)"
                 $valid = $false

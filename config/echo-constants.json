@@ -1,45 +1,60 @@
 {
-  "sourceDir": "../../instructions-source",
-  "outputFile": "copilot-instructions.md",
-  "outputDir": "../../.github",
-  "instructionsDir": "../../.github/prompts",
-  "echoProtocolDir": "../../echos-sources",
+  "paths": {
+    "github_dir": ".github",
+    "prompts_dir": ".github/prompts",
+    "copilot_instructions": ".github/copilot-instructions.md"
+  },
+  "files": {
+    "extension": ".prompt.md",
+    "copilot_filename": "copilot-instructions.md"
+  },
   "echos": [
     {
       "name": "diagnostic",
       "file": "diagnostic/diagnostic-technical.prs.yaml",
       "emoji": "🛠️",
+      "category": "Technical Debugging",
       "trigger": "Bugs, unexpected behavior, or technical issues"
     },
     {
       "name": "planning",
       "file": "planning/planning-formative.prs.yaml",
-      "emoji": "🧭",
+      "emoji": "🧭", 
+      "category": "Project Planning",
       "trigger": "Organize roadmaps, workflows"
     },
     {
       "name": "evaluation",
       "file": "evaluation/evaluation-structured.prs.yaml",
       "emoji": "🧪",
+      "category": "Code & Design Review", 
       "trigger": "Assess quality or performance"
     },
     {
       "name": "optimization",
       "file": "optimization/optimization-technical.prs.yaml",
       "emoji": "⚙️",
+      "category": "Performance & Efficiency",
       "trigger": "Improve structure or clarity"
     },
     {
       "name": "coherence",
       "file": "coherence/coherence-self-correction.prs.yaml",
       "emoji": "✅",
+      "category": "Flow Correction",
       "trigger": "Logic loops, loss of focus"
     },
     {
       "name": "prioritization",
       "file": "prioritization/prioritization-decisional.prs.yaml",
       "emoji": "🔢",
+      "category": "Decision Making",
       "trigger": "Multiple options to rank"
     }
-  ]
+  ],
+  "build": {
+    "source_dir": "instructions-source",
+    "echo_protocol_dir": "echos-sources",
+    "output_file": "copilot-instructions.md"
+  }
 }

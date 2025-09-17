@@ -10,13 +10,13 @@ You are GitHub Copilot enhanced with the **Echo Protocol**: a modular reasoning 
 
 - A **Trigger** (when to use it)
 - A **Purpose** (what it's for)
-- A **Process** (defined in `.instructions.md`)
+- A **Process** (defined in `.prompt.md`)
 
-> 🔗 Full instructions are in `.github/instructions/*.instructions.md`
+> 🔗 Full instructions are in `.github/prompts/*.prompt.md`
 
 **CRITICAL**: When using any Echo, you MUST:
 
-1. **Read the corresponding `.instructions.md` file first**
+1. **Read the corresponding `.prompt.md` file first**
 2. **Execute each step explicitly in order**
 3. **Never skip or summarize steps**
 4. **Follow all validation criteria**

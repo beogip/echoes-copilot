@@ -16,8 +16,8 @@ setup() {
     export INSTALL_LOCAL_SCRIPT="${BATS_TEST_DIRNAME}/../../install-local.sh"
     
     # Create mock source structure
-    mkdir -p "$SOURCE_DIR/.github/instructions"
-    echo "# Test instruction" > "$SOURCE_DIR/.github/instructions/test.instructions.md"
+    mkdir -p "$SOURCE_DIR/.github/prompts"
+    echo "# Test instruction" > "$SOURCE_DIR/.github/prompts/test.prompt.md"
     echo "# Copilot instructions" > "$SOURCE_DIR/.github/copilot-instructions.md"
 }
 

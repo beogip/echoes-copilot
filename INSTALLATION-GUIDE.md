@@ -82,7 +82,7 @@ For full control over the installation process:
 
    ```bash
    # For individual instructions mode
-   cp -r .github/instructions/ /path/to/your/project/.github/
+   cp -r .github/prompts/ /path/to/your/project/.github/
 
    # OR for comprehensive mode
    cp .github/copilot-instructions.md /path/to/your/project/.github/
@@ -94,7 +94,7 @@ The installer supports two different modes to suit your workflow:
 
 ### Instructions Mode (Default)
 
-Creates individual `.instructions.md` files that GitHub Copilot loads automatically, plus a comprehensive file for manual configuration:
+Creates individual `.prompt.md` files that GitHub Copilot loads automatically, plus a comprehensive file for manual configuration:
 
 ```bash
 ./install.sh --mode instructions
@@ -102,12 +102,12 @@ Creates individual `.instructions.md` files that GitHub Copilot loads automatica
 
 **Files created:**
 
-- `.github/instructions/coherence.instructions.md`
-- `.github/instructions/diagnostic.instructions.md`
-- `.github/instructions/evaluation.instructions.md`
-- `.github/instructions/optimization.instructions.md`
-- `.github/instructions/planning.instructions.md`
-- `.github/instructions/prioritization.instructions.md`
+- `.github/prompts/coherence.prompt.md`
+- `.github/prompts/diagnostic.prompt.md`
+- `.github/prompts/evaluation.prompt.md`
+- `.github/prompts/optimization.prompt.md`
+- `.github/prompts/planning.prompt.md`
+- `.github/prompts/prioritization.prompt.md`
 - `.github/copilot-instructions.md` (comprehensive file as additional option)
 
 **Advantages:**
@@ -181,7 +181,7 @@ Check that the files were created correctly:
 
 ```bash
 # For instructions mode
-ls -la .github/instructions/
+ls -la .github/prompts/
 
 # For comprehensive mode
 ls -la .github/copilot-instructions.md
@@ -221,12 +221,12 @@ After successful installation, your project will have:
 your-project/
 ├── .github/
 │   ├── instructions/                     # Individual instruction files (auto-loaded)
-│   │   ├── coherence.instructions.md
-│   │   ├── diagnostic.instructions.md
-│   │   ├── evaluation.instructions.md
-│   │   ├── optimization.instructions.md
-│   │   ├── planning.instructions.md
-│   │   └── prioritization.instructions.md
+│   │   ├── coherence.prompt.md
+│   │   ├── diagnostic.prompt.md
+│   │   ├── evaluation.prompt.md
+│   │   ├── optimization.prompt.md
+│   │   ├── planning.prompt.md
+│   │   └── prioritization.prompt.md
 │   │
 │   ├── copilot-instructions.md          # Comprehensive file (default + manual option)
 │   └── echos-backup-YYYYMMDD-HHMMSS/    # Backup directory (if files existed)
@@ -317,7 +317,7 @@ ls -la .github/
 
 ```bash
 # Solution: Restart VS Code and check file paths
-# Ensure files are in .github/instructions/ or .github/copilot-instructions.md
+# Ensure files are in .github/prompts/ or .github/copilot-instructions.md
 ```
 
 ### Echo Activation Issues
@@ -327,13 +327,13 @@ ls -la .github/
 1. **Check instruction files exist**:
 
    ```bash
-   ls -la .github/instructions/
+   ls -la .github/prompts/
    ```
 
 2. **Verify file content**:
 
    ```bash
-   head -n 20 .github/instructions/diagnostic.instructions.md
+   head -n 20 .github/prompts/diagnostic.prompt.md
    ```
 
 3. **Restart VS Code** and try again
@@ -361,7 +361,7 @@ ls -la .github/
 
 ```bash
 # Remove instruction files
-rm -rf .github/instructions/
+rm -rf .github/prompts/
 rm -f .github/copilot-instructions.md
 
 # Restore from backup if needed
@@ -374,7 +374,7 @@ Once installation is complete:
 
 1. **Review the [main README](README.md)** for project concepts and usage examples
 2. **Explore the `examples/` directory** for practical implementations in different languages
-3. **Check individual instruction files** in `.github/instructions/` to understand each Echo type
+3. **Check individual instruction files** in `.github/prompts/` to understand each Echo type
 4. **Start using Echo comments** in your development workflow
 5. **Review troubleshooting section** if you encounter any issues
 

@@ -221,13 +221,13 @@ install_files() {
         # Copy instructions directory
         if [[ "$FORCE_INSTALL" == true ]] || [[ ! -d "$target_github/instructions" ]]; then
             if [[ "$DRY_RUN" == true ]]; then
-                print_info "DRY RUN: Would install instruction files to: $target_github/instructions/"
+                print_info "DRY RUN: Would install instruction files to: $target_github/prompts/"
                 # Create directory structure for test compatibility
                 mkdir -p "$target_github/instructions" 2>/dev/null || true
             else
                 print_info "Installing instruction files..."
                 cp -r "$INSTRUCTIONS_DIR" "$target_github/"
-                print_success "Installed instructions to: $target_github/instructions/"
+                print_success "Installed instructions to: $target_github/prompts/"
             fi
         else
             print_warning "Instructions directory already exists. Use --force to overwrite"
@@ -265,7 +265,7 @@ validate_installation() {
     
     if [[ "$INSTALL_MODE" == "instructions" ]]; then
         if [[ -d "$target_github/instructions" ]]; then
-            local file_count=$(find "$target_github/instructions" -name "*.instructions.md" | wc -l)
+            local file_count=$(find "$target_github/prompts" -name "*.prompt.md" | wc -l)
             if [[ $file_count -gt 0 ]]; then
                 print_success "Installation validated: $file_count instruction files found"
                 return 0
@@ -319,7 +319,7 @@ EOF
     if [[ "$VERBOSE" == true ]]; then
         print_info "Listing installed files:"
         if [[ "$INSTALL_MODE" == "instructions" ]]; then
-            ls -la "$TARGET_PROJECT_DIR/.github/instructions/"
+            ls -la "$TARGET_PROJECT_DIR/.github/prompts/"
         else
             ls -la "$TARGET_PROJECT_DIR/.github/copilot-instructions.md"
         fi

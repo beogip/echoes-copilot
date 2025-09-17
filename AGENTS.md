@@ -39,36 +39,41 @@ When you see a comment starting with `ECHO:`, execute the corresponding reasonin
 
 <!-- Echos will be inserted here by build script -->
 
-
 ### 🛠️ **diagnostic** - Technical Debugging
+
 - **Trigger**: `// ECHO: diagnostic`
 - **Purpose**: Detect the origin of an error or malfunction to correct or prevent it
-- **File**: `.github/instructions/diagnostic.md`
+- **File**: `.github/prompts/diagnostic.prompt.md`
 
 ### 🧭 **planning** - Project Planning
+
 - **Trigger**: `// ECHO: planning`
 - **Purpose**: Guide step-by-step planning of a learning, development, or implementation pro...
-- **File**: `.github/instructions/planning.md`
+- **File**: `.github/prompts/planning.prompt.md`
 
 ### 🧪 **evaluation** - Code & Design Review
+
 - **Trigger**: `// ECHO: evaluation`
 - **Purpose**: To issue a structured judgment on an object (idea, result, process, code, or ...
-- **File**: `.github/instructions/evaluation.md`
+- **File**: `.github/prompts/evaluation.prompt.md`
 
 ### ⚙️ **optimization** - Performance & Efficiency
+
 - **Trigger**: `// ECHO: optimization`
 - **Purpose**: Systematically optimize processes, structures, or flows to improve efficiency...
-- **File**: `.github/instructions/optimization.md`
+- **File**: `.github/prompts/optimization.prompt.md`
 
 ### ✅ **coherence** - Flow Correction
+
 - **Trigger**: `// ECHO: coherence`
 - **Purpose**: Detect if the purpose or direction of the flow has been lost, correct deviati...
-- **File**: `.github/instructions/coherence.md`
+- **File**: `.github/prompts/coherence.prompt.md`
 
 ### 🔢 **prioritization** - Decision Making
+
 - **Trigger**: `// ECHO: prioritization`
 - **Purpose**: Rank options or ideas based on relevant criteria to decide which one to pursu...
-- **File**: `.github/instructions/prioritization.md`
+- **File**: `.github/prompts/prioritization.prompt.md`
 
 ## Advanced Echo Combinations
 
